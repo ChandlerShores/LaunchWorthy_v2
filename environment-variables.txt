@@ -1,0 +1,8 @@
+# Copy and paste these environment variables into your hosting platform (Vercel, Netlify, etc.)
+
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_51S6OWNLpe2PuHkxgGsGDfGIZA68r4BB92skHYCLrDC9O9XJHxwm7bO72RR0dIEum4KigWfb5znZDLzMWnkfaBhTo00zqg7Falp
+STRIPE_SECRET_KEY=sk_test_51S6OWNLpe2PuHkxgoCO1Mw9BEwr5M7Ya7FiLmYTgEMe1SHrsB13h8OeqBJ0QGEEB4ZXUGE1Sl25HTmEAO3t3dDMz00nbQATxnT
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=launchworthy.co
+NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/launchworthy/book
+NEXT_PUBLIC_CONTACT_FORMSPREE_URL=https://formspree.io/f/your-form-id

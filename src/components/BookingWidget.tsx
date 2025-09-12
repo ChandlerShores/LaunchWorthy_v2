@@ -88,8 +88,9 @@ const BookingWidget: React.FC = () => {
       }
     } catch (error) {
       console.error('Payment error:', error);
-      console.error('Error details:', error.message || error);
-      alert(`Payment error: ${error.message || 'Something went wrong. Please try again.'}`);
+      const errorMessage = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+      console.error('Error details:', errorMessage);
+      alert(`Payment error: ${errorMessage}`);
     } finally {
       setIsProcessing(false);
     }
