@@ -3,8 +3,13 @@ import { stripe, servicePrices } from '@/lib/stripe';
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('API Route called');
+    console.log('Stripe configured:', !!stripe);
+    console.log('STRIPE_SECRET_KEY exists:', !!process.env.STRIPE_SECRET_KEY);
+    
     // Check if Stripe is configured
     if (!stripe) {
+      console.log('Stripe not configured - returning error');
       return NextResponse.json(
         { error: 'Stripe not configured' },
         { status: 500 }
@@ -22,9 +27,13 @@ export async function POST(request: NextRequest) {
     }
 
     const service = servicePrices[serviceId as keyof typeof servicePrices];
+    console.log('Service selected:', service);
+    
     const baseUrl = process.env.NODE_ENV === 'production' 
       ? 'https://launchworthy.co' 
       : 'http://localhost:3000';
+    
+    console.log('Creating Stripe session with baseUrl:', baseUrl);
 
     // Create Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
@@ -35,7 +44,7 @@ export async function POST(request: NextRequest) {
             currency: 'usd',
             product_data: {
               name: service.name,
-              description: service.description,
+              description: service.description || '',
             },
             unit_amount: service.price,
           },

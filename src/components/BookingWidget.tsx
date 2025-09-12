@@ -24,25 +24,25 @@ const BookingWidget: React.FC = () => {
       id: 'consult',
       name: '30-min Career Consult',
       description: 'Quick resume, LinkedIn, and interview style review',
-      price: 50,
+      price: 5000, // $50.00 in cents
     },
     {
       id: 'resume',
       name: 'Resume + LinkedIn Polish',
       description: 'Comprehensive resume and LinkedIn optimization',
-      price: 125,
+      price: 12500, // $125.00 in cents
     },
     {
       id: 'accelerator',
       name: 'Stop Getting Ghosted',
       description: 'Full coaching program with mock interviews',
-      price: 300,
+      price: 30000, // $300.00 in cents
     },
     {
       id: 'mentorship',
       name: 'Monthly Mentorship',
       description: 'Ongoing coaching and career guidance',
-      price: 150,
+      price: 15000, // $150.00 in cents
     },
   ];
 
@@ -63,11 +63,17 @@ const BookingWidget: React.FC = () => {
         }),
       });
 
-      const { sessionId } = await response.json();
+      const data = await response.json();
 
-      if (!sessionId) {
+      if (!response.ok) {
+        throw new Error(data.error || `API Error: ${response.status}`);
+      }
+
+      if (!data.sessionId) {
         throw new Error('Failed to create checkout session');
       }
+
+      const { sessionId } = data;
 
       // Redirect to Stripe Checkout
       const stripe = await getStripe();
@@ -82,7 +88,8 @@ const BookingWidget: React.FC = () => {
       }
     } catch (error) {
       console.error('Payment error:', error);
-      alert('Something went wrong. Please try again.');
+      console.error('Error details:', error.message || error);
+      alert(`Payment error: ${error.message || 'Something went wrong. Please try again.'}`);
     } finally {
       setIsProcessing(false);
     }
@@ -152,7 +159,7 @@ const BookingWidget: React.FC = () => {
             You've selected: <strong>{selectedServiceData.name}</strong>
           </p>
           <p className="text-2xl font-bold text-primary-600 mb-6">
-            ${selectedServiceData.price}
+            ${(selectedServiceData.price / 100).toFixed(2)}
           </p>
           
           {/* Email Input */}

@@ -6,7 +6,8 @@ A clean, high-conversion marketing site for interview coaching services built wi
 
 - **High-conversion design** with mobile-first approach
 - **Multiple service offerings** with clear pricing and CTAs
-- **Integrated booking system** with Calendly and Stripe
+- **Integrated booking system** with Calendly and Stripe Checkout
+- **Dynamic payment processing** with real-time checkout sessions
 - **SEO optimized** with next-seo and JSON-LD schema
 - **Analytics ready** with Plausible integration
 - **Accessible** with WCAG 2.2 AA compliance
@@ -21,7 +22,7 @@ A clean, high-conversion marketing site for interview coaching services built wi
 - **SEO**: next-seo
 - **Analytics**: Plausible
 - **Booking**: Calendly (iframe)
-- **Payments**: Stripe (payment links)
+- **Payments**: Stripe Checkout (dynamic sessions)
 - **Forms**: Formspree
 - **Deployment**: Vercel
 
@@ -47,17 +48,23 @@ npm install
 
 3. Set up environment variables:
 ```bash
-cp env.local.example .env.local
+cp .env.local.example .env.local
 ```
 
 4. Update `.env.local` with your actual values:
 ```env
+# Stripe Configuration (Required for payments)
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
+
+# Analytics
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=launchworthy.co
+
+# Calendly
 NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-username/book
-NEXT_PUBLIC_STRIPE_LINK_CONSULT=https://buy.stripe.com/your-consult-link
-NEXT_PUBLIC_STRIPE_LINK_RESUME=https://buy.stripe.com/your-resume-link
-NEXT_PUBLIC_STRIPE_LINK_ACCELERATOR=https://buy.stripe.com/your-accelerator-link
-NEXT_PUBLIC_STRIPE_LINK_MENTORSHIP=https://buy.stripe.com/your-mentorship-link
+
+# Formspree
 NEXT_PUBLIC_CONTACT_FORMSPREE_URL=https://formspree.io/f/your-form-id
 ```
 
@@ -97,6 +104,7 @@ src/
 │   │   ├── faq/           # FAQ page
 │   │   └── contact/       # Contact page
 │   ├── api/               # API routes
+│   │   ├── create-checkout-session/ # Stripe Checkout API
 │   │   └── sitemap/       # Sitemap generation
 │   ├── robots.txt/        # Robots.txt
 │   └── globals.css        # Global styles
@@ -114,6 +122,7 @@ src/
 │   ├── routes.ts          # Route definitions
 │   ├── metadata.ts        # SEO metadata
 │   ├── schema.ts          # Schema.org data
+│   ├── stripe.ts          # Stripe configuration
 │   └── utils.ts           # Helper functions
 └── styles/                # Additional styles
     └── prose.css          # Typography styles
@@ -139,29 +148,53 @@ src/
 
 ## Environment Variables
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Analytics domain | `launchworthy.co` |
-| `NEXT_PUBLIC_CALENDLY_URL` | Calendly booking URL | `https://calendly.com/username/book` |
-| `NEXT_PUBLIC_STRIPE_LINK_CONSULT` | Stripe payment link for consult | `https://buy.stripe.com/...` |
-| `NEXT_PUBLIC_STRIPE_LINK_RESUME` | Stripe payment link for resume service | `https://buy.stripe.com/...` |
-| `NEXT_PUBLIC_STRIPE_LINK_ACCELERATOR` | Stripe payment link for accelerator | `https://buy.stripe.com/...` |
-| `NEXT_PUBLIC_STRIPE_LINK_MENTORSHIP` | Stripe payment link for mentorship | `https://buy.stripe.com/...` |
-| `NEXT_PUBLIC_CONTACT_FORMSPREE_URL` | Formspree contact form URL | `https://formspree.io/f/...` |
+| Variable | Description | Required | Example |
+|----------|-------------|----------|---------|
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key | ✅ Yes | `pk_test_...` |
+| `STRIPE_SECRET_KEY` | Stripe secret key | ✅ Yes | `sk_test_...` |
+| `STRIPE_WEBHOOK_SECRET` | Stripe webhook secret | ⚠️ Optional | `whsec_...` |
+| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Analytics domain | ⚠️ Optional | `launchworthy.co` |
+| `NEXT_PUBLIC_CALENDLY_URL` | Calendly booking URL | ⚠️ Optional | `https://calendly.com/username/book` |
+| `NEXT_PUBLIC_CONTACT_FORMSPREE_URL` | Formspree contact form URL | ⚠️ Optional | `https://formspree.io/f/...` |
+
+## Payment Integration
+
+This site uses **Stripe Checkout** for secure payment processing:
+
+- **Dynamic checkout sessions** created via API routes
+- **Real-time pricing** based on service selection
+- **Email pre-filling** for better UX
+- **Success/cancel handling** with proper redirects
+- **Test mode ready** for development
+
+### Stripe Setup Required
+
+1. **Create Stripe account** at [stripe.com](https://stripe.com)
+2. **Get API keys** from Stripe Dashboard → Developers → API keys
+3. **Add keys to environment variables** (see above)
+4. **Test payments** in Stripe test mode first
 
 ## Deployment
 
 ### Vercel (Recommended)
 
-1. Connect your repository to Vercel
-2. Set environment variables in Vercel dashboard
-3. Deploy automatically on push to main branch
+1. **Push code to GitHub**
+2. **Connect repository** to Vercel
+3. **Set environment variables** in Vercel dashboard:
+   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+   - `STRIPE_SECRET_KEY`
+   - `STRIPE_WEBHOOK_SECRET` (optional)
+   - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (optional)
+   - `NEXT_PUBLIC_CALENDLY_URL` (optional)
+   - `NEXT_PUBLIC_CONTACT_FORMSPREE_URL` (optional)
+4. **Deploy automatically** on push to main branch
 
 ### Manual Deployment
 
 1. Build the project: `npm run build`
 2. Deploy the `.next` folder to your hosting provider
 3. Ensure all environment variables are set
+4. **Configure webhooks** in Stripe (optional)
 
 ## SEO Features
 
@@ -207,6 +240,40 @@ src/
 ## License
 
 This project is proprietary and confidential.
+
+## Troubleshooting
+
+### Payment Issues
+
+**"Something went wrong" error:**
+- Check that `.env.local` exists (not `env.local`)
+- Verify Stripe API keys are correct
+- Restart dev server after adding environment variables
+- Check browser console for detailed error messages
+
+**Stripe Checkout not redirecting:**
+- Ensure `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` is set
+- Verify API route is accessible at `/api/create-checkout-session`
+- Check that service prices are in cents (e.g., 5000 for $50.00)
+
+### Build Issues
+
+**"Stripe not configured" error:**
+- Add `STRIPE_SECRET_KEY` to environment variables
+- Restart development server
+- Check that `.env.local` file exists and is properly formatted
+
+**Environment variables not loading:**
+- Ensure file is named `.env.local` (with dot prefix)
+- Restart Next.js development server
+- Check file is in project root directory
+
+### Contact Form Issues
+
+**Form submission fails:**
+- Set up Formspree account at [formspree.io](https://formspree.io)
+- Add form ID to `NEXT_PUBLIC_CONTACT_FORMSPREE_URL`
+- Test with valid email addresses
 
 ## Support
 
