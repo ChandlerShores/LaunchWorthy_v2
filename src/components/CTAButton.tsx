@@ -30,14 +30,18 @@ export interface CTAButtonProps
     VariantProps<typeof buttonVariants> {
   href?: string;
   children: React.ReactNode;
+  target?: string;
+  rel?: string;
 }
 
 const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
-  ({ className, variant, size, href, children, ...props }, ref) => {
+  ({ className, variant, size, href, children, target, rel, ...props }, ref) => {
     if (href) {
       return (
         <Link
           href={href}
+          target={target}
+          rel={rel}
           className={cn(buttonVariants({ variant, size }), className)}
         >
           {children}

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { CTAButton } from './CTAButton';
+import Icon from './Icon';
 
 interface ServiceOption {
   id: string;

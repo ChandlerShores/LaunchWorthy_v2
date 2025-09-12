@@ -7,7 +7,7 @@ interface ServiceCardProps {
   title: string;
   price: string;
   description: string;
-  features: string[];
+  features: readonly string[];
   href: string;
   ctaText?: string;
   badge?: string;
