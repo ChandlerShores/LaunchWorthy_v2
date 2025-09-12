@@ -1,0 +1,77 @@
+export const routes = {
+  home: '/',
+  services: '/services',
+  consult: '/services/consult',
+  resumeLinkedin: '/services/resume-linkedin',
+  stopGettingGhosted: '/services/stop-getting-ghosted',
+  mentorship: '/services/mentorship',
+  results: '/results',
+  about: '/about',
+  book: '/book',
+  faq: '/faq',
+  contact: '/contact',
+} as const;
+
+export const navigation = [
+  { name: 'Services', href: routes.services },
+  { name: 'Results', href: routes.results },
+  { name: 'About', href: routes.about },
+  { name: 'FAQ', href: routes.faq },
+  { name: 'Contact', href: routes.contact },
+] as const;
+
+export const services = [
+  {
+    id: 'consult',
+    name: '30-min Career Consult',
+    price: '$50',
+    description: "We'll review resume, LinkedIn, and interview style. Leave with 2–3 fixes.",
+    href: routes.consult,
+    features: [
+      'Resume review',
+      'LinkedIn profile check',
+      'Interview style assessment',
+      '2-3 actionable fixes',
+    ],
+  },
+  {
+    id: 'resume-linkedin',
+    name: 'Resume + LinkedIn Polish',
+    price: '$125',
+    description: "I'll align your story across resume and profile. Includes a quick walkthrough call.",
+    href: routes.resumeLinkedin,
+    features: [
+      'Resume optimization',
+      'LinkedIn profile alignment',
+      'Story consistency review',
+      'Quick walkthrough call',
+    ],
+  },
+  {
+    id: 'accelerator',
+    name: 'Stop Getting Ghosted',
+    price: '$300',
+    description: 'Baseline mock → coaching → final mock, recordings + notes. Walk in confident.',
+    href: routes.stopGettingGhosted,
+    features: [
+      'Baseline mock interview',
+      'Storytelling frameworks',
+      'STAR answer training',
+      'Final mock interview',
+      'Recordings + detailed notes',
+    ],
+  },
+  {
+    id: 'mentorship',
+    name: 'Monthly Mentorship',
+    price: '$150/mo',
+    description: 'Two 30-min sessions/month. Ongoing prep for interviews, negotiations, and growth.',
+    href: routes.mentorship,
+    features: [
+      'Two 30-min sessions/month',
+      'Interview prep',
+      'Negotiation coaching',
+      'Career growth planning',
+    ],
+  },
+] as const;
