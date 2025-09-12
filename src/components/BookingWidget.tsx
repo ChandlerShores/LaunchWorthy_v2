@@ -3,16 +3,20 @@
 import React, { useState } from 'react';
 import { CTAButton } from './CTAButton';
 import Icon from './Icon';
+import { getStripe } from '@/lib/stripe';
+import { ServiceId } from '@/lib/stripe';
 
 interface ServiceOption {
-  id: string;
+  id: ServiceId;
   name: string;
   description: string;
-  stripeLink: string;
+  price: number;
 }
 
 const BookingWidget: React.FC = () => {
-  const [selectedService, setSelectedService] = useState<string>('');
+  const [selectedService, setSelectedService] = useState<ServiceId | ''>('');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [customerEmail, setCustomerEmail] = useState('');
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL;
 
   const services: ServiceOption[] = [
@@ -20,27 +24,69 @@ const BookingWidget: React.FC = () => {
       id: 'consult',
       name: '30-min Career Consult',
       description: 'Quick resume, LinkedIn, and interview style review',
-      stripeLink: process.env.NEXT_PUBLIC_STRIPE_LINK_CONSULT || '',
+      price: 50,
     },
     {
       id: 'resume',
       name: 'Resume + LinkedIn Polish',
       description: 'Comprehensive resume and LinkedIn optimization',
-      stripeLink: process.env.NEXT_PUBLIC_STRIPE_LINK_RESUME || '',
+      price: 125,
     },
     {
       id: 'accelerator',
       name: 'Stop Getting Ghosted',
       description: 'Full coaching program with mock interviews',
-      stripeLink: process.env.NEXT_PUBLIC_STRIPE_LINK_ACCELERATOR || '',
+      price: 300,
     },
     {
       id: 'mentorship',
       name: 'Monthly Mentorship',
       description: 'Ongoing coaching and career guidance',
-      stripeLink: process.env.NEXT_PUBLIC_STRIPE_LINK_MENTORSHIP || '',
+      price: 150,
     },
   ];
+
+  const handlePayment = async () => {
+    if (!selectedService) return;
+
+    setIsProcessing(true);
+    try {
+      // Create checkout session
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          serviceId: selectedService,
+          customerEmail: customerEmail || undefined,
+        }),
+      });
+
+      const { sessionId } = await response.json();
+
+      if (!sessionId) {
+        throw new Error('Failed to create checkout session');
+      }
+
+      // Redirect to Stripe Checkout
+      const stripe = await getStripe();
+      if (!stripe) {
+        throw new Error('Stripe not loaded');
+      }
+
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
   const selectedServiceData = services.find(s => s.id === selectedService);
 
@@ -73,7 +119,7 @@ const BookingWidget: React.FC = () => {
                 name="service"
                 value={service.id}
                 checked={selectedService === service.id}
-                onChange={(e) => setSelectedService(e.target.value)}
+                onChange={(e) => setSelectedService(e.target.value as ServiceId)}
                 className="sr-only"
               />
               <div className="flex items-center justify-between">
@@ -105,18 +151,42 @@ const BookingWidget: React.FC = () => {
           <p className="text-gray-600 mb-4">
             You've selected: <strong>{selectedServiceData.name}</strong>
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <CTAButton
-              href={selectedServiceData.stripeLink}
-              className="flex-1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Pay with Stripe
-            </CTAButton>
+          <p className="text-2xl font-bold text-primary-600 mb-6">
+            ${selectedServiceData.price}
+          </p>
+          
+          {/* Email Input */}
+          <div className="mb-4">
+            <label htmlFor="customer-email" className="block text-sm font-medium text-gray-700 mb-2">
+              Email (optional - for payment receipt)
+            </label>
+            <input
+              type="email"
+              id="customer-email"
+              value={customerEmail}
+              onChange={(e) => setCustomerEmail(e.target.value)}
+              placeholder="your.email@example.com"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            />
           </div>
+          
+          <button
+            onClick={handlePayment}
+            disabled={isProcessing}
+            className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
+          >
+            {isProcessing ? (
+              <>
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                Processing...
+              </>
+            ) : (
+              'Pay with Stripe'
+            )}
+          </button>
+          
           <p className="text-sm text-gray-500 mt-3">
-            After payment, you'll receive a confirmation email with booking details.
+            Secure payment powered by Stripe. After payment, you'll receive a confirmation email.
           </p>
         </div>
       )}
