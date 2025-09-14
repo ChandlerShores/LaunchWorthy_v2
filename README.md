@@ -1,19 +1,20 @@
 # Launchworthy - Interview Coaching Website
 
-A clean, high-conversion marketing site for interview coaching services built with Next.js 14, TypeScript, and Tailwind CSS.
+A modern, high-conversion marketing site for interview coaching services built with Next.js 14, TypeScript, and Tailwind CSS. Features a complete booking flow with Stripe payments and Calendly integration.
 
-## Features
+## 🚀 Features
 
+- **Complete Booking Flow** - 3-step process: Contact → Payment → Schedule
+- **Integrated Payments** - Stripe Checkout with dynamic session creation
+- **Smart Calendly Integration** - Pre-filled contact information and guest details hidden
 - **High-conversion design** with mobile-first approach
 - **Multiple service offerings** with clear pricing and CTAs
-- **Integrated booking system** with Calendly and Stripe Checkout
-- **Dynamic payment processing** with real-time checkout sessions
 - **SEO optimized** with next-seo and JSON-LD schema
 - **Analytics ready** with Plausible integration
 - **Accessible** with WCAG 2.2 AA compliance
 - **Fast performance** with Lighthouse scores ≥90
 
-## Tech Stack
+## 🛠 Tech Stack
 
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
@@ -21,12 +22,59 @@ A clean, high-conversion marketing site for interview coaching services built wi
 - **UI Components**: Radix UI
 - **SEO**: next-seo
 - **Analytics**: Plausible
-- **Booking**: Calendly (iframe)
 - **Payments**: Stripe Checkout (dynamic sessions)
+- **Booking**: Calendly (iframe with prefill)
 - **Forms**: Formspree
+- **State Management**: React Hooks + localStorage
 - **Deployment**: Vercel
 
-## Getting Started
+## 🏗 Project Structure
+
+```
+src/
+├── app/                           # Next.js App Router
+│   ├── (site)/                   # Main site routes
+│   │   ├── layout.tsx            # Root layout
+│   │   ├── page.tsx              # Home page
+│   │   ├── services/             # Service pages
+│   │   ├── book/                 # Booking flow
+│   │   │   ├── layout.tsx        # Booking page metadata
+│   │   │   └── page.tsx          # Booking flow container
+│   │   ├── success/              # Payment success page
+│   │   ├── about/                # About page
+│   │   ├── faq/                  # FAQ page
+│   │   └── contact/              # Contact page
+│   ├── api/                      # API routes
+│   │   ├── create-checkout-session/ # Stripe Checkout API
+│   │   └── submit-booking-formspree/ # Booking completion API
+│   └── globals.css               # Global styles
+├── components/                   # Reusable components
+│   ├── booking/                  # Booking flow components
+│   │   ├── BookingFlow.tsx       # Main booking container
+│   │   ├── BookingStep1.tsx      # Contact info & service selection
+│   │   ├── BookingStep2.tsx      # Payment processing
+│   │   └── BookingStep3.tsx      # Scheduling & file upload
+│   ├── Header.tsx                # Site header
+│   ├── Footer.tsx                # Site footer
+│   ├── Hero.tsx                  # Hero sections
+│   ├── ServiceCard.tsx           # Service cards
+│   ├── TestimonialCard.tsx       # Testimonial cards
+│   ├── FAQ.tsx                   # FAQ accordion
+│   ├── Analytics.tsx             # Analytics script
+│   └── Schema.tsx                # JSON-LD schema
+├── hooks/                        # Custom React hooks
+│   └── useBookingFlow.ts         # Booking state management
+├── lib/                          # Utilities
+│   ├── calendly.ts               # Calendly integration with prefill
+│   ├── stripe.ts                 # Stripe configuration & pricing
+│   ├── metadata.ts               # SEO metadata
+│   ├── schema.ts                 # Schema.org data
+│   └── utils.ts                  # Helper functions
+└── styles/                       # Additional styles
+    └── prose.css                 # Typography styles
+```
+
+## 🚦 Getting Started
 
 ### Prerequisites
 
@@ -35,36 +83,36 @@ A clean, high-conversion marketing site for interview coaching services built wi
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
 ```bash
 git clone <repository-url>
 cd launchworthy
 ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 ```bash
 npm install
 ```
 
-3. Set up environment variables:
+3. **Set up environment variables:**
 ```bash
-cp .env.local.example .env.local
+cp env.local.example .env.local
 ```
 
-4. Update `.env.local` with your actual values:
+4. **Update `.env.local` with your actual values:**
 ```env
 # Stripe Configuration (Required for payments)
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
 STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
 STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
 
-# Analytics
+# Calendly Integration (Required for booking)
+NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-username/30min
+
+# Analytics (Optional)
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=launchworthy.co
 
-# Calendly
-NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-username/book
-
-# Formspree
+# Forms (Optional)
 NEXT_PUBLIC_CONTACT_FORMSPREE_URL=https://formspree.io/f/your-form-id
 ```
 
@@ -89,46 +137,7 @@ Start production server:
 npm start
 ```
 
-## Project Structure
-
-```
-src/
-├── app/                    # Next.js App Router
-│   ├── (site)/            # Main site routes
-│   │   ├── layout.tsx     # Root layout
-│   │   ├── page.tsx       # Home page
-│   │   ├── services/      # Service pages
-│   │   ├── results/       # Results page
-│   │   ├── about/         # About page
-│   │   ├── book/          # Booking page
-│   │   ├── faq/           # FAQ page
-│   │   └── contact/       # Contact page
-│   ├── api/               # API routes
-│   │   ├── create-checkout-session/ # Stripe Checkout API
-│   │   └── sitemap/       # Sitemap generation
-│   ├── robots.txt/        # Robots.txt
-│   └── globals.css        # Global styles
-├── components/            # Reusable components
-│   ├── Header.tsx         # Site header
-│   ├── Footer.tsx         # Site footer
-│   ├── Hero.tsx           # Hero sections
-│   ├── ServiceCard.tsx    # Service cards
-│   ├── TestimonialCard.tsx # Testimonial cards
-│   ├── FAQ.tsx            # FAQ accordion
-│   ├── BookingWidget.tsx  # Booking interface
-│   ├── Analytics.tsx      # Analytics script
-│   └── Schema.tsx         # JSON-LD schema
-├── lib/                   # Utilities
-│   ├── routes.ts          # Route definitions
-│   ├── metadata.ts        # SEO metadata
-│   ├── schema.ts          # Schema.org data
-│   ├── stripe.ts          # Stripe configuration
-│   └── utils.ts           # Helper functions
-└── styles/                # Additional styles
-    └── prose.css          # Typography styles
-```
-
-## Services
+## 💰 Services & Pricing
 
 1. **30-min Career Consult** - $50
    - Quick resume, LinkedIn, and interview style review
@@ -146,18 +155,40 @@ src/
    - Two 30-min sessions per month
    - Ongoing support and accountability
 
-## Environment Variables
+## 🔄 Booking Flow
+
+The site features a sophisticated 3-step booking process:
+
+### Step 1: Contact & Service Selection
+- Collect contact information (name, email, phone)
+- Service selection with pricing display
+- LinkedIn URL validation (optional)
+- Real-time form validation
+
+### Step 2: Payment Processing
+- Stripe Checkout integration
+- Dynamic pricing based on service selection
+- Test mode indicators for development
+- Success/error handling
+
+### Step 3: Scheduling & Completion
+- **Calendly integration with prefill** - Contact info automatically populated (not yet)
+- File upload for resume/documentation
+- LinkedIn profile URL collection
+- Booking completion confirmation
+
+## 🔧 Environment Variables
 
 | Variable | Description | Required | Example |
 |----------|-------------|----------|---------|
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key | ✅ Yes | `pk_test_...` |
 | `STRIPE_SECRET_KEY` | Stripe secret key | ✅ Yes | `sk_test_...` |
+| `NEXT_PUBLIC_CALENDLY_URL` | Calendly booking URL | ✅ Yes | `https://calendly.com/username/30min` |
 | `STRIPE_WEBHOOK_SECRET` | Stripe webhook secret | ⚠️ Optional | `whsec_...` |
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Analytics domain | ⚠️ Optional | `launchworthy.co` |
-| `NEXT_PUBLIC_CALENDLY_URL` | Calendly booking URL | ⚠️ Optional | `https://calendly.com/username/book` |
 | `NEXT_PUBLIC_CONTACT_FORMSPREE_URL` | Formspree contact form URL | ⚠️ Optional | `https://formspree.io/f/...` |
 
-## Payment Integration
+## 💳 Payment Integration
 
 This site uses **Stripe Checkout** for secure payment processing:
 
@@ -168,8 +199,6 @@ This site uses **Stripe Checkout** for secure payment processing:
 - **Test mode ready** for development
 
 ### Testing Payments
-
-The site automatically detects test mode and provides helpful testing tools:
 
 **Test Mode is enabled when:**
 - `NODE_ENV=development` (local development)
@@ -185,42 +214,58 @@ The site automatically detects test mode and provides helpful testing tools:
 
 Use any future expiry date and any 3-digit CVC for testing.
 
-**Test Mode Features:**
-- Visual indicators showing test mode status
-- Expandable test card reference
-- Clear warnings that no real money will be charged
-- Development-friendly error messages
+## 📅 Calendly Integration
 
-### Stripe Setup Required
+The booking flow includes sophisticated Calendly integration:
 
-1. **Create Stripe account** at [stripe.com](https://stripe.com)
-2. **Get API keys** from Stripe Dashboard → Developers → API keys
-3. **Add keys to environment variables** (see above)
-4. **Test payments** in Stripe test mode first
+### Features
+- **Contact Prefill** - Name, email, and phone automatically populated
+- **Guest Details Hidden** - Removes "add guest" button for cleaner UX
+- **Error Handling** - Graceful fallback if Calendly fails to load
+- **Debug Mode** - Shows generated URL for troubleshooting
 
-## Deployment
+### Setup
+1. **Create Calendly account** and set up your event types
+2. **Use specific event URL** (not generic booking page):
+   ```
+   ✅ Good: https://calendly.com/username/30min
+   ❌ Bad: https://calendly.com/username/book
+   ```
+3. **Add to environment variables**:
+   ```env
+   NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-username/30min
+   ```
+
+### Troubleshooting Calendly
+- **Prefill not working?** Ensure you're using a specific event URL
+- **Debug URL shows** - Click to test prefill in new tab
+- **Check console logs** for detailed integration status
+
+## 🚀 Deployment
 
 ### Vercel (Recommended)
 
 1. **Push code to GitHub**
 2. **Connect repository** to Vercel
-3. **Set environment variables** in Vercel dashboard:
-   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
-   - `STRIPE_SECRET_KEY`
-   - `STRIPE_WEBHOOK_SECRET` (optional)
-   - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (optional)
-   - `NEXT_PUBLIC_CALENDLY_URL` (optional)
-   - `NEXT_PUBLIC_CONTACT_FORMSPREE_URL` (optional)
+3. **Set environment variables** in Vercel dashboard
 4. **Deploy automatically** on push to main branch
 
-### Manual Deployment
+### Environment Variables for Production
 
-1. Build the project: `npm run build`
-2. Deploy the `.next` folder to your hosting provider
-3. Ensure all environment variables are set
-4. **Configure webhooks** in Stripe (optional)
+```env
+# Stripe (Production)
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
+STRIPE_SECRET_KEY=sk_live_...
+STRIPE_WEBHOOK_SECRET=whsec_...
 
-## SEO Features
+# Calendly (Production)
+NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-username/30min
+
+# Analytics
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=yourdomain.com
+```
+
+## 🔍 SEO Features
 
 - **Meta tags** optimized for each page
 - **Open Graph** tags for social sharing
@@ -229,7 +274,7 @@ Use any future expiry date and any 3-digit CVC for testing.
 - **Robots.txt** configured
 - **Structured data** for better search visibility
 
-## Performance
+## ⚡ Performance
 
 - **Lighthouse Score**: 90+ on mobile and desktop
 - **Core Web Vitals**: Optimized for LCP, FID, and CLS
@@ -237,7 +282,7 @@ Use any future expiry date and any 3-digit CVC for testing.
 - **Font Loading**: Inter font with display: swap
 - **Code Splitting**: Automatic with Next.js
 
-## Accessibility
+## ♿ Accessibility
 
 - **WCAG 2.2 AA** compliant
 - **Keyboard navigation** support
@@ -246,26 +291,7 @@ Use any future expiry date and any 3-digit CVC for testing.
 - **Alt text** for all images
 - **ARIA labels** for interactive elements
 
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push to branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
-## License
-
-This project is proprietary and confidential.
-
-## Troubleshooting
+## 🐛 Troubleshooting
 
 ### Payment Issues
 
@@ -275,10 +301,18 @@ This project is proprietary and confidential.
 - Restart dev server after adding environment variables
 - Check browser console for detailed error messages
 
-**Stripe Checkout not redirecting:**
-- Ensure `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` is set
-- Verify API route is accessible at `/api/create-checkout-session`
-- Check that service prices are in cents (e.g., 5000 for $50.00)
+### Calendly Issues
+
+**Prefill not working:**
+- Ensure you're using a specific event URL (not generic booking page)
+- Check that contact information is being passed correctly
+- Look at debug URL in Step 3 of booking flow
+- Verify Calendly event allows prefill parameters
+
+**Infinite re-render errors:**
+- Clear `.next` directory: `Remove-Item -Recurse -Force .next`
+- Restart development server
+- Check for circular dependencies in hooks
 
 ### Build Issues
 
@@ -287,18 +321,21 @@ This project is proprietary and confidential.
 - Restart development server
 - Check that `.env.local` file exists and is properly formatted
 
-**Environment variables not loading:**
+### Environment Variables Not Loading
+
 - Ensure file is named `.env.local` (with dot prefix)
 - Restart Next.js development server
 - Check file is in project root directory
+- Verify no spaces around `=` in environment variables
 
-### Contact Form Issues
-
-**Form submission fails:**
-- Set up Formspree account at [formspree.io](https://formspree.io)
-- Add form ID to `NEXT_PUBLIC_CONTACT_FORMSPREE_URL`
-- Test with valid email addresses
-
-## Support
+## 📞 Support
 
 For questions or support, contact hello@launchworthy.co
+
+## 📄 License
+
+This project is proprietary and confidential.
+
+---
+
+**Built with ❤️ using Next.js, TypeScript, and Tailwind CSS**

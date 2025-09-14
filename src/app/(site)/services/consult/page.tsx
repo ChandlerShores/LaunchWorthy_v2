@@ -16,7 +16,7 @@ export const metadata = generatePageMetadata({
 export default function ConsultPage() {
   const testimonials = [
     {
-      quote: "The 30-minute consult was exactly what I needed. Sarah identified 3 key issues with my resume that I never noticed.",
+      quote: "The 30-minute consult was exactly what I needed. Chandler identified 3 key issues with my resume that I never noticed.",
       name: "Mike T.",
       role: "Recent Graduate",
       rating: 5,

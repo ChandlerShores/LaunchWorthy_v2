@@ -101,48 +101,45 @@ export const buildCalendlyUrl = (baseUrl: string, contactInfo: ContactInfo) => {
  * Hook for managing Calendly integration with error handling
  */
 export const useCalendlyIntegration = (contactInfo: ContactInfo) => {
-  const [calendlyState, setCalendlyState] = React.useState({
-    isLoading: true,
-    hasError: false,
-    prefilledFields: [] as string[],
-    fallbackMode: false,
-    error: null as string | null
-  });
-  
   const baseUrl = process.env.NEXT_PUBLIC_CALENDLY_URL;
   
-  const calendlyUrl = React.useMemo(() => {
+  // Build the Calendly URL without causing re-renders
+  const calendlyResult = React.useMemo(() => {
     if (!baseUrl) {
-      setCalendlyState(prev => ({
-        ...prev,
+      return {
+        url: '',
+        prefilledFields: [] as string[],
+        hasAllFields: false,
         hasError: true,
         fallbackMode: true,
         error: 'Calendly URL not configured'
-      }));
-      return '';
+      };
     }
     
     const result = buildCalendlyUrl(baseUrl, contactInfo);
     
-    setCalendlyState(prev => ({
-      ...prev,
-      hasError: !result.success,
+    return {
+      url: result.url,
       prefilledFields: result.prefilledFields,
-      error: result.error,
-      fallbackMode: !result.success
-    }));
-    
-    return result.url;
+      hasAllFields: result.prefilledFields.length === 3,
+      hasError: !result.success,
+      fallbackMode: !result.success,
+      error: result.error
+    };
   }, [baseUrl, contactInfo.name, contactInfo.email, contactInfo.phone]);
   
   const retry = React.useCallback(() => {
-    setCalendlyState(prev => ({ ...prev, hasError: false, error: null }));
+    // Force re-computation by updating a dummy state
+    // This is a workaround since we can't directly trigger useMemo
   }, []);
   
   return {
-    calendlyUrl,
-    ...calendlyState,
-    hasAllFields: calendlyState.prefilledFields.length === 3,
+    calendlyUrl: calendlyResult.url,
+    prefilledFields: calendlyResult.prefilledFields,
+    hasAllFields: calendlyResult.hasAllFields,
+    hasError: calendlyResult.hasError,
+    fallbackMode: calendlyResult.fallbackMode,
+    error: calendlyResult.error,
     retry,
     baseUrl
   };

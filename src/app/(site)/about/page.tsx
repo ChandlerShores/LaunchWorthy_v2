@@ -6,8 +6,8 @@ import { CTAButton } from '@/components/CTAButton';
 import { routes } from '@/lib/routes';
 
 export const metadata = generatePageMetadata({
-  title: 'About - Sarah Johnson, Career Coach in Lexington',
-  description: 'Learn about Sarah\'s practical, peer-level approach to interview coaching. No fluff — just progress for early-career professionals.',
+  title: 'About - Chandler, Career Coach in Lexington',
+  description: 'Learn about Chandler\'s practical, peer-level approach to interview coaching. No fluff — just progress for early-career professionals.',
   path: '/about',
 });
 
@@ -35,7 +35,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                About Sarah
+                About Chandler
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Practical, peer-level coaching. No fluff — just progress.
@@ -46,8 +46,8 @@ export default function AboutPage() {
             </div>
             <div className="flex justify-center">
               <img
-                src="/headshot-placeholder.jpg"
-                alt="Sarah Johnson, Career Coach"
+                src="/chandler_headshot.jpg"
+                alt="Chandler, Career Coach"
                 className="w-80 h-80 rounded-full object-cover shadow-lg"
               />
             </div>

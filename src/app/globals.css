@@ -33,4 +33,19 @@
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Prevent caret browsing cursor on non-input elements */
+  *:not(input):not(textarea):not([contenteditable]) {
+    caret-color: transparent;
+  }
+  
+  /* Ensure proper cursor for interactive elements */
+  button, a, [role="button"], [tabindex] {
+    cursor: pointer;
+  }
+  
+  /* Remove any unwanted cursor effects */
+  h1, h2, h3, h4, h5, h6, p, span, div:not([contenteditable]) {
+    cursor: default;
+  }
 }

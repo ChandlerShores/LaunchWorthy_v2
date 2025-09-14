@@ -30,11 +30,11 @@ export default function FAQPage() {
     },
     {
       question: "Do you offer evening or weekend sessions?",
-      answer: "Limited evening slots are available; see the Book page for current availability. Weekend sessions depend on Sarah's schedule and are typically booked 2-3 weeks in advance.",
+      answer: "Limited evening slots are available; see the Book page for current availability. Weekend sessions depend on Chandler's schedule and are typically booked 2-3 weeks in advance.",
     },
     {
       question: "What if I need to reschedule?",
-      answer: "We understand things come up. Rescheduling is free with 24+ hours notice. Last-minute changes may incur a rescheduling fee to respect Sarah's time.",
+      answer: "We understand things come up. Rescheduling is free with 24+ hours notice. Last-minute changes may incur a rescheduling fee to respect Chandler's time.",
     },
     {
       question: "How quickly will I see results?",

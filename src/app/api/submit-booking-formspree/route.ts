@@ -1,19 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-interface BookingSubmission {
+interface CompleteBookingSubmission {
+  // Contact Information
   name: string;
   email: string;
   phone: string;
-  service: string;
+  
+  // Service Information
+  serviceId?: string;
+  serviceName: string;
+  serviceDescription?: string;
+  servicePrice?: number;
+  
+  // Payment Information
   paymentSessionId: string;
+  paymentStatus?: string;
+  
+  // Additional Information
   linkedinUrl?: string;
   uploadedFiles?: number;
+  
+  // Booking Status
   status: 'payment_completed' | 'booking_completed';
+  submittedAt?: string;
+  bookingFlowVersion?: string;
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const bookingData: BookingSubmission = await request.json();
+    const bookingData: CompleteBookingSubmission = await request.json();
     
     const formspreeUrl = process.env.NEXT_PUBLIC_CONTACT_FORMSPREE_URL;
     
@@ -25,24 +40,42 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare data for Formspree
+    // Prepare comprehensive data for Formspree
     const formspreeData = {
+      // Contact Information
       name: bookingData.name,
       email: bookingData.email,
       phone: bookingData.phone,
-      service: bookingData.service,
+      
+      // Service Information
+      serviceId: bookingData.serviceId || '',
+      serviceName: bookingData.serviceName,
+      serviceDescription: bookingData.serviceDescription || '',
+      servicePrice: bookingData.servicePrice || 0,
+      
+      // Payment Information
       paymentSessionId: bookingData.paymentSessionId,
+      paymentStatus: bookingData.paymentStatus || 'completed',
+      
+      // Additional Information
       linkedinUrl: bookingData.linkedinUrl || '',
       uploadedFiles: bookingData.uploadedFiles || 0,
+      
+      // Booking Status
       status: bookingData.status,
-      submittedAt: new Date().toISOString(),
+      submittedAt: bookingData.submittedAt || new Date().toISOString(),
+      bookingFlowVersion: bookingData.bookingFlowVersion || '2.0',
     };
 
-    console.log('Submitting booking data to Formspree:', {
+    console.log('Submitting comprehensive booking data to Formspree:', {
       name: formspreeData.name,
       email: formspreeData.email,
-      service: formspreeData.service,
+      serviceName: formspreeData.serviceName,
+      serviceId: formspreeData.serviceId,
+      servicePrice: formspreeData.servicePrice,
+      paymentSessionId: formspreeData.paymentSessionId,
       status: formspreeData.status,
+      bookingFlowVersion: formspreeData.bookingFlowVersion,
     });
 
     const response = await fetch(formspreeUrl, {

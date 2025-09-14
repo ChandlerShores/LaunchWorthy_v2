@@ -6,6 +6,18 @@ import { ContactInfo } from '@/hooks/useBookingFlow';
 import { CTAButton } from '../CTAButton';
 import Icon from '../Icon';
 import { useCalendlyIntegration } from '@/lib/calendly';
+import { servicePrices } from '@/lib/stripe';
+
+// Helper functions to get service details
+const getServiceDescription = (serviceId: ServiceId | null): string => {
+  if (!serviceId || !servicePrices[serviceId]) return '';
+  return servicePrices[serviceId].description || '';
+};
+
+const getServicePrice = (serviceId: ServiceId | null): number => {
+  if (!serviceId || !servicePrices[serviceId]) return 0;
+  return servicePrices[serviceId].price;
+};
 
 interface BookingStep3Props {
   contactInfo: ContactInfo;
@@ -81,6 +93,19 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
     setIsSubmitting(true);
     
     try {
+      // Validate we have all required data
+      if (!contactInfo.name || !contactInfo.email || !contactInfo.phone) {
+        throw new Error('Missing required contact information');
+      }
+      
+      if (!selectedService) {
+        throw new Error('No service selected');
+      }
+      
+      if (!paymentSessionId) {
+        throw new Error('No payment session ID');
+      }
+      
       // Here you would typically upload files and save LinkedIn URL
       // For now, we'll just simulate the process
       
@@ -89,7 +114,7 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
       
-      // Send additional booking data to Formspree
+      // Send comprehensive booking data to Formspree
       try {
         const response = await fetch('/api/submit-booking-formspree', {
           method: 'POST',
@@ -97,24 +122,46 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+            // Contact Information
             name: contactInfo.name,
             email: contactInfo.email,
             phone: contactInfo.phone,
-            service: serviceName,
+            
+            // Service Information
+            serviceId: selectedService,
+            serviceName: serviceName,
+            serviceDescription: getServiceDescription(selectedService),
+            servicePrice: getServicePrice(selectedService),
+            
+            // Payment Information
             paymentSessionId,
+            paymentStatus: 'completed',
+            
+            // Additional Information
             linkedinUrl,
             uploadedFiles: uploadedFiles.length,
+            
+            // Booking Status
             status: 'booking_completed',
+            submittedAt: new Date().toISOString(),
+            bookingFlowVersion: '2.0',
           }),
         });
 
         if (response.ok) {
-          console.log('Successfully updated booking data in Formspree');
+          console.log('Successfully submitted comprehensive booking data to Formspree');
         } else {
-          console.error('Failed to update Formspree with booking completion data');
+          const errorData = await response.text();
+          console.error('Failed to submit booking data to Formspree:', {
+            status: response.status,
+            statusText: response.statusText,
+            error: errorData
+          });
+          // Don't block the user flow - they've already paid
         }
       } catch (error) {
-        console.error('Error updating Formspree:', error);
+        console.error('Error submitting to Formspree:', error);
+        // Don't block the user flow - they've already paid
       }
       
       // Complete the booking process

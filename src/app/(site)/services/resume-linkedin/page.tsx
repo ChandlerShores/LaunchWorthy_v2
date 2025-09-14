@@ -16,7 +16,7 @@ export const metadata = generatePageMetadata({
 export default function ResumeLinkedInPage() {
   const testimonials = [
     {
-      quote: "Sarah completely transformed my LinkedIn profile. The alignment with my resume made my story so much clearer to recruiters.",
+      quote: "Chandler completely transformed my LinkedIn profile. The alignment with my resume made my story so much clearer to recruiters.",
       name: "Jessica L.",
       role: "Marketing Manager",
       rating: 5,

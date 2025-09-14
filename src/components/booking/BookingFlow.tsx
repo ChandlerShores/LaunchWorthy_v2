@@ -51,36 +51,9 @@ const BookingFlow: React.FC = () => {
   const handlePaymentSuccess = async (sessionId: string) => {
     setPaymentSessionId(sessionId);
     
-    // Submit to Formspree immediately after payment success
-    try {
-      const serviceName = selectedServiceData?.name || 'Unknown Service';
-      
-      const response = await fetch('/api/submit-booking-formspree', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: contactInfo.name,
-          email: contactInfo.email,
-          phone: contactInfo.phone,
-          service: serviceName,
-          paymentSessionId: sessionId,
-          status: 'payment_completed',
-        }),
-      });
-
-      if (response.ok) {
-        console.log('Successfully submitted booking data to Formspree');
-      } else {
-        console.error('Formspree submission failed, but continuing with booking flow');
-      }
-    } catch (error) {
-      // Don't block the user flow if Formspree fails
-      console.error('Error submitting to Formspree:', error);
-    }
-    
-    // Continue to Step 3 regardless of Formspree success/failure
+    // Payment successful - proceed to Step 3
+    // Formspree submission will happen in Step 3 with complete data
+    console.log('Payment successful, proceeding to booking completion step');
     nextStep();
   };
 

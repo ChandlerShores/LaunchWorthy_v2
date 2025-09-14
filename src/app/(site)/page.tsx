@@ -16,7 +16,7 @@ export const metadata = generatePageMetadata({
 export default function HomePage() {
   const testimonials = [
     {
-      quote: "Sarah helped me completely transform my interview approach. I went from getting ghosted to getting offers within 3 weeks.",
+      quote: "Chandler helped me completely transform my interview approach. I went from getting ghosted to getting offers within 3 weeks.",
       name: "Alex M.",
       role: "Software Engineer",
       company: "Tech Startup",
@@ -208,8 +208,8 @@ export default function HomePage() {
           </div>
           <div className="flex justify-center">
             <img
-              src="/headshot-placeholder.jpg"
-              alt="Sarah Johnson, Career Coach"
+              src="/chandler_headshot.jpg"
+              alt="Chandler, Career Coach"
               className="w-80 h-80 rounded-full object-cover shadow-lg"
             />
           </div>

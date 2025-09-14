@@ -21,7 +21,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`bg-white rounded-xl shadow-lg border border-gray-200 p-8 ${className}`}>
+    <div className={`bg-white rounded-xl shadow-lg border border-gray-200 p-8 flex flex-col h-full ${className}`}>
       {/* Rating */}
       {rating > 0 && (
         <div className="flex items-center mb-4">
@@ -36,12 +36,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       )}
 
       {/* Quote */}
-      <blockquote className="text-gray-700 text-lg mb-6 italic">
+      <blockquote className="text-gray-700 text-lg mb-6 italic flex-grow">
         "{quote}"
       </blockquote>
 
       {/* Author */}
-      <div className="flex items-center">
+      <div className="flex items-center mt-auto">
         {image ? (
           <img
             src={image}
