@@ -8,7 +8,8 @@ interface ServiceCardProps {
   price: string;
   description: string;
   features: readonly string[];
-  href: string;
+  learnMoreHref: string;
+  bookHref: string;
   ctaText?: string;
   badge?: string;
   popular?: boolean;
@@ -19,13 +20,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   price,
   description,
   features,
-  href,
+  learnMoreHref,
+  bookHref,
   ctaText = 'Book Now',
   badge,
   popular = false,
 }) => {
   return (
-    <div className={`relative bg-white rounded-xl shadow-lg border border-gray-200 p-8 hover:shadow-xl transition-shadow duration-300 ${popular ? 'ring-2 ring-primary-500' : ''}`}>
+    <div className={`relative bg-white rounded-xl shadow-lg border border-gray-200 p-8 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full ${popular ? 'ring-2 ring-primary-500' : ''}`}>
       {badge && (
         <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
           <Badge variant="default">{badge}</Badge>
@@ -44,7 +46,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         <p className="text-gray-600 mb-6">{description}</p>
       </div>
 
-      <ul className="space-y-3 mb-8">
+      <ul className="space-y-3 mb-8 flex-grow">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start">
             <div className="flex-shrink-0 w-5 h-5 bg-primary-100 rounded-full flex items-center justify-center mt-0.5 mr-3">
@@ -57,9 +59,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         ))}
       </ul>
 
-      <CTAButton href={href} className="w-full">
-        {ctaText}
-      </CTAButton>
+      <div className="space-y-3 mt-auto">
+        <CTAButton href={learnMoreHref} variant="secondary" className="w-full border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white">
+          Learn More
+        </CTAButton>
+        <CTAButton href={bookHref} className="w-full">
+          {ctaText}
+        </CTAButton>
+      </div>
     </div>
   );
 };

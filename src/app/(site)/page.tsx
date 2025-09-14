@@ -152,7 +152,8 @@ export default function HomePage() {
               price={service.price}
               description={service.description}
               features={service.features}
-              href={service.href}
+              learnMoreHref={service.learnMoreHref}
+              bookHref={service.bookHref}
               popular={service.id === 'accelerator'}
             />
           ))}
@@ -183,14 +184,6 @@ export default function HomePage() {
           ))}
         </div>
         
-        <div className="text-center mt-12">
-          <a
-            href={routes.results}
-            className="text-primary-600 hover:text-primary-700 font-semibold underline"
-          >
-            View More Results →
-          </a>
-        </div>
       </Section>
 
       {/* About Snapshot */}

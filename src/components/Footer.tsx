@@ -16,23 +16,6 @@ const Footer: React.FC = () => {
               Practical coaching for early-career professionals. Stop getting ghosted after interviews.
             </p>
             
-            {/* Email capture */}
-            <div className="mb-6">
-              <label htmlFor="footer-email" className="block text-sm font-medium text-gray-300 mb-2">
-                Stay updated
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  id="footer-email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                />
-                <button className="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors duration-200">
-                  Subscribe
-                </button>
-              </div>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -42,11 +25,6 @@ const Footer: React.FC = () => {
               <li>
                 <Link href={routes.services} className="text-gray-300 hover:text-white transition-colors duration-200">
                   Services
-                </Link>
-              </li>
-              <li>
-                <Link href={routes.results} className="text-gray-300 hover:text-white transition-colors duration-200">
-                  Results
                 </Link>
               </li>
               <li>
@@ -104,13 +82,13 @@ const Footer: React.FC = () => {
             </div>
             
             <div className="flex space-x-6 text-sm">
-              <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors duration-200">
+              <Link href="/legal/privacy" className="text-gray-400 hover:text-white transition-colors duration-200">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-white transition-colors duration-200">
+              <Link href="/legal/terms" className="text-gray-400 hover:text-white transition-colors duration-200">
                 Terms of Service
               </Link>
-              <Link href="/refund" className="text-gray-400 hover:text-white transition-colors duration-200">
+              <Link href="/legal/refund" className="text-gray-400 hover:text-white transition-colors duration-200">
                 Refund Policy
               </Link>
             </div>

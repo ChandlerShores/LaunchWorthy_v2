@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { CTAButton } from './CTAButton';
 import Icon from './Icon';
-import { getStripe } from '@/lib/stripe';
+import TestModeIndicator from './TestModeIndicator';
+import { getStripe, isTestMode } from '@/lib/stripe';
 import { ServiceId } from '@/lib/stripe';
 
 interface ServiceOption {
@@ -109,6 +110,9 @@ const BookingWidget: React.FC = () => {
         </p>
       </div>
 
+      {/* Test Mode Indicator */}
+      <TestModeIndicator className="mb-8" />
+
       {/* Service Selection */}
       <div className="mb-8">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Select a Service</h3>
@@ -196,6 +200,12 @@ const BookingWidget: React.FC = () => {
           <p className="text-sm text-gray-500 mt-3">
             Secure payment powered by Stripe. After payment, you'll receive a confirmation email.
           </p>
+          
+          {isTestMode && (
+            <div className="mt-3 p-2 bg-yellow-100 border border-yellow-300 rounded text-xs text-yellow-800">
+              <strong>Test Mode:</strong> This is a test payment. No real money will be charged.
+            </div>
+          )}
         </div>
       )}
 

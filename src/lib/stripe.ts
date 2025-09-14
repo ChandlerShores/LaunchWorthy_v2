@@ -1,6 +1,10 @@
 import Stripe from 'stripe';
 import { loadStripe } from '@stripe/stripe-js';
 
+// Test mode detection
+export const isTestMode = process.env.NODE_ENV === 'development' || 
+                         process.env.NEXT_PUBLIC_STRIPE_MODE === 'test';
+
 // Server-side Stripe instance
 export const stripe = process.env.STRIPE_SECRET_KEY 
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
@@ -12,6 +16,24 @@ export const stripe = process.env.STRIPE_SECRET_KEY
 export const getStripe = () => {
   return loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 };
+
+// Test card numbers for development
+export const testCards = {
+  success: '4242424242424242',
+  decline: '4000000000000002',
+  insufficientFunds: '4000000000009995',
+  requiresAuthentication: '4000002500003155',
+  expiredCard: '4000000000000069',
+  incorrectCvc: '4000000000000127',
+} as const;
+
+// Test mode helper functions
+export const getTestModeInfo = () => ({
+  isTestMode,
+  testCards,
+  environment: process.env.NODE_ENV,
+  stripeMode: process.env.NEXT_PUBLIC_STRIPE_MODE || 'live',
+});
 
 // Service pricing configuration
 export const servicePrices = {

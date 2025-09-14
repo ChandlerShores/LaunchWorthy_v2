@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { serviceId, customerEmail } = await request.json();
+    const { serviceId, customerEmail, customerName, customerPhone } = await request.json();
 
     // Validate service ID
     if (!serviceId || !(serviceId in servicePrices)) {
@@ -29,9 +29,19 @@ export async function POST(request: NextRequest) {
     const service = servicePrices[serviceId as keyof typeof servicePrices];
     console.log('Service selected:', service);
     
-    const baseUrl = process.env.NODE_ENV === 'production' 
-      ? 'https://launchworthy.co' 
-      : 'http://localhost:3000';
+    // Get the correct base URL for development
+    let baseUrl: string;
+    if (process.env.NODE_ENV === 'production') {
+      baseUrl = 'https://launchworthy.co';
+    } else {
+      // In development, use the request origin to get the correct port
+      const origin = request.headers.get('origin') || request.headers.get('referer');
+      if (origin) {
+        baseUrl = origin.replace(/\/$/, ''); // Remove trailing slash
+      } else {
+        baseUrl = 'http://localhost:3000'; // Fallback
+      }
+    }
     
     console.log('Creating Stripe session with baseUrl:', baseUrl);
 
@@ -58,6 +68,8 @@ export async function POST(request: NextRequest) {
       metadata: {
         serviceId,
         serviceName: service.name,
+        customerName: customerName || '',
+        customerPhone: customerPhone || '',
       },
       // Enable automatic tax calculation if you have Stripe Tax set up
       // automatic_tax: { enabled: true },

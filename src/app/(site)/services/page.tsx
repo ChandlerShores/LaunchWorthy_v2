@@ -35,7 +35,8 @@ export default function ServicesPage() {
               price={service.price}
               description={service.description}
               features={service.features}
-              href={service.href}
+              learnMoreHref={service.learnMoreHref}
+              bookHref={service.bookHref}
               popular={service.id === 'accelerator'}
             />
           ))}

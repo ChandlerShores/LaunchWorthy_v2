@@ -167,6 +167,30 @@ This site uses **Stripe Checkout** for secure payment processing:
 - **Success/cancel handling** with proper redirects
 - **Test mode ready** for development
 
+### Testing Payments
+
+The site automatically detects test mode and provides helpful testing tools:
+
+**Test Mode is enabled when:**
+- `NODE_ENV=development` (local development)
+- `NEXT_PUBLIC_STRIPE_MODE=test` (explicit test mode)
+
+**Test Card Numbers:**
+- **Success:** `4242424242424242`
+- **Decline:** `4000000000000002`
+- **Insufficient Funds:** `4000000000009995`
+- **Requires Authentication:** `4000002500003155`
+- **Expired Card:** `4000000000000069`
+- **Incorrect CVC:** `4000000000000127`
+
+Use any future expiry date and any 3-digit CVC for testing.
+
+**Test Mode Features:**
+- Visual indicators showing test mode status
+- Expandable test card reference
+- Clear warnings that no real money will be charged
+- Development-friendly error messages
+
 ### Stripe Setup Required
 
 1. **Create Stripe account** at [stripe.com](https://stripe.com)

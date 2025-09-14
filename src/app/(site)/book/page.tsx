@@ -1,34 +1,33 @@
-import React from 'react';
-import { generatePageMetadata } from '@/lib/metadata';
-import Section from '@/components/Section';
-import BookingWidget from '@/components/BookingWidget';
+'use client';
 
-export const metadata = generatePageMetadata({
-  title: 'Book a Session - Schedule Your Interview Coaching',
-  description: 'Book your interview coaching session with Sarah. Choose from career consults, resume optimization, or comprehensive coaching programs.',
-  path: '/book',
-});
+import React from 'react';
+import { useSearchParams } from 'next/navigation';
+import Section from '@/components/Section';
+import BookingFlow from '@/components/booking/BookingFlow';
 
 export default function BookPage() {
+  const searchParams = useSearchParams();
+  const isStep3 = searchParams.get('step') === '3';
+
   return (
     <>
-      {/* Hero Section */}
-      <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Book Your Session
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8">
-            Choose your service, schedule your session, and start transforming your interview skills.
-          </p>
-        </div>
-      </Section>
+      {/* Hero Section - Hidden on Step 3 */}
+      {!isStep3 && (
+        <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Book Your Session
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 mb-8">
+              Choose your service, schedule your session, and start transforming your interview skills.
+            </p>
+          </div>
+        </Section>
+      )}
 
-      {/* Booking Widget */}
+      {/* Booking Flow */}
       <Section>
-        <div className="max-w-4xl mx-auto">
-          <BookingWidget />
-        </div>
+        <BookingFlow />
       </Section>
 
       {/* Additional Info */}
