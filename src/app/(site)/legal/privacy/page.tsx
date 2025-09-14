@@ -102,7 +102,7 @@ export default function PrivacyPolicyPage() {
           </ul>
 
           <p>
-            To exercise these rights, please contact us at hello@launchworthy.co. We will respond 
+            To exercise these rights, please contact us at hello@launchworthy.net. We will respond 
             to your request within a reasonable timeframe.
           </p>
 
@@ -138,7 +138,7 @@ export default function PrivacyPolicyPage() {
             If you have any questions about this Privacy Policy or our privacy practices, please contact us:
           </p>
           <p>
-            <strong>Email:</strong> hello@launchworthy.co<br />
+            <strong>Email:</strong> hello@launchworthy.net<br />
             <strong>Address:</strong> Lexington, KY
           </p>
         </div>

@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     // Get the correct base URL for development
     let baseUrl: string;
     if (process.env.NODE_ENV === 'production') {
-      baseUrl = 'https://launchworthy.co';
+      baseUrl = 'https://launchworthy.net';
     } else {
       // In development, use the request origin to get the correct port
       const origin = request.headers.get('origin') || request.headers.get('referer');

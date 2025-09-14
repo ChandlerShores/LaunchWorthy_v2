@@ -53,7 +53,7 @@ export default function RefundPolicyPage() {
           <h2>How to Request a Refund</h2>
           <p>To request a refund, please:</p>
           <ol>
-            <li>Email us at hello@launchworthy.co with "Refund Request" in the subject line</li>
+            <li>Email us at hello@launchworthy.net with "Refund Request" in the subject line</li>
             <li>Include your name, email address, and order details</li>
             <li>Explain what didn't meet your expectations</li>
             <li>Provide any specific feedback that can help us improve</li>
@@ -131,7 +131,7 @@ export default function RefundPolicyPage() {
             For refund requests or questions about this policy:
           </p>
           <p>
-            <strong>Email:</strong> hello@launchworthy.co<br />
+            <strong>Email:</strong> hello@launchworthy.net<br />
             <strong>Subject:</strong> Refund Request<br />
             <strong>Response Time:</strong> Within 2 business days
           </p>

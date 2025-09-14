@@ -148,7 +148,7 @@ export default function TermsOfServicePage() {
             For questions about these Terms of Service, please contact us:
           </p>
           <p>
-            <strong>Email:</strong> hello@launchworthy.co<br />
+            <strong>Email:</strong> hello@launchworthy.net<br />
             <strong>Address:</strong> Lexington, KY
           </p>
 

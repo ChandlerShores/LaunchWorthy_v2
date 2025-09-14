@@ -56,10 +56,10 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a 
-                  href="mailto:hello@launchworthy.co" 
+                  href="mailto:hello@launchworthy.net" 
                   className="text-gray-300 hover:text-white transition-colors duration-200"
                 >
-                  hello@launchworthy.co
+                  hello@launchworthy.net
                 </a>
               </li>
               <li className="text-gray-300">

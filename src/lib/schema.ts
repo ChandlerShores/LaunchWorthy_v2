@@ -66,8 +66,8 @@ export const organizationSchema: OrganizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Launchworthy',
-  url: 'https://launchworthy.co',
-  logo: 'https://launchworthy.co/og.jpg',
+  url: 'https://launchworthy.net',
+  logo: 'https://launchworthy.net/og.jpg',
   description: 'Practical coaching for early-career professionals. Stop getting ghosted after interviews.',
   address: {
     '@type': 'PostalAddress',
@@ -90,9 +90,9 @@ export const localBusinessSchema: LocalBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'Launchworthy',
-  image: 'https://launchworthy.co/og.jpg',
-  '@id': 'https://launchworthy.co',
-  url: 'https://launchworthy.co',
+  image: 'https://launchworthy.net/og.jpg',
+  '@id': 'https://launchworthy.net',
+  url: 'https://launchworthy.net',
   telephone: '+1-859-XXX-XXXX',
   address: {
     '@type': 'PostalAddress',

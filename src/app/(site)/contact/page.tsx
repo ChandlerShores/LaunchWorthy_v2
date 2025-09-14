@@ -95,7 +95,7 @@ export default function ContactPage() {
                 {submitStatus === 'error' && (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
                     <p className="text-red-800">
-                      Sorry, there was an error sending your message. Please try again or email us directly at hello@launchworthy.co
+                      Sorry, there was an error sending your message. Please try again or email us directly at hello@launchworthy.net
                     </p>
                   </div>
                 )}
@@ -182,10 +182,10 @@ export default function ContactPage() {
                 For general questions or to discuss services
               </p>
               <a
-                href="mailto:hello@launchworthy.co"
+                href="mailto:hello@launchworthy.net"
                 className="text-primary-600 hover:text-primary-700 font-semibold"
               >
-                hello@launchworthy.co
+                hello@launchworthy.net
               </a>
             </div>
             

@@ -110,7 +110,7 @@ STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
 NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-username/30min
 
 # Analytics (Optional)
-NEXT_PUBLIC_PLAUSIBLE_DOMAIN=launchworthy.co
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=launchworthy.net
 
 # Forms (Optional)
 NEXT_PUBLIC_CONTACT_FORMSPREE_URL=https://formspree.io/f/your-form-id
@@ -185,7 +185,7 @@ The site features a sophisticated 3-step booking process:
 | `STRIPE_SECRET_KEY` | Stripe secret key | ✅ Yes | `sk_test_...` |
 | `NEXT_PUBLIC_CALENDLY_URL` | Calendly booking URL | ✅ Yes | `https://calendly.com/username/30min` |
 | `STRIPE_WEBHOOK_SECRET` | Stripe webhook secret | ⚠️ Optional | `whsec_...` |
-| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Analytics domain | ⚠️ Optional | `launchworthy.co` |
+| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Analytics domain | ⚠️ Optional | `launchworthy.net` |
 | `NEXT_PUBLIC_CONTACT_FORMSPREE_URL` | Formspree contact form URL | ⚠️ Optional | `https://formspree.io/f/...` |
 
 ## 💳 Payment Integration
@@ -330,7 +330,7 @@ NEXT_PUBLIC_PLAUSIBLE_DOMAIN=yourdomain.com
 
 ## 📞 Support
 
-For questions or support, contact hello@launchworthy.co
+For questions or support, contact hello@launchworthy.net
 
 ## 📄 License
 

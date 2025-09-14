@@ -4,7 +4,7 @@ export async function GET() {
   const robotsTxt = `User-agent: *
 Allow: /
 
-Sitemap: https://launchworthy.co/sitemap.xml
+Sitemap: https://launchworthy.net/sitemap.xml
 `;
 
   return new NextResponse(robotsTxt, {

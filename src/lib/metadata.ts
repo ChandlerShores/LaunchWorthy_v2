@@ -24,11 +24,11 @@ export const defaultMetadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://launchworthy.co'),
+  metadataBase: new URL('https://launchworthy.net'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://launchworthy.co',
+    url: 'https://launchworthy.net',
     siteName: 'Launchworthy',
     title: 'Launchworthy - Stop Getting Ghosted After Interviews',
     description: '21 days from "decent" to "obvious hire." Practical coaching for early-career professionals.',
@@ -78,7 +78,7 @@ export function generatePageMetadata({
     openGraph: {
       title,
       description,
-      url: `https://launchworthy.co${path}`,
+      url: `https://launchworthy.net${path}`,
     },
     twitter: {
       title,

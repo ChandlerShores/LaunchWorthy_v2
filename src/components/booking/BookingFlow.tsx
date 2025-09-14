@@ -179,8 +179,8 @@ const BookingFlow: React.FC = () => {
       <div className="mt-8 text-center">
         <p className="text-gray-500 text-sm">
           Need help? Contact us at{' '}
-          <a href="mailto:hello@launchworthy.co" className="text-primary-600 hover:text-primary-700 underline">
-            hello@launchworthy.co
+          <a href="mailto:hello@launchworthy.net" className="text-primary-600 hover:text-primary-700 underline">
+            hello@launchworthy.net
           </a>
         </p>
         <p className="text-gray-400 text-xs mt-2">
