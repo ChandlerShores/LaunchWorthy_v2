@@ -15,6 +15,7 @@ interface BookingStep2Props {
     description: string;
     price: number;
   };
+  paymentSessionId: string | null;
   isProcessing: boolean;
   onProcessingChange: (processing: boolean) => void;
   onPaymentSuccess: (sessionId: string) => void;
@@ -25,15 +26,41 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
   contactInfo,
   selectedService,
   selectedServiceData,
+  paymentSessionId,
   isProcessing,
   onProcessingChange,
   onPaymentSuccess,
   onPrev,
 }) => {
   const [error, setError] = useState<string>('');
+  const [isProcessingLocal, setIsProcessingLocal] = useState(false);
 
   const handlePayment = async () => {
+    // Prevent double-clicks and multiple payment attempts
+    if (isProcessingLocal || isProcessing) {
+      console.log('Payment already in progress, ignoring duplicate click');
+      return;
+    }
+
+    // If we already have a payment session, redirect to it instead of creating new one
+    if (paymentSessionId) {
+      console.log('Existing payment session found, redirecting to:', paymentSessionId);
+      try {
+        const stripe = await getStripe();
+        if (!stripe) {
+          throw new Error('Stripe not loaded - check NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY');
+        }
+        await stripe.redirectToCheckout({ sessionId: paymentSessionId });
+        return;
+      } catch (error) {
+        console.error('Error redirecting to existing session:', error);
+        setError('Error accessing existing payment session. Please try again.');
+        return;
+      }
+    }
+
     setError('');
+    setIsProcessingLocal(true);
     onProcessingChange(true);
 
     try {
@@ -97,6 +124,7 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
       // Also show error in console for debugging
       console.error('Full error object:', error);
     } finally {
+      setIsProcessingLocal(false);
       onProcessingChange(false);
     }
   };

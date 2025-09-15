@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import useBookingFlow from '@/hooks/useBookingFlow';
 import BookingStep1 from './BookingStep1';
@@ -9,6 +9,7 @@ import BookingStep3 from './BookingStep3';
 
 const BookingFlow: React.FC = () => {
   const searchParams = useSearchParams();
+  const bookingFlowRef = useRef<HTMLDivElement>(null);
   
   const {
     currentStep,
@@ -39,12 +40,56 @@ const BookingFlow: React.FC = () => {
       // Coming from payment success - go directly to Step 3
       setPaymentSessionId(sessionId);
       goToStep(3);
+      
+      // Scroll to booking flow when returning from payment
+      setTimeout(() => {
+        if (bookingFlowRef.current) {
+          const headerHeight = 80;
+          const elementPosition = bookingFlowRef.current.offsetTop;
+          const offsetPosition = elementPosition - headerHeight - 20;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 200); // Longer delay for payment return
     }
   }, [searchParams, setPaymentSessionId, goToStep]);
+
+  // Scroll to booking flow when step changes (except on initial load)
+  useEffect(() => {
+    if (bookingFlowRef.current && currentStep > 1) {
+      // Small delay to ensure DOM has updated
+      setTimeout(() => {
+        const headerHeight = 80; // Approximate header height
+        const elementPosition = bookingFlowRef.current!.offsetTop;
+        const offsetPosition = elementPosition - headerHeight - 20; // Extra 20px padding
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }, 100);
+    }
+  }, [currentStep]);
 
   const handleStep1Next = () => {
     if (validateStep1()) {
       nextStep();
+      // Scroll to booking flow immediately for better UX
+      setTimeout(() => {
+        if (bookingFlowRef.current) {
+          const headerHeight = 80;
+          const elementPosition = bookingFlowRef.current.offsetTop;
+          const offsetPosition = elementPosition - headerHeight - 20;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 50);
     }
   };
 
@@ -88,6 +133,7 @@ const BookingFlow: React.FC = () => {
             contactInfo={contactInfo}
             selectedService={selectedService}
             selectedServiceData={selectedServiceData}
+            paymentSessionId={paymentSessionId}
             isProcessing={isProcessing}
             onProcessingChange={setProcessing}
             onPaymentSuccess={handlePaymentSuccess}
@@ -115,7 +161,7 @@ const BookingFlow: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div ref={bookingFlowRef} className="max-w-4xl mx-auto">
       {/* Progress Indicator */}
       <div className="mb-8">
         <div className="flex items-center justify-center space-x-4">

@@ -46,7 +46,12 @@ export const useBookingFlow = () => {
           // Only restore state if we're continuing from step 2 or 3
           // For step 1, always start fresh to prevent auto-selection
           if (parsed.currentStep > 1) {
-            setState(prev => ({ ...prev, ...parsed }));
+            // Ensure isProcessing defaults to false (not persisted)
+            const restoredState = {
+              ...parsed,
+              isProcessing: false
+            };
+            setState(prev => ({ ...prev, ...restoredState }));
           }
           // If currentStep is 1, don't restore anything - start completely fresh
         } catch (error) {
@@ -59,7 +64,16 @@ export const useBookingFlow = () => {
   // Save state to localStorage whenever it changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      // Only persist state that should survive page reloads
+      const stateToPersist = {
+        currentStep: state.currentStep,
+        contactInfo: state.contactInfo,
+        selectedService: state.selectedService,
+        paymentSessionId: state.paymentSessionId,
+        errors: state.errors,
+        // isProcessing: excluded - session-only state
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(stateToPersist));
     }
   }, [state]);
 

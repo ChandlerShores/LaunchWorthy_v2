@@ -210,7 +210,7 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
               Your payment has been processed successfully. You'll receive a confirmation email shortly.
             </p>
             <p className="text-green-700 text-sm mt-2">
-              Session ID: <code className="bg-green-100 px-2 py-1 rounded text-xs">{paymentSessionId}</code>
+              Payment confirmed • Ready to schedule your session
             </p>
           </div>
         </div>
