@@ -219,14 +219,6 @@ export default function ContactPage() {
           <p className="text-xl text-gray-600 mb-8">
             We typically respond to all inquiries within 24 hours. For urgent questions about existing bookings, please mention "URGENT" in your message.
           </p>
-          
-          <div className="bg-primary-50 border border-primary-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-primary-900 mb-2">Business Hours</h3>
-            <p className="text-primary-800">
-              Monday - Friday: 9:00 AM - 5:00 PM EST<br />
-              Weekend responses may be delayed
-            </p>
-          </div>
         </div>
       </Section>
     </>

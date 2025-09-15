@@ -178,7 +178,7 @@ export default function AboutPage() {
             <CTAButton
               href={routes.contact}
               variant="secondary"
-              className="border-white text-white hover:bg-white hover:text-primary-600"
+              className="border-white text-white hover:bg-white hover:text-primary-600 bg-transparent"
             >
               Ask Questions
             </CTAButton>
