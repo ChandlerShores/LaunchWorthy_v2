@@ -43,17 +43,12 @@ export const useBookingFlow = () => {
       if (savedState) {
         try {
           const parsed = JSON.parse(savedState);
-          // Only restore if we're continuing a booking flow, not starting fresh
-          // If currentStep is 1, clear any saved service selection to prevent auto-selection
-          if (parsed.currentStep === 1) {
-            setState(prev => ({ 
-              ...prev, 
-              ...parsed,
-              selectedService: null // Clear auto-selection on fresh start
-            }));
-          } else {
+          // Only restore state if we're continuing from step 2 or 3
+          // For step 1, always start fresh to prevent auto-selection
+          if (parsed.currentStep > 1) {
             setState(prev => ({ ...prev, ...parsed }));
           }
+          // If currentStep is 1, don't restore anything - start completely fresh
         } catch (error) {
           console.error('Failed to parse saved booking state:', error);
         }
