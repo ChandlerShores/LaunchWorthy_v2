@@ -58,6 +58,7 @@ const Footer: React.FC = () => {
                 <a 
                   href="mailto:hello@launchworthy.net" 
                   className="text-gray-300 hover:text-white transition-colors duration-200"
+                  rel="noopener noreferrer"
                 >
                   hello@launchworthy.net
                 </a>

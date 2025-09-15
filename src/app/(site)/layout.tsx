@@ -19,6 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <head>
+        <link rel="preconnect" href="https://js.stripe.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://js.stripe.com" />
         <Schema type="organization" />
         <Analytics />
       </head>

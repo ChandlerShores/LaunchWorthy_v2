@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { CTAButton } from './CTAButton';
-import { Badge } from './Badge';
+import Badge from './Badge';
 
 interface ServiceCardProps {
   title: string;

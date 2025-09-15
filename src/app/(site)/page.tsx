@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { generatePageMetadata } from '@/lib/metadata';
 import Section from '@/components/Section';
 import Hero from '@/components/Hero';
@@ -85,15 +86,19 @@ export default function HomePage() {
             href: routes.book,
           }}
           secondaryCTA={{
-            text: "Start with a $50 Consult",
+            text: "Try a $50 Consult",
             href: routes.consult,
           }}
-          proofLine="Trusted by grads and young pros in Lexington."
+          trustIndicators={{
+            avatarCount: 3,
+            rating: 5,
+            location: "Lexington"
+          }}
         />
       </Section>
 
       {/* Value Proposition */}
-      <Section>
+      <Section variant="default" showSeparator={true}>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
             What You'll Get
@@ -114,7 +119,7 @@ export default function HomePage() {
       </Section>
 
       {/* How It Works */}
-      <Section className="bg-gray-50">
+      <Section variant="alt" showSeparator={true}>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
             How It Works
@@ -134,7 +139,7 @@ export default function HomePage() {
       </Section>
 
       {/* Services */}
-      <Section>
+      <Section variant="default" showSeparator={true}>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Choose Your Service
@@ -161,7 +166,7 @@ export default function HomePage() {
       </Section>
 
       {/* Results Preview */}
-      <Section className="bg-gray-50">
+      <Section variant="alt" showSeparator={true}>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Real Results
@@ -187,7 +192,7 @@ export default function HomePage() {
       </Section>
 
       {/* About Snapshot */}
-      <Section>
+      <Section variant="default" showSeparator={true}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -207,17 +212,20 @@ export default function HomePage() {
             </a>
           </div>
           <div className="flex justify-center">
-            <img
+            <Image
               src="/chandler_headshot.webp"
               alt="Chandler, Career Coach"
+              width={320}
+              height={320}
               className="w-80 h-80 rounded-full object-cover shadow-lg"
+              priority={false}
             />
           </div>
         </div>
       </Section>
 
       {/* FAQ Preview */}
-      <Section className="bg-gray-50">
+      <Section variant="alt" showSeparator={true}>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Common Questions
@@ -242,7 +250,7 @@ export default function HomePage() {
       </Section>
 
       {/* Final CTA */}
-      <Section padding="xl" className="bg-primary-600 text-white">
+      <Section variant="default" padding="xl" className="bg-primary-600 text-white">
         <div className="text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Stop Getting Ghosted?
@@ -261,7 +269,7 @@ export default function HomePage() {
               href={routes.consult}
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-600 font-semibold py-3 px-8 rounded-lg transition-colors duration-200 inline-block"
             >
-              Start with $50 Consult
+              Try a $50 Consult
             </a>
           </div>
         </div>

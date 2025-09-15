@@ -5,11 +5,16 @@ A modern, high-conversion marketing site for interview coaching services built w
 ## 🚀 Features
 
 - **Complete Booking Flow** - 3-step process: Contact → Payment → Schedule
+- **Alternative Booking System** - Single-page BookingWidget component
 - **Integrated Payments** - Stripe Checkout with dynamic session creation
 - **Smart Calendly Integration** - Pre-filled contact information and guest details hidden
+- **Test Mode Indicators** - Visual indicators for development/testing
+- **Custom Icon System** - Scalable SVG icon components
+- **Section Layout System** - Consistent page layout wrapper
+- **Badge System** - Service popularity indicators
 - **High-conversion design** with mobile-first approach
 - **Multiple service offerings** with clear pricing and CTAs
-- **SEO optimized** with next-seo and JSON-LD schema
+- **SEO optimized** with Next.js built-in metadata and JSON-LD schema
 - **Analytics ready** with Plausible integration
 - **Accessible** with WCAG 2.2 AA compliance
 - **Fast performance** with Lighthouse scores ≥90
@@ -19,8 +24,8 @@ A modern, high-conversion marketing site for interview coaching services built w
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **UI Components**: Radix UI
-- **SEO**: next-seo
+- **UI Components**: Custom components (no external UI library)
+- **SEO**: Next.js built-in metadata API
 - **Analytics**: Plausible
 - **Payments**: Stripe Checkout (dynamic sessions)
 - **Booking**: Calendly (iframe with prefill)
@@ -46,7 +51,9 @@ src/
 │   │   └── contact/              # Contact page
 │   ├── api/                      # API routes
 │   │   ├── create-checkout-session/ # Stripe Checkout API
-│   │   └── submit-booking-formspree/ # Booking completion API
+│   │   ├── submit-booking-formspree/ # Booking completion API
+│   │   ├── sitemap/              # XML sitemap generation
+│   │   └── robots.txt/           # Robots.txt generation
 │   └── globals.css               # Global styles
 ├── components/                   # Reusable components
 │   ├── booking/                  # Booking flow components
@@ -54,12 +61,18 @@ src/
 │   │   ├── BookingStep1.tsx      # Contact info & service selection
 │   │   ├── BookingStep2.tsx      # Payment processing
 │   │   └── BookingStep3.tsx      # Scheduling & file upload
+│   ├── BookingWidget.tsx         # Alternative single-page booking
+│   ├── Badge.tsx                 # Service popularity badges
+│   ├── CTAButton.tsx             # Call-to-action button component
+│   ├── Icon.tsx                  # Custom SVG icon system
+│   ├── Section.tsx               # Layout wrapper component
+│   ├── TestModeIndicator.tsx     # Payment test mode indicator
 │   ├── Header.tsx                # Site header
 │   ├── Footer.tsx                # Site footer
 │   ├── Hero.tsx                  # Hero sections
 │   ├── ServiceCard.tsx           # Service cards
 │   ├── TestimonialCard.tsx       # Testimonial cards
-│   ├── FAQ.tsx                   # FAQ accordion
+│   ├── FAQ.tsx                   # FAQ accordion (custom implementation)
 │   ├── Analytics.tsx             # Analytics script
 │   └── Schema.tsx                # JSON-LD schema
 ├── hooks/                        # Custom React hooks
@@ -112,8 +125,9 @@ NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-username/30min
 # Analytics (Optional)
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=launchworthy.net
 
-# Forms (Optional)
+# Forms (Required for booking completion)
 NEXT_PUBLIC_CONTACT_FORMSPREE_URL=https://formspree.io/f/your-form-id
+NEXT_PUBLIC_BOOKING_FORMSPREE_URL=https://formspree.io/f/your-booking-form-id
 ```
 
 ### Development
@@ -155,6 +169,29 @@ npm start
    - Two 30-min sessions per month
    - Ongoing support and accountability
 
+## 🔄 Alternative Booking System
+
+The site includes a `BookingWidget` component that provides a single-page booking experience:
+
+- **Direct Payment** - Immediate Stripe checkout without multi-step flow
+- **Calendly Embed** - Inline scheduling widget
+- **Service Selection** - Radio button interface for service selection
+- **Test Mode Indicators** - Visual indicators for development
+- **Session Preparation** - Built-in checklist for users
+
+This component can be used for A/B testing or as an alternative to the 3-step flow.
+
+## 🛡️ Middleware
+
+The site includes maintenance mode middleware (`src/middleware.ts`):
+
+- **Development Mode**: Allows all traffic to pass through
+- **Production Mode**: Blocks traffic with 503 "Site offline for maintenance" status
+- **Configuration**: Controlled by `NODE_ENV` environment variable
+- **Matcher**: Applies to all routes except API, static files, and favicon
+
+To disable maintenance mode, modify the middleware function.
+
 ## 🔄 Booking Flow
 
 The site features a sophisticated 3-step booking process:
@@ -172,10 +209,9 @@ The site features a sophisticated 3-step booking process:
 - Success/error handling
 
 ### Step 3: Scheduling & Completion
-- **Calendly integration with prefill** - Contact info automatically populated (not yet)
-- File upload for resume/documentation
-- LinkedIn profile URL collection
-- Booking completion confirmation
+- **Calendly integration with prefill** - Contact info automatically populated
+- **Formspree submission** - Booking data sent to Formspree
+- **Booking completion confirmation** - Success page redirect
 
 ## 🔧 Environment Variables
 
@@ -184,6 +220,7 @@ The site features a sophisticated 3-step booking process:
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key | ✅ Yes | `pk_test_...` |
 | `STRIPE_SECRET_KEY` | Stripe secret key | ✅ Yes | `sk_test_...` |
 | `NEXT_PUBLIC_CALENDLY_URL` | Calendly booking URL | ✅ Yes | `https://calendly.com/username/30min` |
+| `NEXT_PUBLIC_BOOKING_FORMSPREE_URL` | Booking completion form URL | ✅ Yes | `https://formspree.io/f/...` |
 | `STRIPE_WEBHOOK_SECRET` | Stripe webhook secret | ⚠️ Optional | `whsec_...` |
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Analytics domain | ⚠️ Optional | `launchworthy.net` |
 | `NEXT_PUBLIC_CONTACT_FORMSPREE_URL` | Formspree contact form URL | ⚠️ Optional | `https://formspree.io/f/...` |
@@ -292,6 +329,27 @@ NEXT_PUBLIC_PLAUSIBLE_DOMAIN=yourdomain.com
 - **ARIA labels** for interactive elements
 
 ## 🐛 Troubleshooting
+
+### FAQ Component Issues
+
+**"Module not found: Can't resolve '@radix-ui/react-accordion'":**
+- The FAQ component uses a custom implementation, not Radix UI
+- This error occurs if the component was previously using Radix UI
+- Current implementation works without external dependencies
+
+### Booking Completion Issues
+
+**"Booking Formspree URL not configured":**
+- Add `NEXT_PUBLIC_BOOKING_FORMSPREE_URL` to environment variables
+- This is required for the booking completion step
+- Without it, users can pay but booking data won't be captured
+
+### Middleware Issues
+
+**Site shows "Site offline for maintenance":**
+- Check `NODE_ENV` environment variable
+- In production, middleware blocks all traffic
+- In development, traffic is allowed through
 
 ### Payment Issues
 

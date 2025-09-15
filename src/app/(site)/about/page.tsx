@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { generatePageMetadata } from '@/lib/metadata';
 import Section from '@/components/Section';
 import Hero from '@/components/Hero';
@@ -45,10 +46,13 @@ export default function AboutPage() {
               </CTAButton>
             </div>
             <div className="flex justify-center">
-              <img
+              <Image
                 src="/chandler_headshot.webp"
                 alt="Chandler, Career Coach"
+                width={320}
+                height={320}
                 className="w-80 h-80 rounded-full object-cover shadow-lg"
+                priority={false}
               />
             </div>
           </div>

@@ -58,9 +58,6 @@ export const defaultMetadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
 };
 
 export function generatePageMetadata({
@@ -75,6 +72,9 @@ export function generatePageMetadata({
   return {
     title,
     description,
+    alternates: {
+      canonical: `https://launchworthy.net${path}`,
+    },
     openGraph: {
       title,
       description,
