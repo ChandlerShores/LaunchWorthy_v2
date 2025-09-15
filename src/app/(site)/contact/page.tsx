@@ -82,6 +82,7 @@ export default function ContactPage() {
                   Thanks for reaching out. We'll get back to you within 24 hours.
                 </p>
                 <button
+                  type="button"
                   onClick={() => setSubmitStatus('idle')}
                   className="text-primary-600 hover:text-primary-700 font-semibold underline"
                 >
@@ -112,6 +113,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      autoComplete="name"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="Your name"
                     />
@@ -128,6 +130,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      autoComplete="email"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="your.email@example.com"
                     />

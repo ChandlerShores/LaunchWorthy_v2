@@ -22,6 +22,7 @@ const TestModeIndicator: React.FC<TestModeIndicatorProps> = ({ className = '' })
           <h3 className="text-sm font-semibold text-yellow-800">Test Mode</h3>
         </div>
         <button
+          type="button"
           onClick={() => setShowTestCards(!showTestCards)}
           className="text-xs text-yellow-700 hover:text-yellow-800 underline"
         >

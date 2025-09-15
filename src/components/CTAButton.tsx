@@ -51,6 +51,7 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
 
     return (
       <button
+        type="button"
         className={cn(buttonVariants({ variant, size }), className)}
         ref={ref}
         {...props}

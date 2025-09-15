@@ -260,6 +260,7 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
                 </p>
                 {fallbackMode && (
                   <button
+                    type="button"
                     onClick={retry}
                     className="mt-2 text-sm text-red-700 hover:text-red-800 underline"
                   >
@@ -359,6 +360,7 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
                     </div>
                   </div>
                   <button
+                    type="button"
                     onClick={() => removeFile(index)}
                     className="text-red-600 hover:text-red-700 p-1"
                   >

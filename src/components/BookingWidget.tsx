@@ -183,6 +183,7 @@ const BookingWidget: React.FC = () => {
           </div>
           
           <button
+            type="button"
             onClick={handlePayment}
             disabled={isProcessing}
             className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"

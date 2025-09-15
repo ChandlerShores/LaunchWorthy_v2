@@ -67,6 +67,7 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
               value={contactInfo.name}
               onChange={(e) => handleInputChange('name', e.target.value)}
               placeholder="Enter your full name"
+              autoComplete="name"
               className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
                 errors.name ? 'border-red-300' : 'border-gray-300'
               }`}
@@ -87,6 +88,7 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
               value={contactInfo.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
               placeholder="your.email@example.com"
+              autoComplete="email"
               className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
                 errors.email ? 'border-red-300' : 'border-gray-300'
               }`}
@@ -107,6 +109,7 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
               value={contactInfo.phone}
               onChange={(e) => handleInputChange('phone', e.target.value)}
               placeholder="(555) 123-4567"
+              autoComplete="tel"
               className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
                 errors.phone ? 'border-red-300' : 'border-gray-300'
               }`}
