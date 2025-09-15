@@ -30,10 +30,10 @@ export async function POST(request: NextRequest) {
   try {
     const bookingData: CompleteBookingSubmission = await request.json();
     
-    const formspreeUrl = process.env.NEXT_PUBLIC_CONTACT_FORMSPREE_URL;
+    const formspreeUrl = process.env.NEXT_PUBLIC_BOOKING_FORMSPREE_URL;
     
     if (!formspreeUrl) {
-      console.error('Contact Formspree URL not configured');
+      console.error('Booking Formspree URL not configured');
       return NextResponse.json(
         { error: 'Booking form not configured' },
         { status: 500 }

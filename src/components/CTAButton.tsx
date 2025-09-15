@@ -64,4 +64,4 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
 
 CTAButton.displayName = 'CTAButton';
 
-export { CTAButton, buttonVariants };
+export { CTAButton };
