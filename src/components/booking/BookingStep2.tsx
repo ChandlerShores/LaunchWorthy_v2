@@ -35,6 +35,20 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
   const [error, setError] = useState<string>('');
   const [isProcessingLocal, setIsProcessingLocal] = useState(false);
 
+  // Reset processing states when component mounts or when isProcessing prop changes
+  useEffect(() => {
+    if (!isProcessing) {
+      setIsProcessingLocal(false);
+    }
+  }, [isProcessing]);
+
+  const handleBack = () => {
+    // Reset any processing states when going back
+    setIsProcessingLocal(false);
+    onProcessingChange(false);
+    onPrev();
+  };
+
   const handlePayment = async () => {
     // Prevent double-clicks and multiple payment attempts
     if (isProcessingLocal || isProcessing) {
@@ -198,7 +212,7 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
       {/* Payment Button */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <CTAButton
-          onClick={onPrev}
+          onClick={handleBack}
           variant="secondary"
           className="border-gray-300 text-gray-700 hover:bg-gray-50"
           disabled={isProcessing}

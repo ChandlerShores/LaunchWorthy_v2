@@ -60,24 +60,31 @@ const BookingFlow: React.FC = () => {
   // Scroll to booking flow when step changes (except on initial load)
   useEffect(() => {
     if (bookingFlowRef.current && currentStep > 1) {
-      // Small delay to ensure DOM has updated
-      setTimeout(() => {
-        const headerHeight = 80; // Approximate header height
-        const elementPosition = bookingFlowRef.current!.offsetTop;
-        const offsetPosition = elementPosition - headerHeight - 20; // Extra 20px padding
+      // Use requestAnimationFrame to ensure DOM has updated
+      const scrollToBookingFlow = () => {
+        if (bookingFlowRef.current) {
+          const headerHeight = 80; // Approximate header height
+          const elementPosition = bookingFlowRef.current.offsetTop;
+          const offsetPosition = elementPosition - headerHeight - 20; // Extra 20px padding
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }, 100);
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      };
+
+      // Wait for next frame to ensure content is rendered
+      requestAnimationFrame(() => {
+        setTimeout(scrollToBookingFlow, 100);
+      });
     }
   }, [currentStep]);
 
   const handleStep1Next = () => {
     if (validateStep1()) {
       nextStep();
-      // Scroll to booking flow immediately for better UX
+      // Scroll to booking flow after DOM updates with new step content
       setTimeout(() => {
         if (bookingFlowRef.current) {
           const headerHeight = 80;
@@ -89,7 +96,7 @@ const BookingFlow: React.FC = () => {
             behavior: 'smooth'
           });
         }
-      }, 50);
+      }, 200); // Increased delay to ensure step 2 content is rendered
     }
   };
 

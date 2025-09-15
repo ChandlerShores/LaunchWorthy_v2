@@ -61,6 +61,13 @@ export const useBookingFlow = () => {
     }
   }, []);
 
+  // Reset processing state when returning to step 1 (e.g., from payment)
+  useEffect(() => {
+    if (state.currentStep === 1 && state.isProcessing) {
+      setState(prev => ({ ...prev, isProcessing: false }));
+    }
+  }, [state.currentStep]);
+
   // Save state to localStorage whenever it changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
