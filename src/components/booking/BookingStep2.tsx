@@ -37,6 +37,10 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
     onProcessingChange(true);
 
     try {
+      console.log('Starting payment process...');
+      console.log('Service ID:', selectedService);
+      console.log('Contact info:', contactInfo);
+
       // Create checkout session with contact information
       const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
@@ -51,36 +55,47 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
         }),
       });
 
+      console.log('API Response status:', response.status);
+      console.log('API Response headers:', response.headers);
+
       const data = await response.json();
+      console.log('API Response data:', data);
 
       if (!response.ok) {
-        throw new Error(data.error || `API Error: ${response.status}`);
+        throw new Error(data.error || `API Error: ${response.status} - ${response.statusText}`);
       }
 
       if (!data.sessionId) {
-        throw new Error('Failed to create checkout session');
+        throw new Error('Failed to create checkout session - no session ID returned');
       }
 
       const { sessionId } = data;
+      console.log('Session ID received:', sessionId);
 
       // Redirect to Stripe Checkout
       const stripe = await getStripe();
       if (!stripe) {
-        throw new Error('Stripe not loaded');
+        throw new Error('Stripe not loaded - check NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY');
       }
 
+      console.log('Redirecting to Stripe checkout...');
       const { error: stripeError } = await stripe.redirectToCheckout({ sessionId });
 
       if (stripeError) {
-        throw new Error(stripeError.message);
+        console.error('Stripe checkout error:', stripeError);
+        throw new Error(`Stripe error: ${stripeError.message}`);
       }
 
+      console.log('Stripe checkout redirect successful');
       // If we get here, payment was successful
       onPaymentSuccess(sessionId);
     } catch (error) {
-      console.error('Payment error:', error);
+      console.error('Payment error details:', error);
       const errorMessage = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
-      setError(errorMessage);
+      setError(`Payment failed: ${errorMessage}`);
+      
+      // Also show error in console for debugging
+      console.error('Full error object:', error);
     } finally {
       onProcessingChange(false);
     }

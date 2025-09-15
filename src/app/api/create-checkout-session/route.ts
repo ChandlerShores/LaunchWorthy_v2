@@ -3,15 +3,33 @@ import { stripe, servicePrices } from '@/lib/stripe';
 
 export async function POST(request: NextRequest) {
   try {
-    console.log('API Route called');
+    console.log('=== STRIPE CHECKOUT SESSION API CALLED ===');
+    console.log('Environment:', process.env.NODE_ENV);
     console.log('Stripe configured:', !!stripe);
     console.log('STRIPE_SECRET_KEY exists:', !!process.env.STRIPE_SECRET_KEY);
+    console.log('STRIPE_SECRET_KEY starts with:', process.env.STRIPE_SECRET_KEY?.substring(0, 7));
+    console.log('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY exists:', !!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+    console.log('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY starts with:', process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY?.substring(0, 7));
     
     // Check if Stripe is configured
     if (!stripe) {
-      console.log('Stripe not configured - returning error');
+      console.error('❌ Stripe not configured - missing STRIPE_SECRET_KEY');
       return NextResponse.json(
-        { error: 'Stripe not configured' },
+        { 
+          error: 'Stripe not configured',
+          details: 'Missing STRIPE_SECRET_KEY environment variable'
+        },
+        { status: 500 }
+      );
+    }
+
+    if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
+      console.error('❌ Missing NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY');
+      return NextResponse.json(
+        { 
+          error: 'Stripe publishable key not configured',
+          details: 'Missing NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY environment variable'
+        },
         { status: 500 }
       );
     }
@@ -44,8 +62,10 @@ export async function POST(request: NextRequest) {
     }
     
     console.log('Creating Stripe session with baseUrl:', baseUrl);
+    console.log('Service details:', service);
 
     // Create Stripe Checkout Session
+    console.log('Calling stripe.checkout.sessions.create...');
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -75,6 +95,7 @@ export async function POST(request: NextRequest) {
       // automatic_tax: { enabled: true },
     });
 
+    console.log('✅ Stripe session created successfully:', session.id);
     return NextResponse.json({ sessionId: session.id });
   } catch (error) {
     console.error('Error creating checkout session:', error);
