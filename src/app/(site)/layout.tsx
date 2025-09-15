@@ -1,6 +1,5 @@
 import React from 'react';
 import { Inter } from 'next/font/google';
-import { NextSeo } from 'next-seo';
 import { defaultMetadata } from '@/lib/metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -21,7 +20,6 @@ export default function RootLayout({
     <html lang="en" className={inter.className}>
       <head>
         <Schema type="organization" />
-        <Schema type="localBusiness" />
         <Analytics />
       </head>
       <body className="min-h-screen bg-white">

@@ -46,7 +46,7 @@ export default function AboutPage() {
             </div>
             <div className="flex justify-center">
               <img
-                src="/chandler_headshot.jpg"
+                src="/chandler_headshot.webp"
                 alt="Chandler, Career Coach"
                 className="w-80 h-80 rounded-full object-cover shadow-lg"
               />

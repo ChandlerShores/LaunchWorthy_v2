@@ -3,7 +3,8 @@ import Script from 'next/script';
 const Analytics: React.FC = () => {
   const domain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
-  if (!domain) {
+  // Only load analytics in production
+  if (!domain || process.env.NODE_ENV !== 'production') {
     return null;
   }
 
