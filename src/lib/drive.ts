@@ -6,8 +6,9 @@ let driveClient: any = null;
 export const getDriveClient = async () => {
   if (driveClient) return driveClient;
 
+  let config;
   try {
-    const config = getDriveConfig();
+    config = getDriveConfig();
     
     const auth = new google.auth.GoogleAuth({
       credentials: {
@@ -30,14 +31,16 @@ export const getDriveClient = async () => {
     return driveClient;
   } catch (error) {
     console.error('Failed to initialize Drive client:', error);
-    console.error('Drive config:', {
-      projectId: config.projectId,
-      projectNumber: config.projectNumber,
-      serviceAccountEmail: config.serviceAccountEmail,
-      workloadIdentityPoolId: config.workloadIdentityPoolId,
-      workloadIdentityProviderId: config.workloadIdentityProviderId,
-      driveFolderId: config.driveFolderId
-    });
+    if (config) {
+      console.error('Drive config:', {
+        projectId: config.projectId,
+        projectNumber: config.projectNumber,
+        serviceAccountEmail: config.serviceAccountEmail,
+        workloadIdentityPoolId: config.workloadIdentityPoolId,
+        workloadIdentityProviderId: config.workloadIdentityProviderId,
+        driveFolderId: config.driveFolderId
+      });
+    }
     throw new Error(`Drive service unavailable: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 };
