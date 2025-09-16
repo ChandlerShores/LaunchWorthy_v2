@@ -9,14 +9,16 @@ export const getDriveClient = async () => {
   try {
     const config = getDriveConfig();
     
-    const auth = new google.auth.ExternalAccountClient({
-      type: 'external_account',
-      audience: `//iam.googleapis.com/projects/${config.projectNumber}/locations/global/workloadIdentityPools/${config.workloadIdentityPoolId}/providers/${config.workloadIdentityProviderId}`,
-      subject_token_type: 'urn:ietf:params:oauth:token-type:jwt',
-      token_url: 'https://sts.googleapis.com/v1/token',
-      credential_source: {
-        file: '/var/run/secrets/vercel/oidc/0',
-        format: { type: 'text' }
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        type: 'external_account',
+        audience: `//iam.googleapis.com/projects/${config.projectNumber}/locations/global/workloadIdentityPools/${config.workloadIdentityPoolId}/providers/${config.workloadIdentityProviderId}`,
+        subject_token_type: 'urn:ietf:params:oauth:token-type:jwt',
+        token_url: 'https://sts.googleapis.com/v1/token',
+        credential_source: {
+          file: '/var/run/secrets/vercel/oidc/0',
+          format: { type: 'text' }
+        }
       }
     });
 
