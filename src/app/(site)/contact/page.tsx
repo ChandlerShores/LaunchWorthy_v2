@@ -57,7 +57,7 @@ export default function ContactPage() {
       {/* Hero Section */}
       <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-navy-900 mb-6">
             Get in Touch
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8">
@@ -69,15 +69,15 @@ export default function ContactPage() {
       {/* Contact Form */}
       <Section>
         <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+          <div className="bg-white rounded-xl shadow-lg border border-navy-200 p-8">
             {submitStatus === 'success' ? (
               <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Message Sent!</h2>
+                <h2 className="text-2xl font-bold text-navy-900 mb-4">Message Sent!</h2>
                 <p className="text-gray-600 mb-6">
                   Thanks for reaching out. We'll get back to you within 24 hours.
                 </p>
@@ -91,11 +91,11 @@ export default function ContactPage() {
               </div>
             ) : (
               <>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h2>
+                <h2 className="text-2xl font-bold text-navy-900 mb-6">Send us a message</h2>
                 
                 {submitStatus === 'error' && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-                    <p className="text-red-800">
+                  <div className="bg-error-50 border border-error-200 rounded-lg p-4 mb-6">
+                    <p className="text-error-800">
                       Sorry, there was an error sending your message. Please try again or email us directly at hello@launchworthy.net
                     </p>
                   </div>
@@ -103,7 +103,7 @@ export default function ContactPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-navy-700 mb-2">
                       Name *
                     </label>
                     <input
@@ -120,7 +120,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-navy-700 mb-2">
                       Email *
                     </label>
                     <input
@@ -137,7 +137,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-navy-700 mb-2">
                       Message *
                     </label>
                     <textarea
@@ -167,20 +167,20 @@ export default function ContactPage() {
       </Section>
 
       {/* Alternative Contact Methods */}
-      <Section className="bg-gray-50">
+      <Section className="bg-navy-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             Other Ways to Reach Us
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8 text-center">
+            <div className="bg-white rounded-xl shadow-lg border border-navy-200 p-8 text-center">
               <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Email Us</h3>
+              <h3 className="text-xl font-semibold text-navy-900 mb-2">Email Us</h3>
               <p className="text-gray-600 mb-4">
                 For general questions or to discuss services
               </p>
@@ -192,13 +192,13 @@ export default function ContactPage() {
               </a>
             </div>
             
-            <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8 text-center">
+            <div className="bg-white rounded-xl shadow-lg border border-navy-200 p-8 text-center">
               <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Book Directly</h3>
+              <h3 className="text-xl font-semibold text-navy-900 mb-2">Book Directly</h3>
               <p className="text-gray-600 mb-4">
                 Ready to get started? Book your session now
               </p>
@@ -216,7 +216,7 @@ export default function ContactPage() {
       {/* Response Time */}
       <Section>
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-6">
             Quick Response Time
           </h2>
           <p className="text-xl text-gray-600 mb-8">

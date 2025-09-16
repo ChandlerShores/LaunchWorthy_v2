@@ -100,9 +100,9 @@ const BookingWidget: React.FC = () => {
   const selectedServiceData = services.find(s => s.id === selectedService);
 
   return (
-    <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+    <div className="bg-white rounded-xl shadow-lg border border-navy-200 p-8">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        <h2 className="text-3xl font-bold text-navy-900 mb-4">
           Book Your Session
         </h2>
         <p className="text-gray-600">
@@ -115,7 +115,7 @@ const BookingWidget: React.FC = () => {
 
       {/* Service Selection */}
       <div className="mb-8">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Select a Service</h3>
+        <h3 className="text-lg font-semibold text-navy-900 mb-4">Select a Service</h3>
         <div className="space-y-3">
           {services.map((service) => (
             <label
@@ -123,7 +123,7 @@ const BookingWidget: React.FC = () => {
               className={`block p-4 border-2 rounded-lg cursor-pointer transition-colors duration-200 ${
                 selectedService === service.id
                   ? 'border-primary-500 bg-primary-50'
-                  : 'border-gray-200 hover:border-gray-300'
+                  : 'border-navy-200 hover:border-gray-300'
               }`}
             >
               <input
@@ -136,7 +136,7 @@ const BookingWidget: React.FC = () => {
               />
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="font-semibold text-gray-900">{service.name}</div>
+                  <div className="font-semibold text-navy-900">{service.name}</div>
                   <div className="text-sm text-gray-600">{service.description}</div>
                 </div>
                 <div className={`w-4 h-4 rounded-full border-2 ${
@@ -156,8 +156,8 @@ const BookingWidget: React.FC = () => {
 
       {/* Payment Section */}
       {selectedService && selectedServiceData && (
-        <div className="mb-8 p-6 bg-gray-50 rounded-lg">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="mb-8 p-6 bg-navy-50 rounded-lg">
+          <h3 className="text-lg font-semibold text-navy-900 mb-4">
             Complete Your Booking
           </h3>
           <p className="text-gray-600 mb-4">
@@ -169,7 +169,7 @@ const BookingWidget: React.FC = () => {
           
           {/* Email Input */}
           <div className="mb-4">
-            <label htmlFor="customer-email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="customer-email" className="block text-sm font-medium text-navy-700 mb-2">
               Email (optional - for payment receipt)
             </label>
             <input
@@ -203,7 +203,7 @@ const BookingWidget: React.FC = () => {
           </p>
           
           {isTestMode && (
-            <div className="mt-3 p-2 bg-yellow-100 border border-yellow-300 rounded text-xs text-yellow-800">
+            <div className="mt-3 p-2 bg-warning-100 border border-warning-300 rounded text-xs text-warning-800">
               <strong>Test Mode:</strong> This is a test payment. No real money will be charged.
             </div>
           )}
@@ -213,7 +213,7 @@ const BookingWidget: React.FC = () => {
       {/* Calendly Embed */}
       {calendlyUrl && (
         <div className="mb-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          <h3 className="text-lg font-semibold text-navy-900 mb-4">
             Schedule Your Session
           </h3>
           <div className="bg-gray-100 rounded-lg p-4">
@@ -230,25 +230,25 @@ const BookingWidget: React.FC = () => {
       )}
 
       {/* Prep Checklist */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-blue-900 mb-4">
+      <div className="bg-sky-50 border border-sky-200 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-sky-900 mb-4">
           Session Preparation
         </h3>
-        <ul className="space-y-2 text-blue-800">
+        <ul className="space-y-2 text-info-800">
           <li className="flex items-start">
-            <Icon name="check" className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" />
+            <Icon name="check" className="w-5 h-5 text-sky-600 mt-0.5 mr-3 flex-shrink-0" />
             <span>Have your current resume ready</span>
           </li>
           <li className="flex items-start">
-            <Icon name="check" className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" />
+            <Icon name="check" className="w-5 h-5 text-sky-600 mt-0.5 mr-3 flex-shrink-0" />
             <span>Prepare specific questions or areas of focus</span>
           </li>
           <li className="flex items-start">
-            <Icon name="check" className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" />
+            <Icon name="check" className="w-5 h-5 text-sky-600 mt-0.5 mr-3 flex-shrink-0" />
             <span>Test your video/audio setup beforehand</span>
           </li>
           <li className="flex items-start">
-            <Icon name="check" className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" />
+            <Icon name="check" className="w-5 h-5 text-sky-600 mt-0.5 mr-3 flex-shrink-0" />
             <span>Be ready to discuss your career goals</span>
           </li>
         </ul>

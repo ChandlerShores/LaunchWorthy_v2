@@ -69,7 +69,7 @@ export default function FAQPage() {
       {/* Hero Section */}
       <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-navy-900 mb-6">
             Frequently Asked Questions
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8">
@@ -86,9 +86,9 @@ export default function FAQPage() {
       </Section>
 
       {/* Still Have Questions */}
-      <Section className="bg-gray-50">
+      <Section className="bg-navy-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-6">
             Still Have Questions?
           </h2>
           <p className="text-xl text-gray-600 mb-8">

@@ -224,7 +224,7 @@ const BookingFlow: React.FC = () => {
       </div>
 
       {/* Current Step Content */}
-      <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+      <div className="bg-white rounded-xl shadow-lg border border-navy-200 p-8">
         {renderCurrentStep()}
       </div>
 

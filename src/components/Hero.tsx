@@ -49,7 +49,7 @@ const Hero: React.FC<HeroProps> = ({
       )}
 
       {/* Title */}
-      <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 text-balance">
+      <h1 className="text-4xl md:text-6xl font-bold text-navy-900 mb-6 text-balance">
         {title}
       </h1>
       

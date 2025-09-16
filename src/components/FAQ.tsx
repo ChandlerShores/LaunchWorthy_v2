@@ -26,11 +26,11 @@ const FAQ: React.FC<FAQProps> = ({ items, className = '' }) => {
         {items.map((item, index) => (
           <div
             key={index}
-            className="bg-white border border-gray-200 rounded-lg overflow-hidden"
+            className="bg-white border border-navy-200 rounded-lg overflow-hidden"
           >
             <button
               onClick={() => toggleItem(index)}
-              className="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
+              className="w-full px-6 py-4 text-left font-semibold text-navy-900 hover:bg-navy-50 transition-colors duration-200 flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
             >
               <span>{item.question}</span>
               <Icon
@@ -41,7 +41,7 @@ const FAQ: React.FC<FAQProps> = ({ items, className = '' }) => {
               />
             </button>
             {openIndex === index && (
-              <div className="px-6 pb-4 text-gray-700">
+              <div className="px-6 pb-4 text-navy-700">
                 <p className="pt-2">{item.answer}</p>
               </div>
             )}

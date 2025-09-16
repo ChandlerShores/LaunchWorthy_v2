@@ -13,7 +13,7 @@ export default function PrivacyPolicyPage() {
     <main>
       <Section padding="xl" className="bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-navy-900 mb-6">
             Privacy Policy
           </h1>
           <p className="text-lg text-gray-600 mb-8">

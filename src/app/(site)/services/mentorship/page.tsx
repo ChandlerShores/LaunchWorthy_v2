@@ -71,7 +71,7 @@ export default function MentorshipPage() {
       {/* Who It's For */}
       <Section id="details">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-6">
             Perfect For
           </h2>
           <p className="text-xl text-gray-600 mb-8">
@@ -85,7 +85,7 @@ export default function MentorshipPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Ongoing Preparation</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Ongoing Preparation</h3>
               <p className="text-gray-600">Stay interview-ready for opportunities as they arise</p>
             </div>
             
@@ -95,7 +95,7 @@ export default function MentorshipPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Career Growth</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Career Growth</h3>
               <p className="text-gray-600">Regular guidance for promotions and skill development</p>
             </div>
             
@@ -105,7 +105,7 @@ export default function MentorshipPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Negotiation Prep</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Negotiation Prep</h3>
               <p className="text-gray-600">Practice and confidence for salary and promotion talks</p>
             </div>
           </div>
@@ -113,69 +113,69 @@ export default function MentorshipPage() {
       </Section>
 
       {/* What's Included */}
-      <Section className="bg-gray-50">
+      <Section className="bg-navy-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             What's Included
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Monthly Sessions</h3>
+              <h3 className="text-xl font-semibold text-navy-900 mb-4">Monthly Sessions</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Two 30-minute sessions per month</span>
+                  <span className="text-navy-700">Two 30-minute sessions per month</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Flexible scheduling around your availability</span>
+                  <span className="text-navy-700">Flexible scheduling around your availability</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Focused on your current priorities</span>
+                  <span className="text-navy-700">Focused on your current priorities</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Interview prep, negotiations, career planning</span>
+                  <span className="text-navy-700">Interview prep, negotiations, career planning</span>
                 </li>
               </ul>
             </div>
             
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Ongoing Support</h3>
+              <h3 className="text-xl font-semibold text-navy-900 mb-4">Ongoing Support</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Email support between sessions</span>
+                  <span className="text-navy-700">Email support between sessions</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Access to practice materials and resources</span>
+                  <span className="text-navy-700">Access to practice materials and resources</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Priority booking for additional sessions</span>
+                  <span className="text-navy-700">Priority booking for additional sessions</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Accountability and progress tracking</span>
+                  <span className="text-navy-700">Accountability and progress tracking</span>
                 </li>
               </ul>
             </div>
@@ -186,7 +186,7 @@ export default function MentorshipPage() {
       {/* How It Works */}
       <Section>
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             How It Works
           </h2>
           
@@ -195,7 +195,7 @@ export default function MentorshipPage() {
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 1
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Start Monthly</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Start Monthly</h3>
               <p className="text-gray-600">
                 Begin your membership and schedule your first two sessions.
               </p>
@@ -205,7 +205,7 @@ export default function MentorshipPage() {
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 2
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Set Goals</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Set Goals</h3>
               <p className="text-gray-600">
                 We'll identify your priorities and create a plan for ongoing growth.
               </p>
@@ -215,7 +215,7 @@ export default function MentorshipPage() {
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 3
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Regular Sessions</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Regular Sessions</h3>
               <p className="text-gray-600">
                 Two focused sessions per month on whatever you need most.
               </p>
@@ -225,7 +225,7 @@ export default function MentorshipPage() {
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 4
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Ongoing Support</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Ongoing Support</h3>
               <p className="text-gray-600">
                 Email support and resources between sessions keep you moving forward.
               </p>
@@ -235,9 +235,9 @@ export default function MentorshipPage() {
       </Section>
 
       {/* Testimonial */}
-      <Section className="bg-gray-50">
+      <Section className="bg-navy-50">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             What Clients Say
           </h2>
           <TestimonialCard
@@ -252,7 +252,7 @@ export default function MentorshipPage() {
       {/* FAQ */}
       <Section>
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             Frequently Asked Questions
           </h2>
           <FAQ items={faqItems} />

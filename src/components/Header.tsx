@@ -9,7 +9,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href={routes.home} className="text-2xl font-bold text-gray-900">
+          <Link href={routes.home} className="text-2xl font-bold text-navy-900">
             Launchworthy
           </Link>
 
@@ -19,7 +19,7 @@ const Header: React.FC = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium"
+                className="text-navy-700 hover:text-primary-600 transition-colors duration-200 font-medium"
               >
                 {item.name}
               </Link>

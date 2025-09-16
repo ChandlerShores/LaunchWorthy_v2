@@ -21,7 +21,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`bg-white rounded-xl shadow-lg border border-gray-200 p-8 flex flex-col h-full ${className}`}>
+    <div className={`bg-white rounded-xl shadow-lg border border-navy-200 p-8 flex flex-col h-full ${className}`}>
       {/* Rating */}
       {rating > 0 && (
         <div className="flex items-center mb-4">
@@ -29,14 +29,14 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             <Icon
               key={i}
               name="star"
-              className={`w-5 h-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}
+              className={`w-5 h-5 ${i < rating ? 'text-warning-400' : 'text-gray-300'}`}
             />
           ))}
         </div>
       )}
 
       {/* Quote */}
-      <blockquote className="text-gray-700 text-lg mb-6 italic flex-grow">
+      <blockquote className="text-navy-700 text-lg mb-6 italic flex-grow">
         "{quote}"
       </blockquote>
 
@@ -55,7 +55,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         )}
         
         <div>
-          <div className="font-semibold text-gray-900">{name}</div>
+          <div className="font-semibold text-navy-900">{name}</div>
           <div className="text-gray-600 text-sm">
             {role}
             {company && ` at ${company}`}

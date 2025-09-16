@@ -67,7 +67,7 @@ export default function ResumeLinkedInPage() {
       {/* Who It's For */}
       <Section id="details">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-6">
             Perfect For
           </h2>
           <p className="text-xl text-gray-600 mb-8">
@@ -81,7 +81,7 @@ export default function ResumeLinkedInPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Story Inconsistency</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Story Inconsistency</h3>
               <p className="text-gray-600">Resume and LinkedIn tell different versions of your career</p>
             </div>
             
@@ -91,7 +91,7 @@ export default function ResumeLinkedInPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Weak Impact</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Weak Impact</h3>
               <p className="text-gray-600">Profiles don't clearly communicate your value proposition</p>
             </div>
             
@@ -101,7 +101,7 @@ export default function ResumeLinkedInPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Poor Visibility</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Poor Visibility</h3>
               <p className="text-gray-600">Not getting found by the right recruiters and opportunities</p>
             </div>
           </div>
@@ -109,9 +109,9 @@ export default function ResumeLinkedInPage() {
       </Section>
 
       {/* Process */}
-      <Section className="bg-gray-50">
+      <Section className="bg-navy-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             How It Works
           </h2>
           
@@ -120,7 +120,7 @@ export default function ResumeLinkedInPage() {
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 1
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Submit Materials</h3>
+              <h3 className="text-xl font-semibold text-navy-900 mb-2">Submit Materials</h3>
               <p className="text-gray-600">
                 Send your current resume and LinkedIn profile URL. Include target roles and any specific concerns.
               </p>
@@ -130,7 +130,7 @@ export default function ResumeLinkedInPage() {
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 2
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Optimization</h3>
+              <h3 className="text-xl font-semibold text-navy-900 mb-2">Optimization</h3>
               <p className="text-gray-600">
                 I'll rewrite both documents for clarity, impact, and consistency. Focus on your unique value proposition.
               </p>
@@ -140,7 +140,7 @@ export default function ResumeLinkedInPage() {
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 3
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Walkthrough Call</h3>
+              <h3 className="text-xl font-semibold text-navy-900 mb-2">Walkthrough Call</h3>
               <p className="text-gray-600">
                 Quick call to explain all changes, answer questions, and ensure you're confident with the new versions.
               </p>
@@ -152,67 +152,67 @@ export default function ResumeLinkedInPage() {
       {/* What's Included */}
       <Section>
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             What You Get
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Resume Optimization</h3>
+              <h3 className="text-xl font-semibold text-navy-900 mb-4">Resume Optimization</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Complete rewrite for clarity and impact</span>
+                  <span className="text-navy-700">Complete rewrite for clarity and impact</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">ATS-friendly formatting</span>
+                  <span className="text-navy-700">ATS-friendly formatting</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Quantified achievements and results</span>
+                  <span className="text-navy-700">Quantified achievements and results</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Professional summary that sells</span>
+                  <span className="text-navy-700">Professional summary that sells</span>
                 </li>
               </ul>
             </div>
             
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">LinkedIn Optimization</h3>
+              <h3 className="text-xl font-semibold text-navy-900 mb-4">LinkedIn Optimization</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Compelling headline with keywords</span>
+                  <span className="text-navy-700">Compelling headline with keywords</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">About section that tells your story</span>
+                  <span className="text-navy-700">About section that tells your story</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Experience descriptions aligned with resume</span>
+                  <span className="text-navy-700">Experience descriptions aligned with resume</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Skills and endorsements strategy</span>
+                  <span className="text-navy-700">Skills and endorsements strategy</span>
                 </li>
               </ul>
             </div>
@@ -221,9 +221,9 @@ export default function ResumeLinkedInPage() {
       </Section>
 
       {/* Testimonial */}
-      <Section className="bg-gray-50">
+      <Section className="bg-navy-50">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             What Clients Say
           </h2>
           <TestimonialCard
@@ -238,7 +238,7 @@ export default function ResumeLinkedInPage() {
       {/* FAQ */}
       <Section>
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             Frequently Asked Questions
           </h2>
           <FAQ items={faqItems} />

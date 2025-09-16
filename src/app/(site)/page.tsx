@@ -100,7 +100,7 @@ export default function HomePage() {
       {/* Value Proposition */}
       <Section variant="default" showSeparator={true}>
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8">
             What You'll Get
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -111,7 +111,7 @@ export default function HomePage() {
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-lg font-semibold text-gray-900">{bullet}</span>
+                <span className="text-lg font-semibold text-navy-900">{bullet}</span>
               </div>
             ))}
           </div>
@@ -121,7 +121,7 @@ export default function HomePage() {
       {/* How It Works */}
       <Section variant="alt" showSeparator={true}>
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8">
             How It Works
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -130,7 +130,7 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                   {index + 1}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
+                <h3 className="text-xl font-semibold text-navy-900 mb-2">{step.title}</h3>
                 <p className="text-gray-600">{step.description}</p>
               </div>
             ))}
@@ -141,7 +141,7 @@ export default function HomePage() {
       {/* Services */}
       <Section variant="default" showSeparator={true}>
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
             Choose Your Service
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -168,7 +168,7 @@ export default function HomePage() {
       {/* Results Preview */}
       <Section variant="alt" showSeparator={true}>
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
             Real Results
           </h2>
           <p className="text-xl text-gray-600">
@@ -195,7 +195,7 @@ export default function HomePage() {
       <Section variant="default" showSeparator={true}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-6">
               Practical, Peer-Level Coaching
             </h2>
             <p className="text-lg text-gray-600 mb-6">
@@ -227,7 +227,7 @@ export default function HomePage() {
       {/* FAQ Preview */}
       <Section variant="alt" showSeparator={true}>
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
             Common Questions
           </h2>
           <p className="text-xl text-gray-600">

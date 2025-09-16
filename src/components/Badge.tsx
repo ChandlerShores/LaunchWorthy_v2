@@ -24,7 +24,7 @@ const Badge: React.FC<BadgeProps> = ({
   const variantClasses = {
     default: "bg-white/70 ring-1 ring-primary-200 text-primary-700",
     primary: "bg-primary-600 text-white",
-    success: "bg-green-600 text-white"
+    success: "bg-success-600 text-white"
   };
 
   return (

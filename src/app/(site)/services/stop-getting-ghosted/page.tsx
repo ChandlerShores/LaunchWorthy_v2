@@ -78,7 +78,7 @@ export default function StopGettingGhostedPage() {
       {/* Who It's For */}
       <Section id="details">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-6">
             Perfect For
           </h2>
           <p className="text-xl text-gray-600 mb-8">
@@ -92,7 +92,7 @@ export default function StopGettingGhostedPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Getting Interviews</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Getting Interviews</h3>
               <p className="text-gray-600">But not converting them into offers or callbacks</p>
             </div>
             
@@ -102,7 +102,7 @@ export default function StopGettingGhostedPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Unclear Answers</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Unclear Answers</h3>
               <p className="text-gray-600">Struggling to tell compelling stories about your experience</p>
             </div>
             
@@ -112,7 +112,7 @@ export default function StopGettingGhostedPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Lack Confidence</h3>
+              <h3 className="text-lg font-semibold text-navy-900 mb-2">Lack Confidence</h3>
               <p className="text-gray-600">Feeling nervous or unprepared going into interviews</p>
             </div>
           </div>
@@ -120,9 +120,9 @@ export default function StopGettingGhostedPage() {
       </Section>
 
       {/* Process */}
-      <Section className="bg-gray-50">
+      <Section className="bg-navy-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             The 3-Phase Process
           </h2>
           
@@ -132,15 +132,15 @@ export default function StopGettingGhostedPage() {
                 <div className="w-20 h-20 bg-primary-600 text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto lg:mx-0 mb-4">
                   1
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Baseline Mock</h3>
+                <h3 className="text-2xl font-bold text-navy-900 mb-3">Baseline Mock</h3>
                 <p className="text-gray-600">
                   Safe practice with detailed notes. We'll identify exactly what's holding you back.
                 </p>
               </div>
               <div className="lg:w-2/3">
                 <div className="bg-white rounded-lg p-6 shadow-lg">
-                  <h4 className="font-semibold text-gray-900 mb-3">What happens:</h4>
-                  <ul className="space-y-2 text-gray-700">
+                  <h4 className="font-semibold text-navy-900 mb-3">What happens:</h4>
+                  <ul className="space-y-2 text-navy-700">
                     <li>• 45-60 minute mock interview with real questions</li>
                     <li>• Detailed recording and written feedback</li>
                     <li>• Assessment of communication, confidence, and content</li>
@@ -155,15 +155,15 @@ export default function StopGettingGhostedPage() {
                 <div className="w-20 h-20 bg-primary-600 text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto lg:mx-0 mb-4">
                   2
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Coaching</h3>
+                <h3 className="text-2xl font-bold text-navy-900 mb-3">Coaching</h3>
                 <p className="text-gray-600">
                   Storytelling frameworks, STAR answers, and confidence building.
                 </p>
               </div>
               <div className="lg:w-2/3">
                 <div className="bg-white rounded-lg p-6 shadow-lg">
-                  <h4 className="font-semibold text-gray-900 mb-3">What happens:</h4>
-                  <ul className="space-y-2 text-gray-700">
+                  <h4 className="font-semibold text-navy-900 mb-3">What happens:</h4>
+                  <ul className="space-y-2 text-navy-700">
                     <li>• Storytelling frameworks that actually work</li>
                     <li>• STAR method mastery with your real examples</li>
                     <li>• Confidence-building techniques and practice</li>
@@ -178,15 +178,15 @@ export default function StopGettingGhostedPage() {
                 <div className="w-20 h-20 bg-primary-600 text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto lg:mx-0 mb-4">
                   3
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Final Mock</h3>
+                <h3 className="text-2xl font-bold text-navy-900 mb-3">Final Mock</h3>
                 <p className="text-gray-600">
                   Measurable improvement before the real thing.
                 </p>
               </div>
               <div className="lg:w-2/3">
                 <div className="bg-white rounded-lg p-6 shadow-lg">
-                  <h4 className="font-semibold text-gray-900 mb-3">What happens:</h4>
-                  <ul className="space-y-2 text-gray-700">
+                  <h4 className="font-semibold text-navy-900 mb-3">What happens:</h4>
+                  <ul className="space-y-2 text-navy-700">
                     <li>• Second mock interview to measure progress</li>
                     <li>• Side-by-side comparison with baseline</li>
                     <li>• Final polish and confidence boost</li>
@@ -202,67 +202,67 @@ export default function StopGettingGhostedPage() {
       {/* What's Included */}
       <Section>
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             What's Included
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Mock Interviews</h3>
+              <h3 className="text-xl font-semibold text-navy-900 mb-4">Mock Interviews</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">2 full mock interviews (45-60 mins each)</span>
+                  <span className="text-navy-700">2 full mock interviews (45-60 mins each)</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Video recordings of both sessions</span>
+                  <span className="text-navy-700">Video recordings of both sessions</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Detailed written feedback and notes</span>
+                  <span className="text-navy-700">Detailed written feedback and notes</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Before/after comparison analysis</span>
+                  <span className="text-navy-700">Before/after comparison analysis</span>
                 </li>
               </ul>
             </div>
             
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Coaching Sessions</h3>
+              <h3 className="text-xl font-semibold text-navy-900 mb-4">Coaching Sessions</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Storytelling framework mastery</span>
+                  <span className="text-navy-700">Storytelling framework mastery</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">STAR method with your examples</span>
+                  <span className="text-navy-700">STAR method with your examples</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Confidence-building techniques</span>
+                  <span className="text-navy-700">Confidence-building techniques</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-gray-700">Industry-specific question prep</span>
+                  <span className="text-navy-700">Industry-specific question prep</span>
                 </li>
               </ul>
             </div>
@@ -271,9 +271,9 @@ export default function StopGettingGhostedPage() {
       </Section>
 
       {/* Testimonials */}
-      <Section className="bg-gray-50">
+      <Section className="bg-navy-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             What Clients Say
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -294,7 +294,7 @@ export default function StopGettingGhostedPage() {
       {/* FAQ */}
       <Section>
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             Frequently Asked Questions
           </h2>
           <FAQ items={faqItems} />

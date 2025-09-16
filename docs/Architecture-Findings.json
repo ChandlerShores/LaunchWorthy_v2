@@ -1,0 +1,401 @@
+{
+  "generated_at": "2024-12-19T00:00:00.000Z",
+  "repo_summary": {
+    "entry_points": [
+      "src/app/(site)/page.tsx",
+      "src/app/(site)/book/page.tsx",
+      "src/app/api/create-checkout-session/route.ts"
+    ],
+    "routes": [
+      {
+        "path": "/",
+        "file": "src/app/(site)/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx"]
+      },
+      {
+        "path": "/about",
+        "file": "src/app/(site)/about/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx"]
+      },
+      {
+        "path": "/book",
+        "file": "src/app/(site)/book/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx", "src/app/(site)/book/layout.tsx"]
+      },
+      {
+        "path": "/contact",
+        "file": "src/app/(site)/contact/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx", "src/app/(site)/contact/layout.tsx"]
+      },
+      {
+        "path": "/faq",
+        "file": "src/app/(site)/faq/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx"]
+      },
+      {
+        "path": "/services",
+        "file": "src/app/(site)/services/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx"]
+      },
+      {
+        "path": "/services/consult",
+        "file": "src/app/(site)/services/consult/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx"]
+      },
+      {
+        "path": "/services/mentorship",
+        "file": "src/app/(site)/services/mentorship/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx"]
+      },
+      {
+        "path": "/services/resume-linkedin",
+        "file": "src/app/(site)/services/resume-linkedin/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx"]
+      },
+      {
+        "path": "/services/stop-getting-ghosted",
+        "file": "src/app/(site)/services/stop-getting-ghosted/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx"]
+      },
+      {
+        "path": "/success",
+        "file": "src/app/(site)/success/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx", "src/app/(site)/success/layout.tsx"]
+      },
+      {
+        "path": "/legal/privacy",
+        "file": "src/app/(site)/legal/privacy/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx", "src/app/(site)/legal/privacy/layout.tsx"]
+      },
+      {
+        "path": "/legal/refund",
+        "file": "src/app/(site)/legal/refund/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx", "src/app/(site)/legal/refund/layout.tsx"]
+      },
+      {
+        "path": "/legal/terms",
+        "file": "src/app/(site)/legal/terms/page.tsx",
+        "layout_chain": ["src/app/(site)/layout.tsx", "src/app/(site)/legal/terms/layout.tsx"]
+      }
+    ],
+    "modules": [
+      {
+        "path": "src/components/booking/BookingFlow.tsx",
+        "type": "component",
+        "clientside": true
+      },
+      {
+        "path": "src/components/booking/BookingStep1.tsx",
+        "type": "component",
+        "clientside": true
+      },
+      {
+        "path": "src/components/booking/BookingStep2.tsx",
+        "type": "component",
+        "clientside": true
+      },
+      {
+        "path": "src/components/booking/BookingStep3.tsx",
+        "type": "component",
+        "clientside": true
+      },
+      {
+        "path": "src/components/BookingWidget.tsx",
+        "type": "component",
+        "clientside": true
+      },
+      {
+        "path": "src/components/FAQ.tsx",
+        "type": "component",
+        "clientside": true
+      },
+      {
+        "path": "src/components/Analytics.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/Badge.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/CTAButton.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/Footer.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/Header.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/Hero.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/Icon.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/Schema.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/Section.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/ServiceCard.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/TestimonialCard.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/TestModeIndicator.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/components/TrustIndicators.tsx",
+        "type": "component",
+        "clientside": false
+      },
+      {
+        "path": "src/hooks/useBookingFlow.ts",
+        "type": "hook",
+        "clientside": true
+      },
+      {
+        "path": "src/lib/calendly.ts",
+        "type": "service",
+        "clientside": true
+      },
+      {
+        "path": "src/lib/metadata.ts",
+        "type": "util",
+        "clientside": false
+      },
+      {
+        "path": "src/lib/routes.ts",
+        "type": "util",
+        "clientside": false
+      },
+      {
+        "path": "src/lib/schema.ts",
+        "type": "util",
+        "clientside": false
+      },
+      {
+        "path": "src/lib/stripe.ts",
+        "type": "service",
+        "clientside": false
+      },
+      {
+        "path": "src/lib/utils.ts",
+        "type": "util",
+        "clientside": false
+      }
+    ],
+    "configs": [
+      "next.config.mjs",
+      "tsconfig.json",
+      "tailwind.config.ts",
+      "postcss.config.js",
+      "package.json"
+    ]
+  },
+  "metrics": {
+    "circular_deps": [],
+    "orphan_files": [],
+    "unused_exports": [],
+    "duplication": [],
+    "mixed_concerns": [],
+    "rendering_issues": [],
+    "route_anomalies": [
+      {
+        "issue": "missing root layout",
+        "paths": ["src/app/layout.tsx"],
+        "notes": "Only (site) group has layout, no root layout for API routes"
+      },
+      {
+        "issue": "inconsistent route metadata",
+        "paths": ["src/app/(site)/about", "src/app/(site)/services/*"],
+        "notes": "Some routes missing dedicated layout.tsx files"
+      }
+    ],
+    "state_sprawl": [],
+    "data_fetch_drift": [],
+    "config_drift": [
+      {
+        "issue": "tailwind content paths may miss directories",
+        "alias": "tailwind.config.ts content array"
+      }
+    ],
+    "env_issues": [
+      {
+        "issue": "environment variables in client components",
+        "files": ["src/components/BookingWidget.tsx:21", "src/lib/calendly.ts:104", "src/components/Analytics.tsx:4,7"],
+        "var": "NEXT_PUBLIC_* variables accessed in client code"
+      }
+    ],
+    "errors_boundaries": [
+      {
+        "route": "all routes",
+        "missing": ["error.tsx", "loading.tsx"]
+      }
+    ],
+    "performance": [
+      {
+        "issue": "potential server component optimization",
+        "component": "FAQ.tsx, TrustIndicators.tsx",
+        "notes": "Could be server components instead of client"
+      }
+    ],
+    "testing": [
+      {
+        "issue": "no testing infrastructure",
+        "routes": ["all routes", "all components", "all API routes"]
+      }
+    ],
+    "dx": [
+      {
+        "issue": "consistent naming conventions",
+        "examples": ["PascalCase components", "camelCase utilities"]
+      }
+    ]
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "title": "Missing Error Boundaries",
+      "severity": "high",
+      "blast_radius": "entire application crashes",
+      "mitigation": "Add error.tsx files to all route directories"
+    },
+    {
+      "id": "R2",
+      "title": "No Testing Infrastructure",
+      "severity": "high",
+      "blast_radius": "all functionality",
+      "mitigation": "Implement Jest + React Testing Library + Playwright"
+    },
+    {
+      "id": "R3",
+      "title": "Environment Variable Exposure",
+      "severity": "medium",
+      "blast_radius": "client bundle size and information disclosure",
+      "mitigation": "Move environment access to server-side where possible"
+    },
+    {
+      "id": "R4",
+      "title": "Missing Root Layout",
+      "severity": "medium",
+      "blast_radius": "routes outside (site) group",
+      "mitigation": "Create root layout with error boundaries"
+    },
+    {
+      "id": "R5",
+      "title": "Configuration Drift",
+      "severity": "low",
+      "blast_radius": "development experience and potential styling issues",
+      "mitigation": "Standardize route metadata and update Tailwind config"
+    }
+  ],
+  "batches": [
+    {
+      "name": "Batch 1: Error Handling & Boundaries",
+      "success_criteria": [
+        "All routes have error boundaries",
+        "Graceful error recovery",
+        "User-friendly error messages"
+      ],
+      "proposed_diffs": [
+        {
+          "path": "src/app/error.tsx",
+          "diff": "--- (new file)\n+++ (new file)\n+'use client'\n+import { useEffect } from 'react'\n+\n+export default function Error({\n+  error,\n+  reset,\n+}: {\n+  error: Error & { digest?: string }\n+  reset: () => void\n+}) {\n+  useEffect(() => {\n+    console.error(error)\n+  }, [error])\n+\n+  return (\n+    <div className=\"min-h-screen flex items-center justify-center\">\n+      <div className=\"text-center\">\n+        <h2 className=\"text-2xl font-bold mb-4\">Something went wrong!</h2>\n+        <button onClick={reset} className=\"btn-primary\">\n+          Try again\n+        </button>\n+      </div>\n+    </div>\n+  )\n+}"
+        }
+      ],
+      "tests": [
+        "Error boundary functionality tests",
+        "Graceful error recovery tests",
+        "Error logging verification"
+      ]
+    },
+    {
+      "name": "Batch 2: Testing Infrastructure",
+      "success_criteria": [
+        "Unit tests for all components",
+        "Integration tests for booking flow",
+        "E2E tests for critical paths"
+      ],
+      "proposed_diffs": [
+        {
+          "path": "package.json",
+          "diff": "--- package.json\n+++ package.json\n@@ -20,6 +20,12 @@\n     \"postcss\": \"^8\",\n     \"tailwindcss\": \"^3.3.0\",\n     \"typescript\": \"^5\"\n+  },\n+  \"devDependencies\": {\n+    \"@testing-library/react\": \"^14.0.0\",\n+    \"@testing-library/jest-dom\": \"^6.0.0\",\n+    \"jest\": \"^29.0.0\",\n+    \"jest-environment-jsdom\": \"^29.0.0\",\n+    \"@playwright/test\": \"^1.40.0\"\n   }\n }"
+        }
+      ],
+      "tests": [
+        "Component unit tests",
+        "Hook testing",
+        "API route testing",
+        "E2E booking flow tests"
+      ]
+    },
+    {
+      "name": "Batch 3: Configuration Standardization",
+      "success_criteria": [
+        "Consistent route metadata",
+        "Updated Tailwind configuration",
+        "Environment variable optimization"
+      ],
+      "proposed_diffs": [
+        {
+          "path": "src/app/(site)/about/layout.tsx",
+          "diff": "--- (new file)\n+++ (new file)\n+import { generatePageMetadata } from '@/lib/metadata'\n+\n+export const metadata = generatePageMetadata({\n+  title: 'About - Launchworthy',\n+  description: 'Learn about our interview coaching approach and methodology.',\n+  path: '/about'\n+})"
+        }
+      ],
+      "tests": [
+        "Metadata generation tests",
+        "Route consistency tests",
+        "Tailwind content path verification"
+      ]
+    }
+  ],
+  "open_questions": [
+    {
+      "question": "Is middleware intentionally absent or missing?",
+      "evidence_needed": [
+        "Check for src/middleware.ts or middleware.ts in root",
+        "README mentions maintenance mode middleware"
+      ]
+    },
+    {
+      "question": "Why use API routes instead of Server Actions?",
+      "evidence_needed": [
+        "Next.js 14 Server Actions would be more modern",
+        "Current API route strategy rationale"
+      ]
+    },
+    {
+      "question": "Will current state management scale with feature growth?",
+      "evidence_needed": [
+        "Assessment of future feature requirements",
+        "Complexity monitoring strategy"
+      ]
+    }
+  ]
+}

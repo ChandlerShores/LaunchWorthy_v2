@@ -16,7 +16,7 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-navy-900 mb-6">
             Our Services
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8">
@@ -44,9 +44,9 @@ export default function ServicesPage() {
       </Section>
 
       {/* Process Overview */}
-      <Section className="bg-gray-50">
+      <Section className="bg-navy-50">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8">
             How We Work Together
           </h2>
         </div>
@@ -56,7 +56,7 @@ export default function ServicesPage() {
             <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
               1
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Discovery</h3>
+            <h3 className="text-xl font-semibold text-navy-900 mb-2">Discovery</h3>
             <p className="text-gray-600">
               We start by understanding your current situation, goals, and challenges.
             </p>
@@ -66,7 +66,7 @@ export default function ServicesPage() {
             <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
               2
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Strategy</h3>
+            <h3 className="text-xl font-semibold text-navy-900 mb-2">Strategy</h3>
             <p className="text-gray-600">
               We develop a personalized approach based on your specific needs and industry.
             </p>
@@ -76,7 +76,7 @@ export default function ServicesPage() {
             <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
               3
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Execution</h3>
+            <h3 className="text-xl font-semibold text-navy-900 mb-2">Execution</h3>
             <p className="text-gray-600">
               We implement the plan with hands-on coaching and practice sessions.
             </p>

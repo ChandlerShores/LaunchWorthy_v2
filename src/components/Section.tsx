@@ -28,7 +28,7 @@ const Section: React.FC<SectionProps> = ({
   // Only apply background class if no explicit background is provided in className
   const hasExplicitBackground = className.includes('bg-');
   const backgroundClass = !hasExplicitBackground 
-    ? (variant === 'alt' ? 'bg-gray-50' : 'bg-white')
+    ? (variant === 'alt' ? 'bg-navy-50' : 'bg-white')
     : '';
 
   return (

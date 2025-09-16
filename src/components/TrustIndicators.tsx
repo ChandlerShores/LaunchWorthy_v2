@@ -40,7 +40,7 @@ const TrustIndicators: React.FC<TrustIndicatorsProps> = ({
       
       {/* Star Rating */}
       <span 
-        className="inline-flex items-center gap-1 text-yellow-500"
+        className="inline-flex items-center gap-1 text-warning-500"
         aria-label={`${safeRating} star rating`}
       >
         {Array.from({ length: safeRating }).map((_, index) => (

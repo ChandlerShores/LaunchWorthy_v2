@@ -41,7 +41,7 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        <h2 className="text-3xl font-bold text-navy-900 mb-4">
           Let's Get Started
         </h2>
         <p className="text-gray-600">
@@ -50,15 +50,15 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
       </div>
 
       {/* Contact Information */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-xl font-semibold text-gray-900 mb-6">
+      <div className="bg-white rounded-lg border border-navy-200 p-6">
+        <h3 className="text-xl font-semibold text-navy-900 mb-6">
           Contact Information
         </h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Name */}
           <div className="md:col-span-2">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="name" className="block text-sm font-medium text-navy-700 mb-2">
               Full Name *
             </label>
             <input
@@ -69,17 +69,17 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
               placeholder="Enter your full name"
               autoComplete="name"
               className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
-                errors.name ? 'border-red-300' : 'border-gray-300'
+                errors.name ? 'border-error-300' : 'border-gray-300'
               }`}
             />
             {errors.name && (
-              <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+              <p className="mt-1 text-sm text-error-600">{errors.name}</p>
             )}
           </div>
 
           {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-navy-700 mb-2">
               Email Address *
             </label>
             <input
@@ -90,17 +90,17 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
               placeholder="your.email@example.com"
               autoComplete="email"
               className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
-                errors.email ? 'border-red-300' : 'border-gray-300'
+                errors.email ? 'border-error-300' : 'border-gray-300'
               }`}
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+              <p className="mt-1 text-sm text-error-600">{errors.email}</p>
             )}
           </div>
 
           {/* Phone */}
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="phone" className="block text-sm font-medium text-navy-700 mb-2">
               Phone Number *
             </label>
             <input
@@ -111,19 +111,19 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
               placeholder="(555) 123-4567"
               autoComplete="tel"
               className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
-                errors.phone ? 'border-red-300' : 'border-gray-300'
+                errors.phone ? 'border-error-300' : 'border-gray-300'
               }`}
             />
             {errors.phone && (
-              <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
+              <p className="mt-1 text-sm text-error-600">{errors.phone}</p>
             )}
           </div>
         </div>
       </div>
 
       {/* Service Selection */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-xl font-semibold text-gray-900 mb-6">
+      <div className="bg-white rounded-lg border border-navy-200 p-6">
+        <h3 className="text-xl font-semibold text-navy-900 mb-6">
           Choose Your Service *
         </h3>
         
@@ -134,7 +134,7 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
               className={`block p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:shadow-md ${
                 selectedService === service.id
                   ? 'border-primary-500 bg-primary-50 shadow-md'
-                  : 'border-gray-200 hover:border-gray-300'
+                  : 'border-navy-200 hover:border-gray-300'
               }`}
             >
               <input
@@ -147,7 +147,7 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
               />
               <div className="flex items-center justify-between">
                 <div className="flex-1">
-                  <div className="font-semibold text-gray-900 text-lg">
+                  <div className="font-semibold text-navy-900 text-lg">
                     {service.name}
                   </div>
                   <div className="text-gray-600 mt-1">
@@ -172,7 +172,7 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
         </div>
         
         {errors.service && (
-          <p className="mt-3 text-sm text-red-600">{errors.service}</p>
+          <p className="mt-3 text-sm text-error-600">{errors.service}</p>
         )}
       </div>
 
@@ -188,14 +188,14 @@ const BookingStep1: React.FC<BookingStep1Props> = ({
       </div>
 
       {/* Security Notice */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-sky-50 border border-sky-200 rounded-lg p-4">
         <div className="flex items-start">
-          <svg className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-sky-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
           <div>
-            <h4 className="font-semibold text-blue-900">Your Information is Secure</h4>
-            <p className="text-blue-800 text-sm mt-1">
+            <h4 className="font-semibold text-sky-900">Your Information is Secure</h4>
+            <p className="text-sky-800 text-sm mt-1">
               We use industry-standard encryption to protect your personal information. 
               Your data is never shared with third parties without your consent.
             </p>

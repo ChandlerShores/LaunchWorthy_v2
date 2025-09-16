@@ -35,7 +35,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-navy-900 mb-6">
                 About Chandler
               </h1>
               <p className="text-xl text-gray-600 mb-8">
@@ -62,7 +62,7 @@ export default function AboutPage() {
       {/* Origin Story */}
       <Section>
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             My Story
           </h2>
           
@@ -83,21 +83,21 @@ export default function AboutPage() {
       </Section>
 
       {/* Values */}
-      <Section className="bg-gray-50">
+      <Section className="bg-navy-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             My Approach
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {values.map((value, index) => (
-              <div key={index} className="text-center bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+              <div key={index} className="text-center bg-white rounded-xl shadow-lg border border-navy-200 p-8">
                 <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-2xl font-bold text-primary-600">
                     {index + 1}
                   </span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
+                <h3 className="text-2xl font-bold text-navy-900 mb-4">{value.title}</h3>
                 <p className="text-gray-600">{value.description}</p>
               </div>
             ))}
@@ -108,7 +108,7 @@ export default function AboutPage() {
       {/* Why I Do This */}
       <Section>
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8">
             Why I Do This
           </h2>
           
@@ -129,32 +129,32 @@ export default function AboutPage() {
       </Section>
 
       {/* What Makes This Different */}
-      <Section className="bg-gray-50">
+      <Section className="bg-navy-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
             What Makes This Different
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Not Corporate Training</h3>
+              <h3 className="text-2xl font-bold text-navy-900 mb-4">Not Corporate Training</h3>
               <p className="text-gray-600 mb-6">
                 This isn't generic corporate training or theoretical advice. It's practical, peer-level coaching from someone who's actually helped people land better jobs.
               </p>
               
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Real Practice</h3>
+              <h3 className="text-2xl font-bold text-navy-900 mb-4">Real Practice</h3>
               <p className="text-gray-600">
                 We don't just talk about interviews - we practice them. Mock interviews, real feedback, and measurable improvement.
               </p>
             </div>
             
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">No Fluff</h3>
+              <h3 className="text-2xl font-bold text-navy-900 mb-4">No Fluff</h3>
               <p className="text-gray-600 mb-6">
                 Skip the motivational speeches and focus on what actually works. Frameworks, examples, and actionable steps you can use immediately.
               </p>
               
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Peer-Level Support</h3>
+              <h3 className="text-2xl font-bold text-navy-900 mb-4">Peer-Level Support</h3>
               <p className="text-gray-600">
                 This isn't a senior executive talking down to you. It's practical guidance from someone who understands your situation and wants to see you succeed.
               </p>
