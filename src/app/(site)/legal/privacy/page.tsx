@@ -11,135 +11,109 @@ export const metadata = generatePageMetadata({
 export default function PrivacyPolicyPage() {
   return (
     <main>
-      <Section padding="xl" className="bg-gradient-to-br from-gray-50 to-white">
+      <Section padding="lg" className="bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-navy-900 mb-6">
             Privacy Policy
           </h1>
           <p className="text-lg text-gray-600 mb-8">
-            Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            Last updated: September 16, 2025
           </p>
         </div>
       </Section>
 
       <Section>
         <div className="max-w-4xl mx-auto prose prose-lg">
-          <h2>Introduction</h2>
           <p>
-            Launchworthy ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy 
-            explains how we collect, use, disclose, and safeguard your information when you visit our website 
-            or use our coaching services.
+            Launchworthy ("we," "our," or "us") respects your privacy and is committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or use our coaching services.
           </p>
 
           <h2>Information We Collect</h2>
-          <p>We collect information you provide directly to us, such as when you:</p>
+          <p>We may collect the following types of information:</p>
+          
+          <h3>Information you provide directly</h3>
           <ul>
-            <li>Create an account or book a coaching session</li>
-            <li>Make a purchase through our website</li>
-            <li>Contact us via email or contact form</li>
-            <li>Participate in coaching sessions or provide feedback</li>
-            <li>Subscribe to our newsletter or updates</li>
+            <li>Contact details (name, email address, phone number)</li>
+            <li>Payment information (processed securely by Stripe; we do not store card details)</li>
+            <li>Professional information (resume, LinkedIn profile, career goals, coaching notes)</li>
+            <li>Preferences and communication history</li>
+            <li>Testimonials or feedback you choose to share</li>
+            <li>Recordings of coaching sessions (only with your explicit consent)</li>
           </ul>
 
-          <p>This information may include:</p>
+          <h3>Information collected automatically</h3>
           <ul>
-            <li>Name and contact information (email address, phone number)</li>
-            <li>Payment information (processed securely through Stripe)</li>
-            <li>Professional information (resume, LinkedIn profile, career goals)</li>
-            <li>Communication preferences and session recordings (with consent)</li>
-            <li>Feedback and testimonials</li>
+            <li>Basic site analytics (via Plausible Analytics, which is cookie-free and privacy-focused)</li>
+            <li>Essential cookies for site functionality</li>
           </ul>
 
           <h2>How We Use Your Information</h2>
-          <p>We use the information we collect to:</p>
+          <p>We use your information to:</p>
           <ul>
-            <li>Provide, maintain, and improve our coaching services</li>
-            <li>Process payments and send you related information</li>
-            <li>Schedule and conduct coaching sessions</li>
-            <li>Send you technical notices, updates, and support messages</li>
-            <li>Respond to your comments and questions</li>
-            <li>Analyze usage patterns to improve our services</li>
-            <li>Comply with legal obligations</li>
+            <li>Deliver, improve, and personalize coaching services</li>
+            <li>Process payments and send confirmations or receipts</li>
+            <li>Schedule sessions and send reminders</li>
+            <li>Respond to inquiries and provide support</li>
+            <li>Share updates, newsletters, or resources (if you opt-in)</li>
+            <li>Analyze anonymized usage patterns to improve our services</li>
+            <li>Meet legal and regulatory obligations</li>
           </ul>
 
-          <h2>Information Sharing and Disclosure</h2>
-          <p>
-            We do not sell, trade, or otherwise transfer your personal information to third parties 
-            except in the following circumstances:
-          </p>
+          <h2>Information Sharing</h2>
+          <p>We do not sell or rent your personal information. We may share it only in these situations:</p>
           <ul>
-            <li><strong>With your explicit consent</strong> - We may share information when you explicitly agree</li>
-            <li><strong>Service providers</strong> - We may share information with trusted third parties who assist us in operating our website, conducting our business, or servicing you (e.g., Stripe for payments, Formspree for forms)</li>
-            <li><strong>Legal compliance</strong> - We may disclose information when required by law or to protect our rights and safety</li>
-            <li><strong>Business transfers</strong> - In the event of a merger, acquisition, or sale of assets, user information may be transferred</li>
+            <li><strong>With your consent</strong> – when you explicitly allow it (e.g., using a testimonial)</li>
+            <li><strong>With service providers</strong> – trusted partners who help us operate (e.g., Stripe for payments, Formspree for forms)</li>
+            <li><strong>For legal reasons</strong> – if required by law, court order, or to protect rights, safety, or property</li>
+            <li><strong>Business transfers</strong> – if Launchworthy undergoes a merger, acquisition, or sale, your data may transfer as part of that transaction</li>
           </ul>
 
           <h2>Data Security</h2>
           <p>
-            We implement appropriate security measures to protect your personal information against 
-            unauthorized access, alteration, disclosure, or destruction. However, no method of 
-            transmission over the internet or electronic storage is 100% secure. While we strive 
-            to use commercially acceptable means to protect your information, we cannot guarantee 
-            absolute security.
+            We take commercially reasonable measures to protect your data against unauthorized access, alteration, disclosure, or destruction. However, no online service can guarantee 100% security.
           </p>
 
-          <h2>Cookies and Analytics</h2>
-          <p>
-            We use Plausible Analytics to understand how visitors use our website. This service 
-            is privacy-focused and does not use cookies or collect personal data. We may also 
-            use essential cookies to provide basic website functionality.
-          </p>
-
-          <h2>Your Rights and Choices</h2>
-          <p>You have the right to:</p>
+          <h2>Your Rights</h2>
+          <p>Depending on your location, you may have the right to:</p>
           <ul>
-            <li>Access your personal information</li>
-            <li>Correct inaccurate or incomplete information</li>
-            <li>Request deletion of your information</li>
-            <li>Opt-out of communications</li>
-            <li>Data portability (receive your data in a structured format)</li>
-            <li>Withdraw consent at any time</li>
+            <li>Access the personal information we hold about you</li>
+            <li>Correct or update inaccurate information</li>
+            <li>Request deletion of your data</li>
+            <li>Opt-out of marketing communications</li>
+            <li>Request data portability (structured, machine-readable copy)</li>
+            <li>Withdraw consent for optional uses (like session recordings)</li>
           </ul>
-
           <p>
-            To exercise these rights, please contact us at hello@launchworthy.net. We will respond 
-            to your request within a reasonable timeframe.
+            To exercise these rights, contact us at hello@launchworthy.net. We will respond promptly.
           </p>
 
           <h2>Data Retention</h2>
           <p>
-            We retain your personal information only as long as necessary to fulfill the purposes 
-            outlined in this Privacy Policy, unless a longer retention period is required or 
-            permitted by law.
+            We retain personal data only as long as necessary to provide services or comply with legal requirements. Session recordings, if applicable, are stored only with your consent and can be deleted upon request.
           </p>
 
           <h2>Children's Privacy</h2>
           <p>
-            Our services are not directed to children under 13 years of age. We do not knowingly 
-            collect personal information from children under 13. If you become aware that a child 
-            has provided us with personal information, please contact us immediately.
+            Our services are not intended for children under 13. We do not knowingly collect information from children. If you believe a child has provided us with personal data, please contact us immediately.
           </p>
 
           <h2>International Data Transfers</h2>
           <p>
-            Your information may be transferred to and processed in countries other than your own. 
-            We ensure that such transfers comply with applicable data protection laws.
+            Your information may be transferred outside your home country. We ensure these transfers are consistent with applicable data protection laws.
           </p>
 
-          <h2>Changes to This Privacy Policy</h2>
+          <h2>Policy Updates</h2>
           <p>
-            We may update this Privacy Policy from time to time. We will notify you of any 
-            changes by posting the new Privacy Policy on this page and updating the "Last updated" 
-            date. We encourage you to review this Privacy Policy periodically.
+            We may revise this Privacy Policy from time to time. Updates will be posted on this page with a new "Last updated" date. We encourage you to review it regularly.
           </p>
 
           <h2>Contact Us</h2>
           <p>
-            If you have any questions about this Privacy Policy or our privacy practices, please contact us:
+            If you have any questions about this Privacy Policy or how your data is handled, please reach us at:
           </p>
           <p>
-            <strong>Email:</strong> hello@launchworthy.net<br />
-            <strong>Address:</strong> Lexington, KY
+            📧 hello@launchworthy.net<br />
+            📍 Lexington, KY
           </p>
         </div>
       </Section>

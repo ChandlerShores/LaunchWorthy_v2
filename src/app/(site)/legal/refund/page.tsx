@@ -11,7 +11,7 @@ export const metadata = generatePageMetadata({
 export default function RefundPolicyPage() {
   return (
     <main>
-      <Section padding="xl" className="bg-gradient-to-br from-gray-50 to-white">
+      <Section padding="lg" className="bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-navy-900 mb-6">
             Refund Policy

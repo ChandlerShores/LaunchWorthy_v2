@@ -89,6 +89,21 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
     setUploadedFiles(prev => prev.filter((_, i) => i !== index));
   };
 
+  // Helper function to convert file to base64
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const result = reader.result as string;
+        // Remove data:image/jpeg;base64, prefix
+        const base64 = result.split(',')[1];
+        resolve(base64);
+      };
+      reader.onerror = error => reject(error);
+    });
+  };
+
   const handleComplete = async () => {
     setIsSubmitting(true);
     
@@ -106,12 +121,50 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
         throw new Error('No payment session ID');
       }
       
-      // Here you would typically upload files and save LinkedIn URL
-      // For now, we'll just simulate the process
+      // Upload files to Google Drive if any
+      let driveUploadSuccess = true;
+      let driveUploadMessage = '';
       
       if (uploadedFiles.length > 0) {
-        // Simulate file upload
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        try {
+          // Convert files to base64 for API
+          const filesForUpload = await Promise.all(
+            uploadedFiles.map(async (file) => ({
+              name: file.name,
+              content: await fileToBase64(file),
+              mimeType: file.type
+            }))
+          );
+
+          const driveResponse = await fetch('/api/upload-to-drive', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              files: filesForUpload,
+              bookingData: {
+                contactName: contactInfo.name,
+                email: contactInfo.email,
+                serviceName: serviceName,
+                paymentSessionId: paymentSessionId
+              }
+            }),
+          });
+
+          const driveResult = await driveResponse.json();
+          
+          if (!driveResult.success) {
+            driveUploadSuccess = false;
+            driveUploadMessage = `File upload warning: ${driveResult.message}`;
+            console.warn('Drive upload failed:', driveResult);
+          } else {
+            driveUploadMessage = `Files uploaded successfully: ${driveResult.message}`;
+            console.log('Drive upload success:', driveResult);
+          }
+        } catch (driveError) {
+          driveUploadSuccess = false;
+          driveUploadMessage = 'File upload failed - files not saved to Drive';
+          console.error('Drive upload error:', driveError);
+        }
       }
       
       // Send comprehensive booking data to Formspree
@@ -140,6 +193,8 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
             // Additional Information
             linkedinUrl,
             uploadedFiles: uploadedFiles.length,
+            driveUploadStatus: driveUploadSuccess ? 'success' : 'failed',
+            driveUploadMessage: driveUploadMessage,
             
             // Booking Status
             status: 'booking_completed',
@@ -164,7 +219,8 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
         // Don't block the user flow - they've already paid
       }
       
-      // Complete the booking process
+      // Complete the booking process regardless of Drive upload status
+      // (Business decision: Don't block booking for file upload failures)
       onComplete();
     } catch (error) {
       console.error('Error completing booking:', error);

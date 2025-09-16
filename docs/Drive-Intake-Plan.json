@@ -1,0 +1,385 @@
+{
+  "generated_at": "2025-01-27T00:00:00Z",
+  "current_book": {
+    "routes": [
+      {
+        "path": "/book",
+        "file": "src/app/(site)/book/page.tsx",
+        "role": "booking_container"
+      },
+      {
+        "path": "/book/layout",
+        "file": "src/app/(site)/book/layout.tsx",
+        "role": "seo_metadata"
+      }
+    ],
+    "components": [
+      {
+        "path": "src/components/booking/BookingFlow.tsx",
+        "role": "state_orchestration",
+        "client": true
+      },
+      {
+        "path": "src/components/booking/BookingStep1.tsx",
+        "role": "contact_service_selection",
+        "client": true
+      },
+      {
+        "path": "src/components/booking/BookingStep2.tsx",
+        "role": "payment_processing",
+        "client": true
+      },
+      {
+        "path": "src/components/booking/BookingStep3.tsx",
+        "role": "scheduling_file_upload",
+        "client": true,
+        "file_upload": true
+      }
+    ],
+    "server": [
+      {
+        "path": "src/app/api/create-checkout-session/route.ts",
+        "role": "stripe_checkout",
+        "method": "POST"
+      },
+      {
+        "path": "src/app/api/submit-booking-formspree/route.ts",
+        "role": "booking_completion",
+        "method": "POST"
+      }
+    ],
+    "storage": [
+      {
+        "path": "none",
+        "type": "none",
+        "note": "No persistent storage - files simulated in client state only"
+      }
+    ]
+  },
+  "options": [
+    {
+      "name": "Picker",
+      "summary": "Google Picker + server download/export",
+      "pros": [
+        "Familiar UX",
+        "Multi-select support",
+        "Narrow implementation scope",
+        "Enhances existing file upload UI"
+      ],
+      "cons": [
+        "Third-party UI script dependency",
+        "Token handoff complexity",
+        "Picker API loading overhead"
+      ],
+      "recommended": true,
+      "rationale": "Best fit for existing UX patterns and user expectations"
+    },
+    {
+      "name": "ServerPull",
+      "summary": "List via Drive API; custom UI",
+      "pros": [
+        "No third-party dependencies",
+        "Complete UI control",
+        "Custom filtering capabilities"
+      ],
+      "cons": [
+        "High development cost",
+        "Pagination complexity",
+        "Performance overhead",
+        "Feature parity challenges"
+      ],
+      "recommended": false,
+      "rationale": "Excessive development effort for limited benefit"
+    }
+  ],
+  "auth": {
+    "provider": "google-oauth",
+    "redirect_uri": "https://<domain>/api/auth/callback/google",
+    "scopes": [
+      "https://www.googleapis.com/auth/drive.readonly",
+      "https://www.googleapis.com/auth/drive.metadata.readonly"
+    ],
+    "secrets": [
+      "GOOGLE_OAUTH_CLIENT_ID",
+      "GOOGLE_OAUTH_CLIENT_SECRET"
+    ],
+    "token_storage": "server-session",
+    "client_exposure": "none",
+    "note": "No existing auth system - requires complete OAuth implementation"
+  },
+  "endpoints": [
+    {
+      "path": "src/app/api/intake/drive/route.ts",
+      "method": "POST",
+      "body": {
+        "fileIds": "string[]",
+        "sessionToken": "string"
+      },
+      "returns": "Array of per-file processing status",
+      "purpose": "Handle Google Drive file import and processing"
+    },
+    {
+      "path": "src/app/api/auth/google/route.ts",
+      "method": "GET",
+      "purpose": "Initiate Google OAuth flow"
+    },
+    {
+      "path": "src/app/api/auth/callback/google/route.ts",
+      "method": "GET",
+      "purpose": "Handle OAuth callback and token exchange"
+    }
+  ],
+  "dataflow": [
+    "Client: /book → Google Drive Import Button → Picker opens",
+    "Picker: User selects files → Returns file IDs to client",
+    "Client: Send fileIds + sessionToken → /api/intake/drive",
+    "Server: Validate session → Drive API export/download → Storage → Parse → Record",
+    "Client: Receive status updates → Display imported files"
+  ],
+  "normalization": [
+    {
+      "mime": "application/vnd.google-apps.document",
+      "export": "text/plain",
+      "fallback": "application/pdf",
+      "parser": "text_extraction"
+    },
+    {
+      "mime": "application/vnd.google-apps.spreadsheet",
+      "export": "text/csv",
+      "parser": "csv_parsing"
+    },
+    {
+      "mime": "application/vnd.google-apps.presentation",
+      "export": "application/pdf",
+      "parser": "pdf_ocr_extraction"
+    },
+    {
+      "mime": "application/pdf",
+      "export": "direct_download",
+      "parser": "pdf_text_extraction"
+    },
+    {
+      "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "export": "direct_download",
+      "parser": "docx_text_extraction"
+    }
+  ],
+  "risks": [
+    {
+      "id": "R1",
+      "title": "Secret leakage",
+      "severity": "high",
+      "mitigation": "Server-only env variables; audit client bundles",
+      "evidence": "Current Stripe implementation properly isolates secrets"
+    },
+    {
+      "id": "R2",
+      "title": "Large file timeouts",
+      "severity": "medium",
+      "mitigation": "Streaming downloads + background jobs",
+      "evidence": "No current file size limits in existing upload"
+    },
+    {
+      "id": "R3",
+      "title": "Scope overreach",
+      "severity": "medium",
+      "mitigation": "Least-privilege scopes; user education",
+      "evidence": "Current app follows security best practices"
+    },
+    {
+      "id": "R4",
+      "title": "Token expiration",
+      "severity": "medium",
+      "mitigation": "Refresh token storage; retry logic",
+      "evidence": "No current token management infrastructure"
+    },
+    {
+      "id": "R5",
+      "title": "Rate limiting",
+      "severity": "low",
+      "mitigation": "Request batching; exponential backoff",
+      "evidence": "Low expected usage volume"
+    }
+  ],
+  "batches": [
+    {
+      "name": "Batch 1: OAuth Foundation",
+      "success_criteria": [
+        "Google OAuth flow completes successfully",
+        "Access tokens stored securely on server",
+        "No secrets exposed in client bundle",
+        "User can authenticate and grant Drive permissions"
+      ],
+      "proposed_diffs": [
+        {
+          "path": "src/app/api/auth/google/route.ts",
+          "diff": "// OAuth initiation endpoint\nimport { NextRequest } from 'next/server';\n\nexport async function GET(request: NextRequest) {\n  // Initiate Google OAuth flow\n  // Redirect to Google with proper scopes\n}"
+        },
+        {
+          "path": "src/app/api/auth/callback/google/route.ts",
+          "diff": "// OAuth callback handler\nimport { NextRequest } from 'next/server';\n\nexport async function GET(request: NextRequest) {\n  // Handle OAuth callback\n  // Exchange code for tokens\n  // Store tokens securely\n  // Redirect to booking flow\n}"
+        }
+      ],
+      "tests": [
+        "OAuth flow completion",
+        "Token storage security",
+        "Permission denial handling",
+        "Redirect URI validation"
+      ]
+    },
+    {
+      "name": "Batch 2: Picker Integration",
+      "success_criteria": [
+        "Google Picker loads successfully",
+        "File selection returns valid IDs",
+        "Picker integrates with existing file upload UI",
+        "Multi-file selection works correctly"
+      ],
+      "proposed_diffs": [
+        {
+          "path": "src/components/GoogleDriveImportButton.tsx",
+          "diff": "'use client';\n\nimport React, { useState } from 'react';\n\ninterface GoogleDriveImportButtonProps {\n  onFilesImported: (files: Array<{id: string, name: string, mime: string}>) => void;\n  disabled?: boolean;\n}\n\nexport default function GoogleDriveImportButton({ onFilesImported, disabled }: GoogleDriveImportButtonProps) {\n  const [isLoading, setIsLoading] = useState(false);\n  \n  const handleImport = async () => {\n    // Load Google Picker API\n    // Authenticate user\n    // Open picker\n    // Handle file selection\n  };\n  \n  return (\n    <button \n      onClick={handleImport}\n      disabled={disabled || isLoading}\n      className=\"btn-secondary\"\n    >\n      {isLoading ? 'Loading...' : 'Import from Google Drive'}\n    </button>\n  );\n}"
+        }
+      ],
+      "tests": [
+        "Picker script loading",
+        "Authentication flow",
+        "File selection handling",
+        "Error state management"
+      ]
+    },
+    {
+      "name": "Batch 3: Server Processing API",
+      "success_criteria": [
+        "File IDs received and validated",
+        "Drive API authentication works",
+        "Files exported/downloaded successfully",
+        "Basic storage implementation",
+        "Status returned to client"
+      ],
+      "proposed_diffs": [
+        {
+          "path": "src/app/api/intake/drive/route.ts",
+          "diff": "import { NextRequest, NextResponse } from 'next/server';\nimport { google } from 'googleapis';\n\ninterface DriveImportRequest {\n  fileIds: string[];\n  sessionToken: string;\n}\n\nexport async function POST(request: NextRequest) {\n  try {\n    const { fileIds, sessionToken }: DriveImportRequest = await request.json();\n    \n    // Validate session token\n    // Authenticate with Google Drive API\n    // Process each file ID\n    // Export/download files\n    // Store files temporarily\n    // Return processing status\n    \n    return NextResponse.json({\n      files: fileIds.map(id => ({\n        id,\n        status: 'processing',\n        // ... other fields\n      }))\n    });\n  } catch (error) {\n    return NextResponse.json(\n      { error: 'Failed to process files' },\n      { status: 500 }\n    );\n  }\n}"
+        }
+      ],
+      "tests": [
+        "Google Docs export to text",
+        "Google Sheets export to CSV",
+        "PDF direct download",
+        "Large file handling",
+        "Error recovery"
+      ]
+    },
+    {
+      "name": "Batch 4: Storage & Parsing",
+      "success_criteria": [
+        "Files stored in persistent storage",
+        "Text extraction working for all formats",
+        "File metadata recorded in database",
+        "Cleanup of temporary files"
+      ],
+      "proposed_diffs": [
+        {
+          "path": "src/lib/storage.ts",
+          "diff": "// File storage utilities\nimport { writeFile, unlink } from 'fs/promises';\nimport { join } from 'path';\n\ninterface FileStorage {\n  storeFile: (buffer: Buffer, filename: string) => Promise<string>;\n  deleteFile: (filepath: string) => Promise<void>;\n  getFile: (filepath: string) => Promise<Buffer>;\n}\n\n// Implementation for Vercel Blob Storage or local filesystem\nexport const fileStorage: FileStorage = {\n  // ... implementation\n};"
+        },
+        {
+          "path": "src/lib/parsers.ts",
+          "diff": "// File parsing utilities\ninterface ParsedFile {\n  text: string;\n  metadata: {\n    wordCount: number;\n    pageCount?: number;\n    extractedAt: Date;\n  };\n}\n\nexport const parseTextFile = async (buffer: Buffer): Promise<ParsedFile> => {\n  // Basic text extraction\n};\n\nexport const parsePDF = async (buffer: Buffer): Promise<ParsedFile> => {\n  // PDF text extraction\n};\n\nexport const parseCSV = async (buffer: Buffer): Promise<ParsedFile> => {\n  // CSV parsing\n};"
+        }
+      ],
+      "tests": [
+        "Text file parsing accuracy",
+        "PDF OCR extraction",
+        "CSV data parsing",
+        "Storage cleanup",
+        "Metadata extraction"
+      ]
+    },
+    {
+      "name": "Batch 5: UI Integration & Status",
+      "success_criteria": [
+        "Import status visible in booking flow",
+        "Imported files displayed correctly",
+        "Error states handled gracefully",
+        "Integration with existing upload UI"
+      ],
+      "proposed_diffs": [
+        {
+          "path": "src/components/booking/BookingStep3.tsx",
+          "diff": "// Add to existing BookingStep3 component\nimport GoogleDriveImportButton from '@/components/GoogleDriveImportButton';\nimport FileImportStatus from '@/components/FileImportStatus';\n\n// In the file upload section:\n<div className=\"flex gap-4 mb-4\">\n  {/* Existing file upload */}\n  <GoogleDriveImportButton \n    onFilesImported={handleDriveFilesImported}\n    disabled={isSubmitting}\n  />\n</div>\n\n{/* Import status display */}\n{importStatus && <FileImportStatus status={importStatus} />}"
+        }
+      ],
+      "tests": [
+        "Status display accuracy",
+        "Error message clarity",
+        "UI integration smoothness",
+        "Loading state management"
+      ]
+    }
+  ],
+  "open_questions": [
+    {
+      "question": "Which storage provider should be used for imported files?",
+      "evidence_needed": [
+        "Current hosting platform analysis",
+        "Budget constraints",
+        "File retention requirements"
+      ],
+      "hypothesis": "Vercel Blob Storage for simplicity and integration",
+      "impact": "High - affects implementation approach and costs"
+    },
+    {
+      "question": "Do we need team/Organization Drive access?",
+      "evidence_needed": [
+        "User base analysis",
+        "Business requirements",
+        "Security considerations"
+      ],
+      "hypothesis": "Personal drives only for MVP, shared drives in future",
+      "impact": "Medium - affects OAuth scopes and user experience"
+    },
+    {
+      "question": "What level of text extraction is needed?",
+      "evidence_needed": [
+        "Coaching workflow requirements",
+        "File format analysis needs",
+        "User feedback"
+      ],
+      "hypothesis": "Basic text extraction sufficient for initial implementation",
+      "impact": "Medium - affects parsing complexity and performance"
+    },
+    {
+      "question": "How long should imported files be retained?",
+      "evidence_needed": [
+        "Legal requirements",
+        "User privacy expectations",
+        "Storage costs"
+      ],
+      "hypothesis": "90-day retention with user deletion option",
+      "impact": "Low - affects storage costs and compliance"
+    }
+  ],
+  "implementation_notes": {
+    "existing_patterns": [
+      "BookingStep3 already has file upload UI that can be enhanced",
+      "Formspree integration shows how to handle form submissions",
+      "Stripe integration demonstrates proper secret handling",
+      "State management in useBookingFlow shows localStorage patterns"
+    ],
+    "integration_points": [
+      "BookingStep3 file upload section needs Google Drive button",
+      "Formspree submission should include Drive import metadata",
+      "Success page should show imported file status",
+      "Error handling should match existing booking flow patterns"
+    ],
+    "security_considerations": [
+      "OAuth tokens must be server-side only",
+      "File processing should happen server-side",
+      "User sessions should be validated for Drive access",
+      "Rate limiting should be implemented for Drive API calls"
+    ]
+  }
+}
+
