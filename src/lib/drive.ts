@@ -9,20 +9,25 @@ export const getDriveClient = async () => {
   try {
     const config = getDriveConfig();
     
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        type: 'external_account',
-        audience: `//iam.googleapis.com/projects/${config.projectNumber}/locations/global/workloadIdentityPools/${config.workloadIdentityPoolId}/providers/${config.workloadIdentityProviderId}`,
-        subject_token_type: 'urn:ietf:params:oauth:token-type:jwt',
-        token_url: 'https://sts.googleapis.com/v1/token',
-        credential_source: {
-          file: '/var/run/secrets/vercel/oidc/0',
-          format: { type: 'text' }
-        }
-      }
-    });
-
-    driveClient = google.drive({ version: 'v3', auth });
+    // Check if we have a service account key in environment variables
+    const serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
+    
+    if (serviceAccountKey) {
+      // Use service account key from environment variable
+      const credentials = JSON.parse(serviceAccountKey);
+      const auth = new google.auth.GoogleAuth({
+        credentials,
+        scopes: ['https://www.googleapis.com/auth/drive.file']
+      });
+      driveClient = google.drive({ version: 'v3', auth });
+    } else {
+      // Fallback to Application Default Credentials
+      const auth = new google.auth.GoogleAuth({
+        scopes: ['https://www.googleapis.com/auth/drive.file'],
+        projectId: config.projectId
+      });
+      driveClient = google.drive({ version: 'v3', auth });
+    }
     
     // Test the connection
     await driveClient.files.list({ pageSize: 1 });
