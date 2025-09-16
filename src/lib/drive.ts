@@ -30,7 +30,15 @@ export const getDriveClient = async () => {
     return driveClient;
   } catch (error) {
     console.error('Failed to initialize Drive client:', error);
-    throw new Error('Drive service unavailable');
+    console.error('Drive config:', {
+      projectId: config.projectId,
+      projectNumber: config.projectNumber,
+      serviceAccountEmail: config.serviceAccountEmail,
+      workloadIdentityPoolId: config.workloadIdentityPoolId,
+      workloadIdentityProviderId: config.workloadIdentityProviderId,
+      driveFolderId: config.driveFolderId
+    });
+    throw new Error(`Drive service unavailable: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 };
 
