@@ -1,0 +1,126 @@
+{
+  "generated_at": "${ISO-8601}",
+  "brand_summary": {
+    "colors": ["primary", "navy", "gray", "success", "warning", "error", "info"],
+    "fonts": ["Inter"],
+    "spacing_scale": ["py-8", "py-12", "py-16", "py-24", "py-32"]
+  },
+  "inventory": {
+    "colors": [
+      { "value": "primary-600", "count": 143, "token_match": "primary" },
+      { "value": "navy-900", "count": 126, "token_match": "navy" },
+      { "value": "text-gray-600", "count": 98, "token_match": "gray" },
+      { "value": "primary-50", "count": 19, "token_match": "primary" },
+      { "value": "bg-navy-50", "count": 21, "token_match": "navy" }
+    ],
+    "typography": [
+      { "font": "Inter", "sizes": ["text-sm","text-base","text-lg","text-xl","text-2xl","text-3xl","text-4xl","md:text-6xl"] },
+      { "font": "Oswald", "sizes": ["text-3xl"], "note": "hypothesis: single usage in logo" }
+    ],
+    "buttons": [
+      { "variant": "primary (default)", "count": 14 },
+      { "variant": "secondary", "count": 5 },
+      { "variant": "outline", "count": 0 },
+      { "variant": "unclassified (ad-hoc)", "count": 10 }
+    ],
+    "forms": [
+      { "pattern": "label-top, filled, focus ring", "files": [
+        "src/app/(site)/contact/page.tsx:104-161",
+        "src/components/booking/BookingStep1.tsx:61-78,81-99,103-119",
+        "src/components/BookingWidget.tsx:170-183"
+      ]}
+    ],
+    "imagery": [
+      { "type": "headshot-photo", "files": [
+        "src/app/(site)/page.tsx:214-223",
+        "src/app/(site)/about/page.tsx:49-56"
+      ]},
+      { "type": "og-image", "files": [
+        "src/lib/metadata.ts:49-56,58-62"
+      ]},
+      { "type": "unused-stock (hypothesis)", "files": [
+        "public/spacex-unsplash.webp",
+        "public/nasa-unsplash.webp"
+      ]}
+    ],
+    "icons": [
+      { "set": "custom Icon component", "files": [
+        "src/components/Icon.tsx:9-51",
+        "src/components/TestimonialCard.tsx:29-33,53",
+        "src/components/BookingWidget.tsx:239-251",
+        "src/components/FAQ.tsx:36-41"
+      ]},
+      { "set": "inline svgs", "files": [
+        "src/app/(site)/page.tsx:109-114",
+        "src/components/ServiceCard.tsx:52-55"
+      ]}
+    ],
+    "motion": [
+      { "transition": "animate-spin", "files": [
+        "src/components/booking/BookingStep2.tsx:230-233",
+        "src/components/BookingWidget.tsx:191-199",
+        "src/components/booking/BookingStep3.tsx:415-423",
+        "src/app/(site)/success/page.tsx:53"
+      ]},
+      { "transition": "fade-in/slide-up tokens defined (unused)", "files": [
+        "tailwind.config.ts:112-125"
+      ]}
+    ],
+    "states": [
+      { "issue": "error boundary present", "component": "(site) error", "files": ["src/app/(site)/error.tsx:49-81"] },
+      { "issue": "form success and error banners", "component": "Contact page", "files": ["src/app/(site)/contact/page.tsx:73-101"] }
+    ],
+    "a11y": [
+      { "issue": "focus rings present", "component": "CTAButton, inputs", "files": [
+        "src/components/CTAButton.tsx:6-14",
+        "src/app/(site)/contact/page.tsx:117,134,150",
+        "src/components/FAQ.tsx:31-34"
+      ]},
+      { "issue": "reduced-motion not handled (hypothesis)", "component": "global", "files": [] }
+    ]
+  },
+  "drift": [
+    { "category": "buttons", "issue": "~10 ad-hoc button styles outside CTAButton", "files": [
+      "src/components/Header.tsx:38-43",
+      "src/app/(site)/page.tsx:262-273",
+      "src/app/(site)/contact/page.tsx:155-161",
+      "src/app/(site)/error.tsx:59-81",
+      "src/components/BookingWidget.tsx:185-199"
+    ]},
+    { "category": "icons", "issue": "Inline SVGs instead of Icon component", "files": [
+      "src/app/(site)/page.tsx:109-114",
+      "src/components/ServiceCard.tsx:52-55"
+    ]},
+    { "category": "motion", "issue": "Custom keyframes defined but unused; no motion-reduce", "files": [
+      "tailwind.config.ts:112-125"
+    ]},
+    { "category": "typography", "issue": "font-oswald used but not defined in tokens (hypothesis)", "files": [
+      "src/components/Header.tsx:12"
+    ]}
+  ],
+  "vision": [
+    { "concept": "Unify buttons with 3 styles max (primary/secondary/tertiary)" },
+    { "concept": "Consolidate icons via Icon component; standard sizes and strokes" },
+    { "concept": "Hero/Section templates with tokenized backgrounds and spacing" },
+    { "concept": "Introduce subtle fade/slide animations with motion-reduce support" }
+  ],
+  "risks": [
+    { "id": "R1", "title": "Brand recognition risk from button restyle", "severity": "medium", "blast_radius": "marketing site", "mitigation": "A/B test; gradual rollout" },
+    { "id": "R2", "title": "Icon appearance shifts", "severity": "low", "blast_radius": "site-wide", "mitigation": "Map inline svgs to Icon carefully" },
+    { "id": "R3", "title": "Motion sensitivities", "severity": "low", "blast_radius": "site-wide", "mitigation": "Add motion-reduce variants" }
+  ],
+  "batches": [
+    { "name": "Batch 1: Token alignment", "success_criteria": ["0 ad-hoc CTA buttons", "motion-reduce utility present"], "tests": ["snapshot visual regression", "axe a11y checks"] },
+    { "name": "Batch 2: Core components", "success_criteria": ["All CTAs use CTAButton", "0 inline SVGs in core pages"], "tests": ["DOM snapshot diffs", "contrast checks"] },
+    { "name": "Batch 3: Layout rhythm & grids", "success_criteria": ["All pages use Section variants"], "tests": ["layout screenshot diffs"] },
+    { "name": "Batch 4: Imagery & iconography", "success_criteria": ["Unused assets removed", "Icon coverage ≥90%"], "tests": ["bundle size diff", "manual review"] },
+    { "name": "Batch 5: Motion & docs", "success_criteria": ["Animations applied with motion-reduce"], "tests": ["prefers-reduced-motion simulation"] }
+  ],
+  "open_questions": [
+    { "question": "Which font is canonical besides Inter?", "evidence_needed": ["README/brand deck", "Figma brand files"] },
+    { "question": "Hero imagery direction?", "evidence_needed": ["Brand guidelines", "Asset library"] },
+    { "question": "Should .btn-* utilities be retained?", "evidence_needed": ["Dev preference", "Usage history"] }
+  ]
+}
+
+

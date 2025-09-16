@@ -1,7 +1,14 @@
-import React from 'react';
+'use client';
+
 import Link from 'next/link';
-import { CTAButton } from './CTAButton';
-import { navigation, routes } from '@/lib/routes';
+import { routes } from '@/lib/routes';
+
+const navigation = [
+  { name: 'Services', href: routes.services },
+  { name: 'About', href: routes.about },
+  { name: 'FAQ', href: routes.faq },
+  { name: 'Contact', href: routes.contact },
+];
 
 const Header: React.FC = () => {
   return (
@@ -9,8 +16,15 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href={routes.home} className="text-2xl font-bold text-navy-900">
-            Launchworthy
+          <Link href={routes.home} className="flex items-center space-x-1">
+            <img 
+              src="/favicon.svg" 
+              alt="LaunchWorthy Logo" 
+              className="h-8 w-8 md:h-10 md:w-10"
+            />
+            <span className="text-3xl font-bold">
+              <span className="text-navy-900">LAUNCH</span><span className="text-primary-600">WORTHY</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -27,10 +41,13 @@ const Header: React.FC = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center space-x-4">
-            <CTAButton href={routes.book} size="sm">
+          <div className="hidden md:block">
+            <Link
+              href={routes.book}
+              className="bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors duration-200"
+            >
               Book a Session
-            </CTAButton>
+            </Link>
           </div>
 
           {/* Mobile CTA */}
