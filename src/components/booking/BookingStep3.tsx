@@ -122,10 +122,14 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
       }
       
       // Upload files to Google Drive if any
+      console.log('Debug - uploadedFiles:', uploadedFiles);
+      console.log('Debug - uploadedFiles.length:', uploadedFiles.length);
+      
       let driveUploadSuccess = true;
       let driveUploadMessage = '';
       
       if (uploadedFiles.length > 0) {
+        console.log('Debug - Starting Drive upload for', uploadedFiles.length, 'files');
         try {
           // Convert files to base64 for API
           const filesForUpload = await Promise.all(
@@ -165,6 +169,8 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
           driveUploadMessage = 'File upload failed - files not saved to Drive';
           console.error('Drive upload error:', driveError);
         }
+      } else {
+        console.log('Debug - No files to upload to Drive');
       }
       
       // Send comprehensive booking data to Formspree
