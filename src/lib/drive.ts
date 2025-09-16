@@ -10,20 +10,48 @@ export const getDriveClient = async () => {
   try {
     config = getDriveConfig();
     
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        type: 'external_account',
-        audience: `//iam.googleapis.com/projects/${config.projectNumber}/locations/global/workloadIdentityPools/${config.workloadIdentityPoolId}/providers/${config.workloadIdentityProviderId}`,
-        subject_token_type: 'urn:ietf:params:oauth:token-type:jwt',
-        token_url: 'https://sts.googleapis.com/v1/token',
-        credential_source: {
-          file: '/var/run/secrets/vercel/oidc/0',
-          format: { type: 'text' }
+    // Check if we have OIDC token from Vercel environment variable
+    const oidcToken = process.env.VERCEL_OIDC_TOKEN;
+    
+    if (oidcToken) {
+      console.log('Using OIDC token from VERCEL_OIDC_TOKEN environment variable');
+      
+      // Create a temporary file with the OIDC token content
+      const fs = require('fs');
+      const os = require('os');
+      const path = require('path');
+      
+      const tempTokenPath = path.join(os.tmpdir(), 'vercel-oidc-token');
+      fs.writeFileSync(tempTokenPath, oidcToken);
+      
+      try {
+        const auth = new google.auth.GoogleAuth({
+          credentials: {
+            type: 'external_account',
+            audience: `//iam.googleapis.com/projects/${config.projectNumber}/locations/global/workloadIdentityPools/${config.workloadIdentityPoolId}/providers/${config.workloadIdentityProviderId}`,
+            subject_token_type: 'urn:ietf:params:oauth:token-type:jwt',
+            token_url: 'https://sts.googleapis.com/v1/token',
+            credential_source: {
+              file: tempTokenPath,
+              format: { type: 'text' }
+            }
+          }
+        });
+        
+        driveClient = google.drive({ version: 'v3', auth });
+        
+        // Clean up temp file
+        fs.unlinkSync(tempTokenPath);
+      } catch (error) {
+        // Clean up temp file on error
+        if (fs.existsSync(tempTokenPath)) {
+          fs.unlinkSync(tempTokenPath);
         }
+        throw error;
       }
-    });
-
-    driveClient = google.drive({ version: 'v3', auth });
+    } else {
+      throw new Error('No OIDC token available in VERCEL_OIDC_TOKEN environment variable');
+    }
     
     // Test the connection
     await driveClient.files.list({ pageSize: 1 });
