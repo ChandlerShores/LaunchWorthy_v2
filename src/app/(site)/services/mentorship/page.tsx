@@ -53,7 +53,7 @@ export default function MentorshipPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
+      <Section padding="lg" className="bg-gradient-to-br from-navy-900/95 to-navy-800/95">
         <Hero
           title="Monthly Mentorship"
           subtitle="Two 30-min sessions/month. Ongoing prep for interviews, negotiations, and growth."

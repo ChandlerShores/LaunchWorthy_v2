@@ -1,6 +1,7 @@
 import React from 'react';
 import { generatePageMetadata } from '@/lib/metadata';
 import Section from '@/components/Section';
+import Hero from '@/components/Hero';
 import FAQ from '@/components/FAQ';
 import Schema from '@/components/Schema';
 
@@ -67,15 +68,11 @@ export default function FAQPage() {
       <Schema type="faq" faqs={faqItems} />
       
       {/* Hero Section */}
-      <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-navy-900 mb-6">
-            Frequently Asked Questions
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8">
-            Everything you need to know about our interview coaching services.
-          </p>
-        </div>
+      <Section padding="lg" className="bg-gradient-to-br from-navy-900/95 to-navy-800/95">
+        <Hero
+          title="Frequently Asked Questions"
+          subtitle="Everything you need to know about our interview coaching services."
+        />
       </Section>
 
       {/* FAQ Section */}

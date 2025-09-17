@@ -45,7 +45,7 @@ export default function ConsultPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
+      <Section padding="lg" className="bg-gradient-to-br from-navy-900/95 to-navy-800/95">
         <Hero
           title="30-min Career Consult"
           subtitle="Quick, targeted feedback on your resume, LinkedIn, and interview style"

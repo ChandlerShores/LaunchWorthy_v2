@@ -19,15 +19,15 @@ const TrustIndicators: React.FC<TrustIndicatorsProps> = ({
   const safeRating = Math.max(1, Math.min(5, Math.floor(rating)));
 
   return (
-    <div className={cn("flex items-center justify-center gap-3 text-sm text-gray-500", className)}>
+    <div className={cn("flex items-center justify-center gap-3 text-sm text-gray-500 py-2", className)}>
       {/* Avatar Stack */}
-      <div className="flex" aria-hidden="true">
+      <div className="flex -space-x-1" aria-hidden="true">
         {Array.from({ length: safeAvatarCount }).map((_, index) => (
           <span 
             key={index} 
             className={cn(
-              "inline-block h-6 w-6 rounded-full bg-primary-100 ring-2 ring-white",
-              index > 0 && "-ml-2"
+              "inline-block h-6 w-6 rounded-full bg-primary-100 ring-2 ring-navy-900",
+              index > 0 && "-ml-1"
             )}
           />
         ))}

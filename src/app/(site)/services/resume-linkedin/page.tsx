@@ -49,7 +49,7 @@ export default function ResumeLinkedInPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
+      <Section padding="lg" className="bg-gradient-to-br from-navy-900/95 to-navy-800/95">
         <Hero
           title="Resume + LinkedIn Polish"
           subtitle="Align your story across resume and profile for maximum impact"

@@ -31,32 +31,15 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-6xl font-bold text-navy-900 mb-6">
-                About Chandler
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Practical, peer-level coaching. No fluff — just progress.
-              </p>
-              <CTAButton href={routes.book}>
-                Book a Session
-              </CTAButton>
-            </div>
-            <div className="flex justify-center">
-              <Image
-                src="/chandler_headshot.webp"
-                alt="Chandler, Career Coach"
-                width={320}
-                height={320}
-                className="w-80 h-80 rounded-full object-cover shadow-lg"
-                priority={false}
-              />
-            </div>
-          </div>
-        </div>
+      <Section padding="lg" className="bg-gradient-to-br from-navy-900/95 to-navy-800/95">
+        <Hero
+          title="About Chandler"
+          subtitle="Practical, peer-level coaching. No fluff — just progress."
+          primaryCTA={{
+            text: "Book a Session",
+            href: routes.book,
+          }}
+        />
       </Section>
 
       {/* Origin Story */}

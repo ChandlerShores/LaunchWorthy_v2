@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Section from '@/components/Section';
+import Hero from '@/components/Hero';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -55,15 +56,11 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-navy-900 mb-6">
-            Get in Touch
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8">
-            Have questions about our services? We're here to help.
-          </p>
-        </div>
+      <Section padding="lg" className="bg-gradient-to-br from-navy-900/95 to-navy-800/95">
+        <Hero
+          title="Get in Touch"
+          subtitle="Have questions about our services? We're here to help."
+        />
       </Section>
 
       {/* Contact Form */}

@@ -77,7 +77,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
+      <Section padding="lg" className="bg-gradient-to-br from-navy-900/95 to-navy-800/95">
         <Hero
           title="Stop Getting Ghosted After Interviews"
           subtitle="21 days from 'decent' to 'obvious hire.'"

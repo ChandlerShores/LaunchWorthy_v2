@@ -3,6 +3,7 @@
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import Section from '@/components/Section';
+import Hero from '@/components/Hero';
 import BookingFlow from '@/components/booking/BookingFlow';
 
 export default function BookPage() {
@@ -13,15 +14,11 @@ export default function BookPage() {
     <>
       {/* Hero Section - Hidden on Step 3 */}
       {!isStep3 && (
-        <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold text-navy-900 mb-6">
-              Book Your Session
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8">
-              Choose your service, schedule your session, and start transforming your interview skills.
-            </p>
-          </div>
+        <Section padding="lg" className="bg-gradient-to-br from-navy-900/95 to-navy-800/95">
+          <Hero
+            title="Book Your Session"
+            subtitle="Choose your service, schedule your session, and start transforming your interview skills."
+          />
         </Section>
       )}
 

@@ -60,7 +60,7 @@ export default function StopGettingGhostedPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
+      <Section padding="lg" className="bg-gradient-to-br from-navy-900/95 to-navy-800/95">
         <Hero
           title="Stop Getting Ghosted"
           subtitle="Baseline mock → coaching → final mock. Walk in confident."

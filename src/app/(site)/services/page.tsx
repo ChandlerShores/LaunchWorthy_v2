@@ -1,6 +1,7 @@
 import React from 'react';
 import { generatePageMetadata } from '@/lib/metadata';
 import Section from '@/components/Section';
+import Hero from '@/components/Hero';
 import ServiceCard from '@/components/ServiceCard';
 import { services, routes } from '@/lib/routes';
 
@@ -14,15 +15,11 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section padding="xl" className="bg-gradient-to-br from-primary-50 to-white">
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-navy-900 mb-6">
-            Our Services
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8">
-            From quick consults to comprehensive coaching programs, we have the right solution for your career goals.
-          </p>
-        </div>
+      <Section padding="lg" className="bg-gradient-to-br from-navy-900/95 to-navy-800/95">
+        <Hero
+          title="Our Services"
+          subtitle="From quick consults to comprehensive coaching programs, we have the right solution for your career goals."
+        />
       </Section>
 
       {/* Services Grid */}
