@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import ServiceCard from '@/components/ServiceCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQ from '@/components/FAQ';
+import ServiceQuiz from '@/components/ServiceQuiz';
 import { services, routes } from '@/lib/routes';
 
 export const metadata = generatePageMetadata({
@@ -68,12 +69,6 @@ export default function HomePage() {
     },
   ];
 
-  const valueBullets = [
-    "Fix your story",
-    "Nail the interview", 
-    "Show real progress"
-  ];
-
   return (
     <>
       {/* Hero Section */}
@@ -94,104 +89,11 @@ export default function HomePage() {
             rating: 5,
             location: "Lexington"
           }}
+          animated={true}
         />
       </Section>
 
-      {/* Value Proposition */}
-      <Section variant="default" showSeparator={true}>
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8">
-            What You'll Get
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {valueBullets.map((bullet, index) => (
-              <div key={index} className="flex items-center justify-center">
-                <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                  <svg className="w-4 h-4 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <span className="text-lg font-semibold text-navy-900">{bullet}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* How It Works */}
-      <Section variant="alt" showSeparator={true}>
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8">
-            How It Works
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {howItWorks.map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                  {index + 1}
-                </div>
-                <h3 className="text-xl font-semibold text-navy-900 mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* Services */}
-      <Section variant="default" showSeparator={true}>
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
-            Choose Your Service
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            From quick consults to comprehensive coaching programs
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service) => (
-            <ServiceCard
-              key={service.id}
-              title={service.name}
-              price={service.price}
-              description={service.description}
-              features={service.features}
-              learnMoreHref={service.learnMoreHref}
-              bookHref={service.bookHref}
-              popular={service.id === 'accelerator'}
-            />
-          ))}
-        </div>
-      </Section>
-
-      {/* Results Preview */}
-      <Section variant="alt" showSeparator={true}>
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
-            Real Results
-          </h2>
-          <p className="text-xl text-gray-600">
-            See what our clients are saying
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard
-              key={index}
-              quote={testimonial.quote}
-              name={testimonial.name}
-              role={testimonial.role}
-              company={testimonial.company}
-              rating={testimonial.rating}
-            />
-          ))}
-        </div>
-        
-      </Section>
-
-      {/* About Snapshot */}
+      {/* About Snapshot - Moved up for early trust building */}
       <Section variant="default" showSeparator={true}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -224,7 +126,85 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* FAQ Preview */}
+      {/* Services - Moved up so users understand options before quiz */}
+      <Section variant="alt" showSeparator={true}>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
+            Choose Your Service
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            From quick consults to comprehensive coaching programs
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service) => (
+            <ServiceCard
+              key={service.id}
+              title={service.name}
+              price={service.price}
+              description={service.description}
+              features={service.features}
+              learnMoreHref={service.learnMoreHref}
+              bookHref={service.bookHref}
+              popular={service.id === 'accelerator'}
+            />
+          ))}
+        </div>
+      </Section>
+
+      {/* Service Quiz - Moved after services so users understand context */}
+      <Section variant="default" padding="md" showSeparator={true}>
+        <ServiceQuiz />
+      </Section>
+
+      {/* How It Works - Moved after quiz so process explanation comes after engagement */}
+      <Section variant="alt" showSeparator={true}>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8">
+            How It Works
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {howItWorks.map((step, index) => (
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                  {index + 1}
+                </div>
+                <h3 className="text-xl font-semibold text-navy-900 mb-2">{step.title}</h3>
+                <p className="text-gray-600">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Results Preview - Social proof after users understand the offer */}
+      <Section variant="default" showSeparator={true}>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
+            Real Results
+          </h2>
+          <p className="text-xl text-gray-600">
+            See what our clients are saying
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <TestimonialCard
+              key={index}
+              quote={testimonial.quote}
+              name={testimonial.name}
+              role={testimonial.role}
+              company={testimonial.company}
+              rating={testimonial.rating}
+            />
+          ))}
+        </div>
+        
+      </Section>
+
+      {/* FAQ Preview - Address objections before final conversion */}
       <Section variant="alt" showSeparator={true}>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">

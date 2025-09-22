@@ -239,6 +239,24 @@
     transform: translateY(30px) scale(0.95);
   }
   
+  /* Static underline - always visible */
+  .hero-title-underline-static {
+    position: relative;
+  }
+  
+  .hero-title-underline-static::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 4px;
+    background: linear-gradient(to right, transparent, #22c55e, transparent);
+    border-radius: 2px;
+  }
+  
+  /* Animated underline - only for homepage */
   .hero-title-underline {
     position: relative;
   }

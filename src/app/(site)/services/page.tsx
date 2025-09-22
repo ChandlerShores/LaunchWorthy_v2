@@ -3,6 +3,7 @@ import { generatePageMetadata } from '@/lib/metadata';
 import Section from '@/components/Section';
 import Hero from '@/components/Hero';
 import ServiceCard from '@/components/ServiceCard';
+import ServiceQuiz from '@/components/ServiceQuiz';
 import { services, routes } from '@/lib/routes';
 
 export const metadata = generatePageMetadata({
@@ -22,22 +23,12 @@ export default function ServicesPage() {
         />
       </Section>
 
-      {/* Services Grid */}
+      {/* Service Quiz */}
       <Section>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {services.map((service) => (
-            <ServiceCard
-              key={service.id}
-              title={service.name}
-              price={service.price}
-              description={service.description}
-              features={service.features}
-              learnMoreHref={service.learnMoreHref}
-              bookHref={service.bookHref}
-              popular={service.id === 'accelerator'}
-            />
-          ))}
+        <div className="text-center mb-6">
+          <h2 className="text-xl font-semibold text-navy-900 mb-2">Find your best fit</h2>
         </div>
+        <ServiceQuiz />
       </Section>
 
       {/* Process Overview */}
