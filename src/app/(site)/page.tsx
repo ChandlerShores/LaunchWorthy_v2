@@ -9,8 +9,8 @@ import FAQ from '@/components/FAQ';
 import { services, routes } from '@/lib/routes';
 
 export const metadata = generatePageMetadata({
-  title: 'Launchworthy - Stop Getting Ghosted After Interviews',
-  description: '21 days from "decent" to "obvious hire." Practical coaching for early-career professionals in Lexington.',
+  title: 'Launchworthy - Career Coaching That Actually Works',
+  description: 'Structured guidance without the premium price tag.',
   path: '/',
 });
 
@@ -77,25 +77,44 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <Section padding="lg" className="bg-gradient-to-br from-navy-900/95 to-navy-800/95">
-        <Hero
-          title="Stop Getting Ghosted After Interviews"
-          subtitle="21 days from 'decent' to 'obvious hire.'"
-          primaryCTA={{
-            text: "Book a Session",
-            href: routes.book,
-          }}
-          secondaryCTA={{
-            text: "Try a $50 Consult",
-            href: routes.consult,
-          }}
-          trustIndicators={{
-            avatarCount: 3,
-            rating: 5,
-            location: "Lexington"
-          }}
-        />
-      </Section>
+      <section className="relative min-h-screen py-16 md:py-24 overflow-hidden">
+        {/* Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-bl from-copper-500 via-navy-800 to-ivory-50"></div>
+        
+        {/* Navy Accent Elements */}
+        <div className="absolute top-16 left-12 w-28 h-28 bg-gradient-to-br from-navy-600 to-navy-800 rounded-full opacity-15 blur-xl"></div>
+        <div className="absolute bottom-20 right-24 w-20 h-20 bg-gradient-to-br from-navy-500 to-navy-700 rounded-full opacity-20 blur-lg"></div>
+        
+        {/* Floating Navy Shapes */}
+        <div className="absolute top-1/3 left-1/4 w-14 h-14 bg-gradient-to-br from-navy-400 to-navy-600 rounded-full opacity-25 blur-md"></div>
+        <div className="absolute bottom-1/4 right-1/3 w-18 h-18 bg-gradient-to-br from-navy-500 to-navy-700 rounded-full opacity-20 blur-sm"></div>
+        <div className="absolute top-1/2 right-1/5 w-12 h-12 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full opacity-30 blur-lg"></div>
+        <div className="absolute bottom-1/2 left-1/5 w-16 h-16 bg-gradient-to-br from-navy-600 to-navy-800 rounded-full opacity-18 blur-md"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <Hero
+            title="Tired of Being Ghosted After Every Interview?"
+            subtitle="Get the interview coaching that actually gets you hired—without the premium price tag."
+            badge={{
+              text: "Stop Getting Ghosted",
+              icon: "🚀"
+            }}
+            primaryCTA={{
+              text: "Book Breakthrough Session",
+              href: routes.book,
+            }}
+            secondaryCTA={{
+              text: "Try a $50 Consult",
+              href: routes.consult,
+            }}
+            trustIndicators={{
+              avatarCount: 3,
+              rating: 5,
+              location: "Lexington"
+            }}
+          />
+        </div>
+      </section>
 
       {/* Value Proposition */}
       <Section variant="default" showSeparator={true}>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Launchworthy — Stop Getting Ghosted</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes float {0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+    .bubble-in { animation: bubbleIn .45s ease both; }
+    @keyframes bubbleIn { from { opacity:0; transform: translateY(8px) scale(.98);} to { opacity:1; transform: translateY(0) scale(1);} }
+    .type-cursor::after { content:""; display:inline-block; width:10px; height:1.1em; background:currentColor; margin-left:3px; animation: blink 1s steps(1,end) infinite;}
+    @keyframes blink {50%{opacity:0}}
+    .ghost-orb { filter: blur(40px); opacity:.25; animation: float 6s ease-in-out infinite; }
+  </style>
+</head>
+<body class="min-h-screen bg-[#0f2230] text-white antialiased">
+  <!-- background ambience -->
+  <div aria-hidden="true">
+    <div class="ghost-orb absolute -top-8 -left-8 w-64 h-64 rounded-full bg-emerald-400/30"></div>
+    <div class="ghost-orb absolute top-24 right-6 w-52 h-52 rounded-full bg-teal-400/30" style="animation-delay:1.2s"></div>
+    <div class="ghost-orb absolute bottom-10 left-10 w-40 h-40 rounded-full bg-sky-400/30" style="animation-delay:.6s"></div>
+  </div>
+
+  <header class="container mx-auto px-5 py-6 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-emerald-500/20 ring-1 ring-emerald-400/40">🚀</span>
+      <span class="font-extrabold tracking-wide"><span class="text-white">LAUNCH</span><span class="text-emerald-300">WORTHY</span></span>
+    </div>
+    <a href="#book"
+       class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-emerald-500 text-white font-semibold hover:bg-emerald-400 transition">
+      Book
+    </a>
+  </header>
+
+  <main class="container mx-auto px-5 pt-2 pb-16 grid md:grid-cols-2 items-center gap-10">
+    <!-- Left: the “ghosted thread” -->
+    <section class="order-2 md:order-1">
+      <div class="max-w-xl mx-auto">
+        <div class="mb-4 text-sm text-white/60">Your inbox, lately:</div>
+        <div id="thread" class="space-y-3">
+          <!-- bubbles injected by JS -->
+        </div>
+        <!-- CTA: the way out -->
+        <div id="cta" class="opacity-0 translate-y-3 transition duration-700">
+          <h1 class="mt-8 text-3xl sm:text-4xl font-extrabold leading-tight">
+            <span class="block">Tired of this?</span>
+            <span class="block text-emerald-300">Let’s fix it.</span>
+          </h1>
+          <p class="mt-3 text-white/75 max-w-prose">
+            Practical, peer-level coaching that turns interviews into offers in ~21 days.
+          </p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a id="book"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-emerald-500 font-semibold hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20"
+               href="https://calendly.com/">
+              Book a Session
+            </a>
+            <a
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-white/10 ring-1 ring-white/20 hover:bg-white/15 transition"
+               href="https://calendly.com/">
+              Try a $50 Consult
+            </a>
+          </div>
+          <div class="mt-4 text-xs text-white/60">Buttons = the only way out of the loop.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: explainer / proof -->
+    <section class="order-1 md:order-2">
+      <div class="max-w-md mx-auto md:ml-auto">
+        <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 backdrop-blur">
+          <div class="text-sm text-white/70">What we fix</div>
+          <ul class="mt-3 space-y-2 text-white/90">
+            <li class="flex gap-2"><span>✅</span><span>Confusing story → crisp narrative that sticks.</span></li>
+            <li class="flex gap-2"><span>✅</span><span>Average answers → tight STAR responses.</span></li>
+            <li class="flex gap-2"><span>✅</span><span>Silent inbox → scheduled final rounds.</span></li>
+          </ul>
+          <div class="mt-5 text-xs text-white/50">Trusted by grads & young pros in Lexington.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Fake “ghosted” messages that play out then reveal the CTA.
+    const messages = [
+      "Thanks for applying — we’ll be in touch.",
+      "We’re moving forward with other candidates.",
+      "We enjoyed meeting you; we’ll circle back soon.",
+      "After careful consideration, we won’t be proceeding.",
+      "Thank you for your time. We’ll keep your résumé on file."
+    ];
+
+    const thread = document.getElementById('thread');
+    const cta = document.getElementById('cta');
+
+    function bubble(text, i) {
+      const li = document.createElement('div');
+      li.className = "bubble-in flex";
+      li.innerHTML = `
+        <div class="max-w-[90%] bg-white/10 text-white/90 rounded-2xl rounded-tl-sm px-4 py-3 ring-1 ring-white/15">
+          <span class="${i===0 ? 'type-cursor' : ''}">${text}</span>
+        </div>
+      `;
+      return li;
+    }
+
+    async function playThread() {
+      for (let i = 0; i < messages.length; i++) {
+        await new Promise(r => setTimeout(r, i === 0 ? 600 : 900));
+        thread.appendChild(bubble(messages[i], i));
+        thread.scrollTop = thread.scrollHeight;
+      }
+      // small “…” typing bubble for the endless wait
+      await new Promise(r => setTimeout(r, 900));
+      const dots = document.createElement('div');
+      dots.className = "bubble-in flex";
+      dots.innerHTML = `
+        <div class="max-w-[60%] bg-white/5 text-white/70 rounded-2xl rounded-tl-sm px-4 py-3 ring-1 ring-white/10">
+          <span class="type-cursor">…</span>
+        </div>`;
+      thread.appendChild(dots);
+
+      // reveal the way out
+      setTimeout(() => {
+        cta.style.opacity = 1;
+        cta.style.transform = 'translateY(0)';
+      }, 900);
+    }
+
+    playThread();
+  </script>
+</body>
+</html>
