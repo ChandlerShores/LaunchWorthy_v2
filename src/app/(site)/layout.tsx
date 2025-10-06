@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Analytics from '@/components/Analytics';
 import Schema from '@/components/Schema';
+import WorkInProgressBanner from '@/components/WorkInProgressBanner';
 import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -25,8 +26,9 @@ export default function RootLayout({
         <Analytics />
       </head>
       <body className="min-h-screen bg-white">
+        <WorkInProgressBanner />
         <Header />
-        <main className="pt-16 md:pt-20">
+        <main>
           {children}
         </main>
         <Footer />

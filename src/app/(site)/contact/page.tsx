@@ -19,13 +19,8 @@ export default function ContactPage() {
     setSubmitStatus('idle');
 
     try {
-      const formspreeUrl = process.env.NEXT_PUBLIC_CONTACT_FORMSPREE_URL;
-      
-      if (!formspreeUrl) {
-        throw new Error('Contact form not configured');
-      }
-
-      const response = await fetch(formspreeUrl, {
+      // Use server-side API route instead of direct Formspree call
+      const response = await fetch('/api/submit-contact-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

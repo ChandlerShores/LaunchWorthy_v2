@@ -52,13 +52,17 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
   const handlePayment = async () => {
     // Prevent double-clicks and multiple payment attempts
     if (isProcessingLocal || isProcessing) {
-      console.log('Payment already in progress, ignoring duplicate click');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Payment already in progress, ignoring duplicate click');
+      }
       return;
     }
 
     // If we already have a payment session, redirect to it instead of creating new one
     if (paymentSessionId) {
-      console.log('Existing payment session found, redirecting to:', paymentSessionId);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Existing payment session found, redirecting to:', paymentSessionId);
+      }
       try {
         const stripe = await getStripe();
         if (!stripe) {
@@ -78,9 +82,11 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
     onProcessingChange(true);
 
     try {
-      console.log('Starting payment process...');
-      console.log('Service ID:', selectedService);
-      console.log('Contact info:', contactInfo);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Starting payment process...');
+        console.log('Service ID:', selectedService);
+        console.log('Contact info:', contactInfo);
+      }
 
       // Create checkout session with contact information
       const response = await fetch('/api/create-checkout-session', {
@@ -96,11 +102,15 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
         }),
       });
 
-      console.log('API Response status:', response.status);
-      console.log('API Response headers:', response.headers);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('API Response status:', response.status);
+        console.log('API Response headers:', response.headers);
+      }
 
       const data = await response.json();
-      console.log('API Response data:', data);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('API Response data:', data);
+      }
 
       if (!response.ok) {
         throw new Error(data.error || `API Error: ${response.status} - ${response.statusText}`);
@@ -111,7 +121,9 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
       }
 
       const { sessionId } = data;
-      console.log('Session ID received:', sessionId);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Session ID received:', sessionId);
+      }
 
       // Redirect to Stripe Checkout
       const stripe = await getStripe();
@@ -119,7 +131,9 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
         throw new Error('Stripe not loaded - check NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY');
       }
 
-      console.log('Redirecting to Stripe checkout...');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Redirecting to Stripe checkout...');
+      }
       const { error: stripeError } = await stripe.redirectToCheckout({ sessionId });
 
       if (stripeError) {
@@ -127,7 +141,9 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
         throw new Error(`Stripe error: ${stripeError.message}`);
       }
 
-      console.log('Stripe checkout redirect successful');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Stripe checkout redirect successful');
+      }
       // If we get here, payment was successful
       onPaymentSuccess(sessionId);
     } catch (error) {
@@ -135,8 +151,10 @@ const BookingStep2: React.FC<BookingStep2Props> = ({
       const errorMessage = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
       setError(`Payment failed: ${errorMessage}`);
       
-      // Also show error in console for debugging
-      console.error('Full error object:', error);
+      // Also show error in console for debugging - only in development
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Full error object:', error);
+      }
     } finally {
       setIsProcessingLocal(false);
       onProcessingChange(false);

@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://launchworthy.net';
   const robotsTxt = `User-agent: *
 Allow: /
 
-Sitemap: https://launchworthy.net/sitemap.xml
+Sitemap: ${baseUrl}/sitemap.xml
 `;
 
   return new NextResponse(robotsTxt, {

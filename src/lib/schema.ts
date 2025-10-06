@@ -65,9 +65,9 @@ export interface FAQSchema {
 export const organizationSchema: OrganizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Launchworthy',
-  url: 'https://launchworthy.net',
-  logo: 'https://launchworthy.net/og.jpg',
+  name: process.env.NEXT_PUBLIC_BUSINESS_NAME || 'Launchworthy',
+  url: process.env.NEXT_PUBLIC_BASE_URL || 'https://launchworthy.net',
+  logo: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://launchworthy.net'}/og.jpg`,
   description: 'Practical coaching for early-career professionals. Stop getting ghosted after interviews.',
   address: {
     '@type': 'PostalAddress',
@@ -77,7 +77,7 @@ export const organizationSchema: OrganizationSchema = {
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+1-859-XXX-XXXX',
+    telephone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+1-XXX-XXX-XXXX',
     contactType: 'customer service',
   },
   sameAs: [
@@ -89,23 +89,23 @@ export const organizationSchema: OrganizationSchema = {
 export const localBusinessSchema: LocalBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'Launchworthy',
-  image: 'https://launchworthy.net/og.jpg',
-  '@id': 'https://launchworthy.net',
-  url: 'https://launchworthy.net',
-  telephone: '+1-859-XXX-XXXX',
+  name: process.env.NEXT_PUBLIC_BUSINESS_NAME || 'Launchworthy',
+  image: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://launchworthy.net'}/og.jpg`,
+  '@id': process.env.NEXT_PUBLIC_BASE_URL || 'https://launchworthy.net',
+  url: process.env.NEXT_PUBLIC_BASE_URL || 'https://launchworthy.net',
+  telephone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+1-XXX-XXX-XXXX',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '123 Main Street',
-    addressLocality: 'Lexington',
-    addressRegion: 'KY',
-    postalCode: '40502',
-    addressCountry: 'US',
+    streetAddress: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS || 'Business Address',
+    addressLocality: process.env.NEXT_PUBLIC_BUSINESS_CITY || 'City',
+    addressRegion: process.env.NEXT_PUBLIC_BUSINESS_STATE || 'State',
+    postalCode: process.env.NEXT_PUBLIC_BUSINESS_ZIP || '00000',
+    addressCountry: process.env.NEXT_PUBLIC_BUSINESS_COUNTRY || 'US',
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 38.0406,
-    longitude: -84.5037,
+    latitude: parseFloat(process.env.NEXT_PUBLIC_BUSINESS_LATITUDE || '0'),
+    longitude: parseFloat(process.env.NEXT_PUBLIC_BUSINESS_LONGITUDE || '0'),
   },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',

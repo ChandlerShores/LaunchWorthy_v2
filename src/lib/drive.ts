@@ -14,7 +14,10 @@ export const getDriveClient = async () => {
     const oidcToken = process.env.VERCEL_OIDC_TOKEN;
     
     if (oidcToken) {
-      console.log('Using OIDC token from VERCEL_OIDC_TOKEN environment variable');
+      // Only log in development mode
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Using OIDC token from VERCEL_OIDC_TOKEN environment variable');
+      }
       
       // Create a temporary file with the OIDC token content
       const fs = require('fs');
@@ -59,7 +62,8 @@ export const getDriveClient = async () => {
     return driveClient;
   } catch (error) {
     console.error('Failed to initialize Drive client:', error);
-    if (config) {
+    // Only log config details in development mode
+    if (config && process.env.NODE_ENV === 'development') {
       console.error('Drive config:', {
         projectId: config.projectId,
         projectNumber: config.projectNumber,

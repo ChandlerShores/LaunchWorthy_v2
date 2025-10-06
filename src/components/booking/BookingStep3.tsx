@@ -48,17 +48,19 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
     retry 
   } = useCalendlyIntegration(contactInfo);
 
-  // Debug logging
+  // Debug logging - only in development mode
   React.useEffect(() => {
-    console.log('BookingStep3 Calendly Debug:', {
-      contactInfo,
-      calendlyUrl,
-      prefilledFields,
-      hasAllFields,
-      hasError,
-      fallbackMode,
-      error
-    });
+    if (process.env.NODE_ENV === 'development') {
+      console.log('BookingStep3 Calendly Debug:', {
+        contactInfo,
+        calendlyUrl,
+        prefilledFields,
+        hasAllFields,
+        hasError,
+        fallbackMode,
+        error
+      });
+    }
   }, [contactInfo, calendlyUrl, prefilledFields, hasAllFields, hasError, fallbackMode, error]);
 
   // LinkedIn URL validation
@@ -122,14 +124,19 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
       }
       
       // Upload files to Google Drive if any
-      console.log('Debug - uploadedFiles:', uploadedFiles);
-      console.log('Debug - uploadedFiles.length:', uploadedFiles.length);
+      // Only log in development mode
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Debug - uploadedFiles:', uploadedFiles);
+        console.log('Debug - uploadedFiles.length:', uploadedFiles.length);
+      }
       
       let driveUploadSuccess = true;
       let driveUploadMessage = '';
       
       if (uploadedFiles.length > 0) {
-        console.log('Debug - Starting Drive upload for', uploadedFiles.length, 'files');
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Debug - Starting Drive upload for', uploadedFiles.length, 'files');
+        }
         try {
           // Convert files to base64 for API
           const filesForUpload = await Promise.all(
@@ -159,10 +166,14 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
           if (!driveResult.success) {
             driveUploadSuccess = false;
             driveUploadMessage = `File upload warning: ${driveResult.message}`;
-            console.warn('Drive upload failed:', driveResult);
+            if (process.env.NODE_ENV === 'development') {
+              console.warn('Drive upload failed:', driveResult);
+            }
           } else {
             driveUploadMessage = `Files uploaded successfully: ${driveResult.message}`;
-            console.log('Drive upload success:', driveResult);
+            if (process.env.NODE_ENV === 'development') {
+              console.log('Drive upload success:', driveResult);
+            }
           }
         } catch (driveError) {
           driveUploadSuccess = false;
@@ -170,7 +181,9 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
           console.error('Drive upload error:', driveError);
         }
       } else {
-        console.log('Debug - No files to upload to Drive');
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Debug - No files to upload to Drive');
+        }
       }
       
       // Send comprehensive booking data to Formspree
@@ -210,7 +223,9 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
         });
 
         if (response.ok) {
-          console.log('Successfully submitted comprehensive booking data to Formspree');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Successfully submitted comprehensive booking data to Formspree');
+          }
         } else {
           const errorData = await response.text();
           console.error('Failed to submit booking data to Formspree:', {
@@ -337,11 +352,13 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
         {/* Calendly Embed */}
         {calendlyUrl ? (
           <div className="bg-navy-50 rounded-lg p-4">
-            <div className="mb-4 p-3 bg-sky-50 rounded border">
-              <p className="text-sm text-sky-800">
-                <strong>Debug URL:</strong> <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" className="underline break-all">{calendlyUrl}</a>
-              </p>
-            </div>
+            {process.env.NODE_ENV === 'development' && (
+              <div className="mb-4 p-3 bg-sky-50 rounded border">
+                <p className="text-sm text-sky-800">
+                  <strong>Debug URL:</strong> <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" className="underline break-all">{calendlyUrl}</a>
+                </p>
+              </div>
+            )}
             <iframe
               src={calendlyUrl}
               width="100%"
@@ -353,10 +370,14 @@ const BookingStep3: React.FC<BookingStep3Props> = ({
               allow="camera; microphone; autoplay; encrypted-media; fullscreen; picture-in-picture"
               sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
               onError={() => {
-                console.error('Calendly iframe failed to load');
+                if (process.env.NODE_ENV === 'development') {
+                  console.error('Calendly iframe failed to load');
+                }
               }}
               onLoad={() => {
-                console.log('Calendly iframe loaded successfully');
+                if (process.env.NODE_ENV === 'development') {
+                  console.log('Calendly iframe loaded successfully');
+                }
               }}
             />
           </div>

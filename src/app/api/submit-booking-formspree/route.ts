@@ -67,16 +67,19 @@ export async function POST(request: NextRequest) {
       bookingFlowVersion: bookingData.bookingFlowVersion || '2.0',
     };
 
-    console.log('Submitting comprehensive booking data to Formspree:', {
-      name: formspreeData.name,
-      email: formspreeData.email,
-      serviceName: formspreeData.serviceName,
-      serviceId: formspreeData.serviceId,
-      servicePrice: formspreeData.servicePrice,
-      paymentSessionId: formspreeData.paymentSessionId,
-      status: formspreeData.status,
-      bookingFlowVersion: formspreeData.bookingFlowVersion,
-    });
+    // Only log in development mode
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Submitting comprehensive booking data to Formspree:', {
+        name: formspreeData.name,
+        email: formspreeData.email,
+        serviceName: formspreeData.serviceName,
+        serviceId: formspreeData.serviceId,
+        servicePrice: formspreeData.servicePrice,
+        paymentSessionId: formspreeData.paymentSessionId,
+        status: formspreeData.status,
+        bookingFlowVersion: formspreeData.bookingFlowVersion,
+      });
+    }
 
     const response = await fetch(formspreeUrl, {
       method: 'POST',
@@ -87,7 +90,9 @@ export async function POST(request: NextRequest) {
     });
 
     if (response.ok) {
-      console.log('Successfully submitted booking to Formspree');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Successfully submitted booking to Formspree');
+      }
       return NextResponse.json({ success: true });
     } else {
       const errorText = await response.text();
@@ -103,8 +108,14 @@ export async function POST(request: NextRequest) {
     }
   } catch (error) {
     console.error('Error submitting booking to Formspree:', error);
+    
+    // Don't expose internal error details in production
+    const errorMessage = process.env.NODE_ENV === 'development' 
+      ? (error instanceof Error ? error.message : 'Unknown error')
+      : 'Internal server error';
+    
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: errorMessage },
       { status: 500 }
     );
   }

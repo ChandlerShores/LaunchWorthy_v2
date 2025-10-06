@@ -69,14 +69,16 @@ export const buildCalendlyUrl = (baseUrl: string, contactInfo: ContactInfo) => {
     
     const url = `${finalBaseUrl}?${params.toString()}`;
     
-    // Debug logging
-    console.log('Calendly URL Debug:', {
-      baseUrl,
-      params: params.toString(),
-      finalUrl: url,
-      prefilledFields,
-      contactInfo
-    });
+    // Debug logging - only in development mode
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Calendly URL Debug:', {
+        baseUrl,
+        params: params.toString(),
+        finalUrl: url,
+        prefilledFields,
+        contactInfo
+      });
+    }
     
     return {
       url,

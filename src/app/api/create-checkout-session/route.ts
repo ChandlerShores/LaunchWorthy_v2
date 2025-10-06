@@ -3,13 +3,14 @@ import { stripe, servicePrices } from '@/lib/stripe';
 
 export async function POST(request: NextRequest) {
   try {
-    console.log('=== STRIPE CHECKOUT SESSION API CALLED ===');
-    console.log('Environment:', process.env.NODE_ENV);
-    console.log('Stripe configured:', !!stripe);
-    console.log('STRIPE_SECRET_KEY exists:', !!process.env.STRIPE_SECRET_KEY);
-    console.log('STRIPE_SECRET_KEY starts with:', process.env.STRIPE_SECRET_KEY?.substring(0, 7));
-    console.log('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY exists:', !!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
-    console.log('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY starts with:', process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY?.substring(0, 7));
+    // Only log in development mode
+    if (process.env.NODE_ENV === 'development') {
+      console.log('=== STRIPE CHECKOUT SESSION API CALLED ===');
+      console.log('Environment:', process.env.NODE_ENV);
+      console.log('Stripe configured:', !!stripe);
+      console.log('STRIPE_SECRET_KEY exists:', !!process.env.STRIPE_SECRET_KEY);
+      console.log('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY exists:', !!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+    }
     
     // Check if Stripe is configured
     if (!stripe) {
@@ -45,12 +46,16 @@ export async function POST(request: NextRequest) {
     }
 
     const service = servicePrices[serviceId as keyof typeof servicePrices];
-    console.log('Service selected:', service);
+    
+    // Only log in development mode
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Service selected:', service);
+    }
     
     // Get the correct base URL for development
     let baseUrl: string;
     if (process.env.NODE_ENV === 'production') {
-      baseUrl = 'https://launchworthy.net';
+      baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://launchworthy.net';
     } else {
       // In development, use the request origin to get the correct port
       const origin = request.headers.get('origin') || request.headers.get('referer');
@@ -61,11 +66,14 @@ export async function POST(request: NextRequest) {
       }
     }
     
-    console.log('Creating Stripe session with baseUrl:', baseUrl);
-    console.log('Service details:', service);
+    // Only log in development mode
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Creating Stripe session with baseUrl:', baseUrl);
+      console.log('Service details:', service);
+      console.log('Calling stripe.checkout.sessions.create...');
+    }
 
     // Create Stripe Checkout Session
-    console.log('Calling stripe.checkout.sessions.create...');
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -95,12 +103,21 @@ export async function POST(request: NextRequest) {
       // automatic_tax: { enabled: true },
     });
 
-    console.log('✅ Stripe session created successfully:', session.id);
+    // Only log in development mode
+    if (process.env.NODE_ENV === 'development') {
+      console.log('✅ Stripe session created successfully:', session.id);
+    }
     return NextResponse.json({ sessionId: session.id });
   } catch (error) {
     console.error('Error creating checkout session:', error);
+    
+    // Don't expose internal error details in production
+    const errorMessage = process.env.NODE_ENV === 'development' 
+      ? (error instanceof Error ? error.message : 'Unknown error')
+      : 'Failed to create checkout session';
+    
     return NextResponse.json(
-      { error: 'Failed to create checkout session' },
+      { error: errorMessage },
       { status: 500 }
     );
   }

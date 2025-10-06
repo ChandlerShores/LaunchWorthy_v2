@@ -105,7 +105,9 @@ const BookingFlow: React.FC = () => {
     
     // Payment successful - proceed to Step 3
     // Formspree submission will happen in Step 3 with complete data
-    console.log('Payment successful, proceeding to booking completion step');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Payment successful, proceeding to booking completion step');
+    }
     nextStep();
   };
 

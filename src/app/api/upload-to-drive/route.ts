@@ -45,7 +45,9 @@ export async function POST(request: NextRequest) {
           fileId: fileId
         });
       } catch (error) {
-        console.error(`Failed to upload ${file.name}:`, error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error(`Failed to upload ${file.name}:`, error);
+        }
         uploadResults.push({
           name: file.name,
           success: false,
@@ -68,7 +70,9 @@ export async function POST(request: NextRequest) {
       const metadataBuffer = Buffer.from(JSON.stringify(metadata, null, 2));
       await uploadFileToDrive('booking-metadata.json', metadataBuffer, 'application/json', folderId);
     } catch (error) {
-      console.error('Failed to create metadata file:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to create metadata file:', error);
+      }
       // Don't fail the whole operation for metadata
     }
 

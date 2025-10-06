@@ -24,7 +24,7 @@ export const defaultMetadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://launchworthy.net'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://launchworthy.net'),
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
@@ -41,7 +41,7 @@ export const defaultMetadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://launchworthy.net',
+    url: process.env.NEXT_PUBLIC_BASE_URL || 'https://launchworthy.net',
     siteName: 'Launchworthy',
     title: 'Launchworthy - Stop Getting Ghosted After Interviews',
     description: '21 days from "decent" to "obvious hire." Practical coaching for early-career professionals.',
@@ -86,12 +86,12 @@ export function generatePageMetadata({
     title,
     description,
     alternates: {
-      canonical: `https://launchworthy.net${path}`,
+      canonical: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://launchworthy.net'}${path}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://launchworthy.net${path}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://launchworthy.net'}${path}`,
     },
     twitter: {
       title,
