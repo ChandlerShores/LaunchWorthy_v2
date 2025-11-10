@@ -9,6 +9,7 @@ export const routes = {
   book: '/book',
   faq: '/faq',
   contact: '/contact',
+  resumeOptimizer: '/tools/resume-optimizer',
 } as const;
 
 export const navigation = [

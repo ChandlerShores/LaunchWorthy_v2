@@ -6,6 +6,7 @@ import { routes } from '@/lib/routes';
 
 const navigation = [
   { name: 'Services', href: routes.services },
+  { name: 'Resume Optimizer', href: routes.resumeOptimizer },
   { name: 'About', href: routes.about },
   { name: 'FAQ', href: routes.faq },
   { name: 'Contact', href: routes.contact },

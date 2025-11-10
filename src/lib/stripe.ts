@@ -57,6 +57,11 @@ export const servicePrices = {
     name: 'Monthly Mentorship',
     description: 'Ongoing coaching and career guidance',
   },
+  optimizer: {
+    price: 1000, // $10.00 in cents
+    name: 'Resume Optimizer Credits',
+    description: '5 additional resume optimizations',
+  },
 } as const;
 
 export type ServiceId = keyof typeof servicePrices;
