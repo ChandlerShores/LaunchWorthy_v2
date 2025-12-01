@@ -181,7 +181,7 @@ export const useATSOptimizerFlow = () => {
   }, []);
 
   // Step 5: Results
-  const setJobId = useCallback((jobId: string) => {
+  const setJobId = useCallback((jobId: string | null) => {
     setState(prev => ({
       ...prev,
       jobId,
