@@ -114,9 +114,17 @@ export async function POST(req: NextRequest) {
 
     // Attempt function
     const attempt = async () => {
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      
+      // Optionally include API key if configured (some services require it, others don't)
+      const apiKey = process.env.ATS_API_KEY;
+      if (apiKey) {
+        headers['X-API-Key'] = apiKey;
+      }
+      
       const res = await fetch(`${ATS_API_BASE_URL}/api/rewrite`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({
           job_description,
           resume_bullets: cleanBullets,
