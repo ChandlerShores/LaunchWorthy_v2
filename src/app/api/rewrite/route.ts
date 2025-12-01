@@ -14,7 +14,6 @@ type RewriteParams = {
 };
 
 const ATS_API_BASE_URL = process.env.ATS_API_BASE_URL!;
-const ATS_API_KEY = process.env.ATS_API_KEY;
 const TIMEOUT_MS = Number(process.env.ATS_API_TIMEOUT_MS ?? 120000);
 
 export async function POST(req: NextRequest) {
@@ -115,16 +114,9 @@ export async function POST(req: NextRequest) {
 
     // Attempt function
     const attempt = async () => {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      
-      // Add API key if configured
-      if (ATS_API_KEY) {
-        headers['X-API-Key'] = ATS_API_KEY;
-      }
-      
       const res = await fetch(`${ATS_API_BASE_URL}/api/rewrite`, {
         method: 'POST',
-        headers,
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           job_description,
           resume_bullets: cleanBullets,
