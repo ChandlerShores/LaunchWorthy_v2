@@ -22,3 +22,8 @@ export default function ResumeOptimizerLayout({ children }: { children: React.Re
 
 
 
+
+
+
+
+

@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import ServiceCard from '@/components/ServiceCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQ from '@/components/FAQ';
+import { CTAButton } from '@/components/CTAButton';
 import { services, routes } from '@/lib/routes';
 
 export const metadata = generatePageMetadata({
@@ -198,12 +199,14 @@ export default function HomePage() {
               <span>Instant optimization</span>
             </div>
           </div>
-          <a
+          <CTAButton
             href={routes.resumeOptimizer}
-            className="inline-block bg-white text-primary-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-colors duration-200 text-lg"
+            variant="secondary"
+            size="lg"
+            className="bg-white text-primary-600 hover:bg-gray-100"
           >
             Try Resume Optimizer →
-          </a>
+          </CTAButton>
         </div>
       </Section>
 

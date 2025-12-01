@@ -9,7 +9,10 @@ import OptimizerStep3 from './OptimizerStep3';
 import OptimizerStep4 from './OptimizerStep4';
 import OptimizerResults from './OptimizerResults';
 import UsageLimitModal from './UsageLimitModal';
-import { canUseOptimizer, recordUsage, addCredits } from '@/lib/optimizer-usage';
+import { canUseOptimizer, recordUsage, addCredits, resetUsageData, getRemainingCredits } from '@/lib/optimizer-usage';
+import { validateRewriteInput, rewriteBullets } from '@/lib/rewrite';
+import { RateLimitError, RewriteApiSuccess } from '@/types/rewrite';
+import OptimizerRewriteResults from './OptimizerRewriteResults';
 
 export default function ATSOptimizerFlow() {
   const searchParams = useSearchParams();
@@ -41,6 +44,16 @@ export default function ATSOptimizerFlow() {
   } = useATSOptimizerFlow();
 
   const [showUsageModal, setShowUsageModal] = useState(false);
+  const [rateLimitMessage, setRateLimitMessage] = useState<string | null>(null);
+  const [rateLimitedUntil, setRateLimitedUntil] = useState<number | null>(null);
+  const showDevTools = process.env.NODE_ENV !== 'production' || process.env.NEXT_PUBLIC_DEV_TOOLS === '1';
+  const [remaining, setRemaining] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setRemaining(getRemainingCredits());
+    }
+  }, [currentStep, isProcessing]);
 
   // Handle payment success return
   useEffect(() => {
@@ -77,6 +90,28 @@ export default function ATSOptimizerFlow() {
       return;
     }
 
+    // Client-side limits guard (mirror server validation)
+    try {
+      validateRewriteInput({
+        job_description: jdText,
+        resume_bullets: editedBullets,
+        params: {
+          // We are not wiring these UI settings to params yet, keep defaults
+        },
+      });
+    } catch (e: any) {
+      alert(e?.message || 'Please fix input errors before submitting.');
+      return;
+    }
+
+    // Respect temporary cooldown if previously rate limited
+    if (rateLimitedUntil && Date.now() < rateLimitedUntil) {
+      setRateLimitMessage('You’ve hit the limit. Please wait a minute and try again.');
+      return;
+    } else {
+      setRateLimitMessage(null);
+    }
+
     // Proceed with optimization
     await submitOptimization();
   };
@@ -86,37 +121,33 @@ export default function ATSOptimizerFlow() {
     setProcessing(true);
 
     try {
-      // Call submit endpoint
-      const response = await fetch('/api/ats/submit-optimization', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      // Call new rewrite proxy directly
+      const result = (await rewriteBullets({
+        job_description: jdText,
+        resume_bullets: editedBullets,
+        params: {
+          // Map basic settings to API params where applicable
+          target_tense: 'past',
+          max_words_per_bullet: Math.min(Math.max(settings.maxLen, 6), 60),
+          seniority_hint: 'IC mid',
+          api_version: '1.0.0',
+          prompt_version: '1.0.0',
         },
-        body: JSON.stringify({
-          jobDescription: jdText,
-          bullets: editedBullets,
-          settings: {
-            tone: settings.tone,
-            maxLen: settings.maxLen,
-            variants: settings.variants,
-          },
-        }),
-      });
+      })) as RewriteApiSuccess;
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to submit optimization');
-      }
-
-      const data = await response.json();
-
-      // Record usage
+      // Record usage (client-side credit tracking)
       recordUsage();
 
-      // Store job ID and move to results step
-      setJobId(data.jobId);
+      // Store results directly and move to step 5 (direct results mode)
+      setResults(result);
+      setJobId(null);
       nextStep();
-    } catch (error) {
+    } catch (error: any) {
+      if (error instanceof RateLimitError) {
+        setRateLimitMessage(error.message || 'Rate limit exceeded. Please try again later.');
+        setRateLimitedUntil(Date.now() + 60_000);
+        return;
+      }
       console.error('Submission error:', error);
       alert(error instanceof Error ? error.message : 'Failed to submit optimization. Please try again.');
     } finally {
@@ -183,7 +214,11 @@ export default function ATSOptimizerFlow() {
         );
 
       case 5:
-        return jobId ? <OptimizerResults jobId={jobId} onStartOver={handleStartOver} /> : null;
+        return jobId
+          ? <OptimizerResults jobId={jobId} onStartOver={handleStartOver} />
+          : results
+            ? <OptimizerRewriteResults data={results as any} onStartOver={handleStartOver} />
+            : null;
 
       default:
         return null;
@@ -192,6 +227,40 @@ export default function ATSOptimizerFlow() {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
+      {/* Dev Tools (local/dev only) */}
+      {showDevTools && (
+        <div className="mb-4 flex items-center justify-between rounded-md border border-dashed border-gray-300 bg-gray-50 px-3 py-2">
+          <div className="text-xs text-gray-600">
+            Dev Tools — Remaining: {remaining ?? '—'}
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => {
+                addCredits(5);
+                setRemaining(getRemainingCredits());
+              }}
+              className="rounded bg-gray-800 px-2 py-1 text-xs font-medium text-white hover:bg-gray-700"
+            >
+              Add 5 credits
+            </button>
+            <button
+              onClick={() => {
+                resetUsageData();
+                setRemaining(getRemainingCredits());
+              }}
+              className="rounded border border-gray-300 px-2 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100"
+            >
+              Reset usage
+            </button>
+          </div>
+        </div>
+      )}
+      {/* Rate Limit Banner */}
+      {rateLimitMessage && (
+        <div className="mb-4 rounded-md border border-yellow-300 bg-yellow-50 px-4 py-3 text-sm text-yellow-800">
+          {rateLimitMessage}
+        </div>
+      )}
       {/* Progress Indicator (only show for steps 1-4) */}
       {currentStep <= 4 && (
         <div className="mb-8">
